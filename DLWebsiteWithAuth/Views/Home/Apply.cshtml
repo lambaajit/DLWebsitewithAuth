@@ -1,0 +1,185 @@
+﻿@model DLWebsiteWithAuth.Models.ApplyModel
+@*@using CaptchaMvc.HtmlHelpers*@
+
+
+@{
+    ViewBag.Title = ViewBag.JobTitle;
+    ViewBag.Description = ViewBag.JobTitle.Replace("Ref", "Reference");
+    ViewBag.Keywords = ViewBag.JobTitle;
+}
+
+<div class="col-xs-12">
+    <div id="maincontent">
+        <div class="hidden-xs" style="padding-top:10px;">
+            <p style="float:right;color:#ff0000;font-size:10px !important">* this information is required</p>
+            <h3>Online Application Form</h3>
+            <hr />
+            <h1 style="font-size:16px">@ViewBag.JobTitle.Replace("Job Ref Code:", "The Reference Code for this Job is ")</h1>
+        </div>
+        @using (Html.BeginForm("Apply", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <table class="table table-bordered">
+                <thead style="padding:10px">
+                    <b>Please complete the sections below to apply for the role. Please upload your CV and covering letter.</b>
+                    <br />
+                    <br />
+                    <span style="color:red !important">@ViewBag.ErorMsg</span>
+                </thead>
+                <tr>
+                    <td style="width:50%;">First Name<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Forename, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Forename, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Family Name<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Surname, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Post Applied For<font class="required1">*</font></td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Post_ID, null, "Please Select", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Post_ID, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Confirm Email<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ConfirmEmail, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.ConfirmEmail, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        Where have you seen/heard this advert?<font class="required1">*</font>
+
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Source, new List<SelectListItem>(){
+                                new SelectListItem {Text = "Duncan Lewis Website", Value = "Duncan Lewis Website"},
+                            new SelectListItem {Text = "Indeed", Value = "Indeed"},
+                            new SelectListItem {Text = "EIN", Value = "EIN"},
+                            new SelectListItem {Text = "Gumtree", Value = "Gumtree"},
+                            new SelectListItem {Text = "Totally Legal", Value = "Totally Lega"},
+                            new SelectListItem {Text = "College of Law", Value = "College of Law"},
+                            new SelectListItem {Text = "Referred by DL employee", Value = "Referred by DL employee"},
+                            new SelectListItem {Text = "Reed", Value = "Reed"},
+                            new SelectListItem {Text = "Law Careers", Value = "Law Careers"},
+                            new SelectListItem {Text = "MHLA", Value = "MHLA"},
+                            new SelectListItem {Text = "Monster", Value = "Monster"},
+                            new SelectListItem {Text = "Glassdoor", Value = "Glassdoor"},
+                            new SelectListItem {Text = "Other", Value = "Other"}
+                        },"Please select",new { @class="form-control" })
+
+
+                        @Html.ValidationMessageFor(x => x.Source, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        If you have selected &quot;Other&quot; then enter details:
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Source_Others, new { @class = "form-control", style = "width:100%; height:150px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Note: Our System only accepts (.doc, .docx, .pdf, .rtf) formats while uploading
+                        your CV and Cover Letter
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" vertical-align:top;">
+
+                        Attach CV<font class="required1">*</font><br /><p style="font-size:12px !important; font-weight:normal !important">Only Word and PDF files can be uploaded</p>
+
+                    </td>
+                    <td>
+                        <input type="file" name="Filename" id="Filename" required="required" />
+                        @*@Html.ValidationMessageFor(x => x.Filename, null, new { @class = "validation-error" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 40px">Attach Cover Letter<font class="required1">*</font><br /><p style="font-size:12px !important; font-weight:normal !important">Only Word and PDF files can be uploaded</p></td>
+                    <td style="height: 40px">
+                        <input type="file" name="Filename_CoverLetter" id="Filename_CoverLetter" required="required" />
+                        @*@Html.ValidationMessageFor(x => x.Filename_CoverLetter, null, new { @class = "validation-error" })*@
+                        <br />
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        @Html.CheckBoxFor(m => m.consent, new { id = "Terms" }) I agree to the handling of my personal information in the manner described <a href="/Use-of-Personal-Information-provided-in-Online-Application-Form.html" target="_blank">here</a>.
+                        @Html.ValidationMessageFor(x => x.consent, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                @*<tr>
+                    <td colspan="2">
+                        @Html.Captcha("Refresh", "Enter the text you see above:", 5)
+                    </td>
+                </tr>*@
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+                    </td>
+                </tr>
+
+            </table>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#Filename').on('change', function () {
+                myfile = $(this).val();
+                var ext = myfile.split('.').pop();
+                if (ext == "pdf" || ext == "docx" || ext == "doc") {
+                    return;
+                } else {
+                    alert('Not a Valid File');
+                    $('#Filename').val('');
+                    return false;
+                }
+            });
+
+
+            $('#Filename_CoverLetter').on('change', function () {
+                myfile = $(this).val();
+                var ext = myfile.split('.').pop();
+                if (ext == "pdf" || ext == "docx" || ext == "doc") {
+                    return;
+                } else {
+                    alert('Not a Valid File');
+                    $('#Filename_CoverLetter').val('');
+                    return false;
+                }
+            });
+        });
+    </script>
+
+}
+
+
+

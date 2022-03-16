@@ -1,0 +1,39 @@
+﻿@model List<Slots>
+@{
+    ViewBag.Title = "Video Consultation with Solicitor/Lawyer";
+}
+
+<h1>Video Consultation with Solicitor/Lawyer</h1>
+<hr />
+<ul>
+    <li>We are using Zoom chat for Video conference. So before proceeding please make sure you have an account on "Zoom Chat" and provide us with the correct "Zoom Chat" email address.</li>
+    <li>Each slot is for half an hour.</li>
+    <li>We will send you an confirmation email when your request is accepted by a legal representative along with their details.</li>
+</ul>
+<hr />
+<div style="width:100%; text-align:center; padding:30px">
+    @using (Ajax.BeginForm("getslotsPV", "BookVideoConference", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "timeslotsdiv", LoadingElementId = "ajax_loading_image" }))
+    {
+
+        <p>Video consultation service is currently available for Immigration, Public Law, Housing, Childcare and Family matters only.</p>
+        <br /><br />
+        @Html.DropDownList("department", new List<SelectListItem> { new SelectListItem { Text="Housing", Value="Housing" },
+                                                                    new SelectListItem { Text="Immigration", Value="Immigration" },
+                                                                    new SelectListItem { Text="Public Law", Value="Public Law" },
+                                                                    new SelectListItem { Text="Child Care", Value="Child Care" },
+                                                                    new SelectListItem { Text="Family", Value="Family" },
+        }, "Please select a department", new { @class = "form-control", style="width:300px !Important; margin:auto !Important" })
+        <br /><br />
+        <input type="submit" value="Get Slots" class="btn btn-primary" />
+    }
+</div>
+
+<div id="ajax_loading_image" style="display:none; z-index:999; width:100%; text-align:center; top:0px !important">
+
+    <img src="/LoadingImage.gif" />
+</div>
+
+<div id="timeslotsdiv">
+
+</div>
+

@@ -1,0 +1,109 @@
+﻿@model DLWebsiteWithAuth.Models.PaymentModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@using (Html.BeginForm("PaymentPost", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+<div id="maincontent">
+    <div class="hidden-xs" style="padding-top:10px;">
+        <p style="float:right;color:Red;">* this information is required</p>
+        <h3>Payment Details</h3>
+        <br />
+    </div>
+    
+        <table class="table table-bordered">
+            <thead style="padding:10px"><b>Please complete the sections below and provide the payment details.</b><br /><br /></thead>
+            <tr>
+                <td style="width:50%;">Your Name<font class="required1">*</font></td>
+                <td>
+                    @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control", autocomplete="off" })
+                    @Html.ValidationMessageFor(x => x.ClientName, null, new { @classs = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>Case Reference<font class="required1">*</font><p>Please input 1 capital alphabet followed by 9 numeric digits e.g. A123450001</p></td>
+                <td>
+                    @Html.TextBoxFor(x => x.ClientReference, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.ClientReference, null, new { @classs = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>Caseworker's Name<font class="required1">*</font></td>
+                <td>
+                    @Html.TextBoxFor(x => x.Caseworker, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Caseworker, null, new { @classs = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email<font class="required1">*</font>
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Email, null, new { @classs = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Confirm Email<font class="required1">*</font>
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.ConfirmEmail, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.ConfirmEmail, null, new { @classs = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td style=" vertical-align:top;">
+                        Description
+                </td>
+                <td>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", style="width:100%; height:150px" })
+                    @Html.ValidationMessageFor(x => x.Description, null, new { @classs = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 40px">Amount (£)<font class="required1">*</font></td>
+                <td style="height: 40px">
+                    @Html.TextBoxFor(x => x.Amount, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Amount, null, new { @classs = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;">
+                    &nbsp;<input type="submit" value="Next" class="btn btn-primary" /><br /><br />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <table cellpadding="5px" cellspacing="5px" width="80%">
+                        <tr>
+                            <td><img src="/images/VISA.gif" style="border-width:0px;" /></td>
+                            <td><img src="/images/MAESTRO.gif" style="border-width:0px;" /></td>
+                            <td><img src="/images/ECMC.gif" style="border-width:0px;;" /></td>
+                            <td><img src="/images/thumb-visa-electron-new.gif" style="border-width:0px;" /></td>
+                            <td><img src="/images/JCB.gif" style="border-width:0px;" /></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <div id="Div1"><h4>Refund Policy</h4></div>
+                    <p style="text-align:left;">
+                        <br /><br />Our Refund Policy is in addition to the Terms of Engagement which you receive from us at the outset of your matter or which you can request from us at any time.  <br /><br />
+                        If you send us money via Worldpay and subsequently request a refund of some or all of that money, we will refund any money due to you after deducting any direct costs to us associated with the processing of your payment and the processing of any refund and also any costs (including VAT and disbursements) which we have incurred in accordance with your instructions up to the date of your request for a refund. <br /><br />
+                        If you need any assistance with a payment you have made please contact our Finance department on 020 7923 4020 or email us at <a href="mailto:kunald@duncanlewis.com">kunald@duncanlewis.com</a><br /><br />
+
+                    
+                </td>
+            </tr>
+
+
+        </table>
+</div>
+}
+

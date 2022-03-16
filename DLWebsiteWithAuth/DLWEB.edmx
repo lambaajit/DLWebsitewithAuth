@@ -1,0 +1,1775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WEBDLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AssentManagement_ProductDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductType" Type="varchar(max)" />
+          <Property Name="ProductID" Type="bigint" />
+          <Property Name="Vendor" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Blue_Print">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Main_ID" Type="int" />
+          <Property Name="Date_Added" Type="datetime" />
+          <Property Name="OfficeName" Type="varchar(max)" />
+          <Property Name="Child Care" Type="varchar(max)" />
+          <Property Name="Civil Litigation" Type="varchar(max)" />
+          <Property Name="Clinical Negligence" Type="varchar(max)" />
+          <Property Name="Community Care" Type="varchar(max)" />
+          <Property Name="Crime" Type="varchar(max)" />
+          <Property Name="Employment" Type="varchar(max)" />
+          <Property Name="Housing" Type="varchar(max)" />
+          <Property Name="Immigration" Type="varchar(max)" />
+          <Property Name="Mental Health" Type="varchar(max)" />
+          <Property Name="Personal Injury" Type="varchar(max)" />
+          <Property Name="Prison Law" Type="varchar(max)" />
+          <Property Name="Public Law" Type="varchar(max)" />
+          <Property Name="Welfare Benefits" Type="varchar(max)" />
+          <Property Name="Business Immigration" Type="varchar(max)" />
+          <Property Name="Mental capacity" Type="varchar(max)" />
+          <Property Name="Action Against Public Authorities" Type="varchar(max)" />
+          <Property Name="Court of Protection" Type="varchar(max)" />
+          <Property Name="Motoring Law" Type="varchar(max)" />
+          <Property Name="Wills and Probate" Type="varchar(max)" />
+          <Property Name="International Disputes" Type="varchar(max)" />
+          <Property Name="Commercial" Type="varchar(max)" />
+          <Property Name="Islamic Law" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ClientReferrals">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="FeeEarner" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FeeEarnerDepartment" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Clientname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Client_email" Type="varchar(max)" />
+          <Property Name="Client_Mob" Type="bigint" />
+          <Property Name="Client_tel" Type="varchar(max)" />
+          <Property Name="ClientRef" Type="varchar" MaxLength="10" />
+          <Property Name="MatterNo" Type="varchar" MaxLength="10" />
+          <Property Name="Interpreter_Required" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Ref_SubDepartment" Type="varchar(max)" />
+          <Property Name="Ref_Department" Type="varchar(max)" />
+          <Property Name="NewClient_Date" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Cat" Type="varchar(max)" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Ref_Director" Type="varchar" MaxLength="50" />
+          <Property Name="Ref_Description" Type="varchar(max)" />
+          <Property Name="DateRef1" Type="datetime" />
+          <Property Name="Ref_Feeearner" Type="varchar" MaxLength="100" />
+          <Property Name="Dir_Description" Type="varchar(max)" />
+          <Property Name="DateRef2" Type="datetime" />
+          <Property Name="NewClientRef" Type="varchar" MaxLength="10" />
+          <Property Name="NewMatterRef" Type="varchar" MaxLength="10" />
+          <Property Name="New_FeeEarner" Type="varchar" MaxLength="100" />
+          <Property Name="DateRef3" Type="datetime" />
+          <Property Name="Reason_Refusal" Type="varchar" MaxLength="2000" />
+          <Property Name="HR_Approval" Type="bit" />
+          <Property Name="FeeEarner_Response" Type="varchar" MaxLength="50" />
+          <Property Name="Urgency" Type="varchar" MaxLength="50" />
+          <Property Name="Language_Needs" Type="varchar(max)" />
+          <Property Name="Source1" Type="varchar(max)" />
+          <Property Name="Source" Type="varchar(max)" />
+          <Property Name="IP_Address" Type="varchar(max)" />
+          <Property Name="Referral_to" Type="varchar(max)" />
+          <Property Name="Confirmed" Type="varchar(max)" />
+          <Property Name="Cancel" Type="varchar" MaxLength="50" />
+          <Property Name="RoomBooked" Type="varchar" MaxLength="50" />
+          <Property Name="FeedbackafterAppointment" Type="varchar(max)" />
+          <Property Name="Reason_Cancel" Type="varchar(max)" />
+          <Property Name="Fee_Earner_Attendance" Type="varchar(max)" />
+          <Property Name="Attendance_Confirmed_By" Type="varchar(max)" />
+          <Property Name="Filename" Type="varchar(max)" />
+          <Property Name="CustomerServiceMember" Type="varchar(max)" />
+          <Property Name="Preferred_Location" Type="varchar(max)" />
+          <Property Name="DetentionCenter" Type="varchar(max)" />
+          <Property Name="Client_Forename" Type="varchar(max)" />
+          <Property Name="Client_Surname" Type="varchar(max)" />
+          <Property Name="Client_Postcode" Type="varchar(max)" />
+          <Property Name="Legal/Private" Type="varchar(max)" />
+          <Property Name="CFA" Type="varchar(max)" />
+          <Property Name="Insurance" Type="varchar(max)" />
+          <Property Name="matter_allocated_notes" Type="varchar(max)" />
+          <Property Name="cancel_Signposted" Type="varchar(max)" />
+          <Property Name="Step3_Action" Type="varchar(max)" />
+          <Property Name="New_old_Client" Type="bit" />
+          <Property Name="detained" Type="varchar(max)" />
+          <Property Name="Module" Type="varchar" MaxLength="100" />
+          <Property Name="IRC_Surgery_ID" Type="numeric" Precision="36" Scale="0" />
+          <Property Name="ModeOfCommunication" Type="varchar(max)" />
+          <Property Name="ActoinedBy" Type="varchar(max)" />
+          <Property Name="ActionedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Internship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Telephone" Type="varchar(max)" />
+          <Property Name="LPC" Type="varchar(max)" />
+          <Property Name="BVC" Type="varchar(max)" />
+          <Property Name="LLB" Type="varchar(max)" />
+          <Property Name="Filename1" Type="varchar(max)" />
+          <Property Name="Filename2" Type="varchar(max)" />
+          <Property Name="Date_Available" Type="datetime" />
+          <Property Name="Duration" Type="varchar(max)" />
+          <Property Name="Mon_ST" Type="varchar(max)" />
+          <Property Name="Mon_ET" Type="varchar(max)" />
+          <Property Name="Tue_ST" Type="varchar(max)" />
+          <Property Name="Tue_ET" Type="varchar(max)" />
+          <Property Name="Wed_ST" Type="varchar(max)" />
+          <Property Name="Wed_ET" Type="varchar(max)" />
+          <Property Name="Thu_ST" Type="varchar(max)" />
+          <Property Name="Thu_ET" Type="varchar(max)" />
+          <Property Name="Fri_ST" Type="varchar(max)" />
+          <Property Name="Fri_ET" Type="varchar(max)" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="Area1" Type="varchar(max)" />
+          <Property Name="Area2" Type="varchar(max)" />
+          <Property Name="Area3" Type="varchar(max)" />
+          <Property Name="Office1" Type="varchar(max)" />
+          <Property Name="Office2" Type="varchar(max)" />
+          <Property Name="Office3" Type="varchar(max)" />
+          <Property Name="Status" Type="varchar(max)" />
+          <Property Name="Accepted_Area" Type="varchar(max)" />
+          <Property Name="Accepted_Office" Type="varchar(max)" />
+          <Property Name="Accepted_StartDate" Type="varchar(max)" />
+          <Property Name="Accepted_Supervisor" Type="varchar(max)" />
+          <Property Name="Filename_Passport" Type="varchar(max)" />
+          <Property Name="Accepted_By" Type="varchar(max)" />
+          <Property Name="Actual_Start_Date" Type="datetime" />
+          <Property Name="Work_Assesment_Date" Type="datetime" />
+          <Property Name="Work_Assesment_Filename" Type="varchar(max)" />
+          <Property Name="Reject_Date" Type="datetime" />
+          <Property Name="Reject_Reason" Type="varchar(max)" />
+          <Property Name="Date_Applied" Type="datetime" />
+          <Property Name="Answer1" Type="varchar(max)" />
+          <Property Name="Answer2" Type="varchar(max)" />
+          <Property Name="Answer3" Type="varchar(max)" />
+          <Property Name="Answer4" Type="varchar(max)" />
+          <Property Name="Answer5" Type="varchar(max)" />
+          <Property Name="Answer6" Type="varchar(max)" />
+          <Property Name="Answer7" Type="varchar(max)" />
+          <Property Name="Answer8" Type="varchar(max)" />
+          <Property Name="Answer9" Type="varchar(max)" />
+          <Property Name="Answer10" Type="varchar(max)" />
+          <Property Name="Answer11" Type="varchar(max)" />
+          <Property Name="Answer12" Type="varchar(max)" />
+          <Property Name="Answer13" Type="varchar(max)" />
+          <Property Name="Answer14" Type="varchar(max)" />
+          <Property Name="Answer16" Type="varchar(max)" />
+          <Property Name="Answer17" Type="varchar(max)" />
+          <Property Name="Answer18" Type="varchar(max)" />
+          <Property Name="Answer19" Type="varchar(max)" />
+          <Property Name="Answer20" Type="varchar(max)" />
+          <Property Name="Answer21" Type="varchar(max)" />
+          <Property Name="Answer22" Type="varchar(max)" />
+          <Property Name="Answer23" Type="varchar(max)" />
+          <Property Name="Answer24" Type="varchar(max)" />
+          <Property Name="Answer25" Type="varchar(max)" />
+          <Property Name="Answer26" Type="varchar(max)" />
+          <Property Name="Answer1A" Type="varchar(max)" />
+          <Property Name="Answer2A" Type="varchar(max)" />
+          <Property Name="Answer3A" Type="varchar(max)" />
+          <Property Name="Answer4A" Type="varchar(max)" />
+          <Property Name="Answer5A" Type="varchar(max)" />
+          <Property Name="Answer6A" Type="varchar(max)" />
+          <Property Name="Answer7A" Type="varchar(max)" />
+          <Property Name="Answer8A" Type="varchar(max)" />
+          <Property Name="Answer9A" Type="varchar(max)" />
+          <Property Name="Answer10A" Type="varchar(max)" />
+          <Property Name="Answer11A" Type="varchar(max)" />
+          <Property Name="Answer12A" Type="varchar(max)" />
+          <Property Name="Answer13A" Type="varchar(max)" />
+          <Property Name="Answer14A" Type="varchar(max)" />
+          <Property Name="Answer16A" Type="varchar(max)" />
+          <Property Name="Answer17A" Type="varchar(max)" />
+          <Property Name="Answer18A" Type="varchar(max)" />
+          <Property Name="Answer19A" Type="varchar(max)" />
+          <Property Name="Answer20A" Type="varchar(max)" />
+          <Property Name="Answer21A" Type="varchar(max)" />
+          <Property Name="Answer22A" Type="varchar(max)" />
+          <Property Name="Answer23A" Type="varchar(max)" />
+          <Property Name="Answer24A" Type="varchar(max)" />
+          <Property Name="Answer25A" Type="varchar(max)" />
+          <Property Name="Answer26A" Type="varchar(max)" />
+          <Property Name="Answer15" Type="varchar(max)" />
+          <Property Name="Answer15A" Type="varchar(max)" />
+          <Property Name="Answer27" Type="varchar(max)" />
+          <Property Name="Accepted_Duration" Type="varchar(max)" />
+          <Property Name="Cover_Letter" Type="image" />
+          <Property Name="CV" Type="image" />
+          <Property Name="Passport" Type="image" />
+        </EntityType>
+        <EntityType Name="Mobile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Mobile_no" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Offices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Lat" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Lng" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Appointment" Type="varchar(max)" />
+          <Property Name="Postcode" Type="varchar(max)" />
+          <Property Name="Google_Map_String" Type="varchar(max)" />
+          <Property Name="In_Out_London" Type="varchar(max)" />
+          <Property Name="Picture" Type="varchar(max)" />
+          <Property Name="OfficeCode" Type="varchar(max)" />
+          <Property Name="County" Type="varchar(max)" />
+          <Property Name="Dedicated_Numbers" Type="varchar(max)" />
+          <Property Name="Business_Cards_Address" Type="varchar(max)" />
+          <Property Name="RoomBooking" Type="bit" />
+          <Property Name="Company" Type="varchar(max)" />
+          <Property Name="Sequence" Type="int" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientReference" Type="varchar(max)" />
+          <Property Name="ClientName" Type="varchar(max)" />
+          <Property Name="Caseworker" Type="varchar(max)" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Payment_Status" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Recruitment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar(max)" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Post_ID" Type="int" />
+          <Property Name="Post_Title" Type="varchar(max)" />
+          <Property Name="Date_CV" Type="datetime" />
+          <Property Name="Agency" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="Filename" Type="varchar(max)" />
+          <Property Name="Evidence" Type="image" />
+          <Property Name="Notes" Type="varchar(max)" />
+          <Property Name="Added_By" Type="varchar(max)" />
+          <Property Name="Interview_By" Type="varchar(max)" />
+          <Property Name="Time_interview" Type="varchar(max)" />
+          <Property Name="Date_Interview" Type="datetime" />
+          <Property Name="Updated_By" Type="varchar(max)" />
+          <Property Name="Interview_Outcome" Type="varchar(max)" />
+          <Property Name="Interview_Outcome_Notes" Type="varchar(max)" />
+          <Property Name="Outcome_UpdatedBy" Type="varchar(max)" />
+          <Property Name="Date_Offered" Type="datetime" />
+          <Property Name="Date_Offered_Updated" Type="varchar(max)" />
+          <Property Name="Date_LetterRequested" Type="datetime" />
+          <Property Name="Requested_By" Type="varchar(max)" />
+          <Property Name="Date_Offered_Sent" Type="datetime" />
+          <Property Name="Offer_Sent_Updated" Type="varchar(max)" />
+          <Property Name="Date_Acceptance_Recieved" Type="datetime" />
+          <Property Name="Acceptance_Updated" Type="varchar(max)" />
+          <Property Name="Date_Started" Type="datetime" />
+          <Property Name="Date_Archived" Type="datetime" />
+          <Property Name="Archived_By" Type="varchar(max)" />
+          <Property Name="Tel" Type="varchar(max)" />
+          <Property Name="Mob" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Qualification" Type="varchar(max)" />
+          <Property Name="DOB" Type="varchar(max)" />
+          <Property Name="NI_Number" Type="varchar(max)" />
+          <Property Name="Gender" Type="varchar(max)" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="Salary" Type="varchar(max)" />
+          <Property Name="Supervisor" Type="varchar(max)" />
+          <Property Name="Department" Type="varchar(max)" />
+          <Property Name="Office" Type="varchar(max)" />
+          <Property Name="Special_Conditions" Type="varchar(max)" />
+          <Property Name="admitted_staff" Type="varchar" MaxLength="20" />
+          <Property Name="Probation_Period" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Filename_CoverLetter" Type="varchar(max)" />
+          <Property Name="Job_ID" Type="int" />
+          <Property Name="Source" Type="varchar(max)" />
+          <Property Name="Title" Type="varchar" MaxLength="15" />
+          <Property Name="Forename" Type="varchar" MaxLength="30" />
+          <Property Name="Surname" Type="varchar" MaxLength="30" />
+          <Property Name="post_code" Type="varchar" MaxLength="50" />
+          <Property Name="address2" Type="varchar(max)" />
+          <Property Name="emp_skype_id" Type="varchar" MaxLength="50" />
+          <Property Name="corpost_code" Type="varchar" MaxLength="50" />
+          <Property Name="Applicant_status" Type="bit" />
+          <Property Name="status_updatedBy" Type="varchar(max)" />
+          <Property Name="status_updatedOn" Type="datetime" />
+          <Property Name="Reference_id" Type="varchar" MaxLength="50" />
+          <Property Name="Hr_status" Type="bit" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="Passport" Type="varbinary(max)" />
+          <Property Name="Practicing" Type="varbinary(max)" />
+          <Property Name="emp_code" Type="varchar" MaxLength="20" />
+          <Property Name="management_approval" Type="varchar" MaxLength="20" />
+          <Property Name="management_comments" Type="varchar(max)" />
+          <Property Name="main_add_line1" Type="varchar" MaxLength="50" />
+          <Property Name="main_add_line2" Type="varchar" MaxLength="50" />
+          <Property Name="main_add_line3" Type="varchar" MaxLength="50" />
+          <Property Name="main_add_town" Type="varchar" MaxLength="30" />
+          <Property Name="main_add_county" Type="varchar" MaxLength="30" />
+          <Property Name="corr_add_line1" Type="varchar" MaxLength="50" />
+          <Property Name="corr_add_line2" Type="varchar" MaxLength="50" />
+          <Property Name="corr_add_line3" Type="varchar" MaxLength="50" />
+          <Property Name="corr_add_town" Type="varchar" MaxLength="30" />
+          <Property Name="corr_add_county" Type="varchar" MaxLength="30" />
+          <Property Name="Bank_Name" Type="varchar(max)" />
+          <Property Name="bank_address" Type="text" />
+          <Property Name="bank_acc_name" Type="varchar(max)" />
+          <Property Name="bank_acc_no" Type="varchar(max)" />
+          <Property Name="bank_sort_code" Type="varchar" MaxLength="50" />
+          <Property Name="next_of_kin_1" Type="varchar" MaxLength="50" />
+          <Property Name="next_of_kin_relationship" Type="varchar" MaxLength="50" />
+          <Property Name="next_of_kin_1_address_1" Type="varchar" MaxLength="500" />
+          <Property Name="next_of_kin_1_tel_no" Type="varchar" MaxLength="25" />
+          <Property Name="next_of_kin_1_mbile_no" Type="varchar" MaxLength="15" />
+          <Property Name="next_of_kin_1_address_2" Type="varchar" MaxLength="500" />
+          <Property Name="nationality" Type="varchar" MaxLength="200" />
+          <Property Name="visa_type" Type="varchar" MaxLength="50" />
+          <Property Name="visa_expiry_date" Type="varchar(max)" />
+          <Property Name="nonadmitted_staff" Type="char" MaxLength="1" />
+          <Property Name="admin_staff" Type="char" MaxLength="1" />
+          <Property Name="freelance_consultant" Type="char" MaxLength="1" />
+          <Property Name="limited_company" Type="char" MaxLength="1" />
+          <Property Name="qualifications" Type="varchar" MaxLength="90" />
+          <Property Name="date_admitted" Type="datetime" />
+          <Property Name="sra_number" Type="nvarchar" MaxLength="30" />
+          <Property Name="Currentpractising_certificate" Type="char" MaxLength="1" />
+          <Property Name="law_degree" Type="char" MaxLength="1" />
+          <Property Name="law_degree_result" Type="varchar" MaxLength="50" />
+          <Property Name="copy_of_degree_given" Type="char" MaxLength="1" />
+          <Property Name="qltt_grade" Type="varchar" MaxLength="10" />
+          <Property Name="qltt_date" Type="datetime" />
+          <Property Name="qltt_received" Type="char" MaxLength="1" />
+          <Property Name="lpc_gained" Type="char" MaxLength="1" />
+          <Property Name="lpc_gained_date" Type="datetime" />
+          <Property Name="lpc_gained_university" Type="varchar" MaxLength="50" />
+          <Property Name="lpc_result" Type="varchar" MaxLength="50" />
+          <Property Name="copy_of_lpc_given" Type="char" MaxLength="1" />
+          <Property Name="bvc_gained" Type="char" MaxLength="1" />
+          <Property Name="bvc_gained_date" Type="datetime" />
+          <Property Name="bvc_gained_university" Type="varchar" MaxLength="50" />
+          <Property Name="bvc_result" Type="varchar" MaxLength="50" />
+          <Property Name="copy_of_bvc_given" Type="char" MaxLength="1" />
+          <Property Name="law_degree_gained_university" Type="varchar" MaxLength="50" />
+          <Property Name="previous_organisation" Type="varchar" MaxLength="50" />
+          <Property Name="date_left_prev_org" Type="datetime" />
+          <Property Name="prev_org_address" Type="varchar" MaxLength="250" />
+          <Property Name="admitted_staff_old2" Type="char" MaxLength="1" />
+          <Property Name="IsPractising_Condition" Type="char" MaxLength="1" />
+          <Property Name="Practising_Condn_Details" Type="varchar" MaxLength="200" />
+          <Property Name="FamilyLawPanel" Type="char" MaxLength="1" />
+          <Property Name="ChildLawPanel" Type="char" MaxLength="1" />
+          <Property Name="CrimeDutyPanel" Type="char" MaxLength="1" />
+          <Property Name="ImmigrationPanel" Type="char" MaxLength="1" />
+          <Property Name="MentalHealthPanel" Type="char" MaxLength="1" />
+          <Property Name="OtherPanel" Type="char" MaxLength="1" />
+          <Property Name="Recruit_Dir" Type="varchar" MaxLength="20" />
+          <Property Name="Director_Approval" Type="varchar" MaxLength="20" />
+          <Property Name="Director_Comments" Type="varchar(max)" />
+          <Property Name="file_downloaded" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Recruitment_CV_Binary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainId" Type="int" />
+          <Property Name="FileName" Type="varchar(max)" />
+          <Property Name="Content" Type="image" />
+          <Property Name="TypeOfDocument" Type="varchar(max)" />
+          <Property Name="file_downloaded" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Recruitment_DlWeb">
+          <Key>
+            <PropertyRef Name="Job_Ref_Code" />
+          </Key>
+          <Property Name="Job_Ref_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Job_Brief_Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Department" Type="varchar(max)" />
+          <Property Name="Job_Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Job_Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Key_Skills_Required" Type="varchar(max)" Nullable="false" />
+          <Property Name="Date_Posted" Type="datetime" Nullable="false" />
+          <Property Name="Location" Type="varchar(max)" Nullable="false" />
+          <Property Name="Job_Type" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="Visited_Count" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="varchar(max)" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="Live_Inhouse" Type="bit" Nullable="false" />
+          <Property Name="Live" Type="bit" Nullable="false" />
+          <Property Name="EssentialCriteria1" Type="varchar(max)" />
+          <Property Name="EssentialCriteria2" Type="varchar(max)" />
+          <Property Name="EssentialCriteria3" Type="varchar(max)" />
+          <Property Name="EssentialCriteria4" Type="varchar(max)" />
+          <Property Name="Agencies" Type="varchar(max)" />
+          <Property Name="Email1" Type="varchar(max)" />
+          <Property Name="Email2" Type="varchar(max)" />
+          <Property Name="Agency1" Type="varchar(max)" />
+          <Property Name="Agency2" Type="varchar(max)" />
+          <Property Name="Agency3" Type="varchar(max)" />
+          <Property Name="Agency4" Type="varchar(max)" />
+          <Property Name="Agency5" Type="varchar(max)" />
+          <Property Name="S_Date1" Type="datetime" />
+          <Property Name="S_Date2" Type="datetime" />
+          <Property Name="S_Date3" Type="datetime" />
+          <Property Name="S_Date4" Type="datetime" />
+          <Property Name="S_Date5" Type="datetime" />
+          <Property Name="E_Date1" Type="datetime" />
+          <Property Name="E_Date2" Type="datetime" />
+          <Property Name="E_Date3" Type="datetime" />
+          <Property Name="E_Date4" Type="datetime" />
+          <Property Name="E_Date5" Type="datetime" />
+          <Property Name="Keywords" Type="varchar(max)" />
+          <Property Name="Created_user" Type="varchar" MaxLength="50" />
+          <Property Name="Created_version" Type="varchar" MaxLength="50" />
+          <Property Name="Created_stamp" Type="datetime" />
+          <Property Name="Created_Program" Type="varchar" MaxLength="50" />
+          <Property Name="Created_machine_name" Type="varchar" MaxLength="50" />
+          <Property Name="created_ip" Type="varchar" MaxLength="50" />
+          <Property Name="modified_stamp" Type="datetime" />
+          <Property Name="modified_ueser" Type="varchar" MaxLength="50" />
+          <Property Name="modified_version" Type="varchar" MaxLength="50" />
+          <Property Name="modified_program" Type="varchar" MaxLength="50" />
+          <Property Name="modified_machine_name" Type="varchar" MaxLength="50" />
+          <Property Name="modified_ip" Type="varchar" MaxLength="50" />
+          <Property Name="emp_code" Type="varchar" MaxLength="50" />
+          <Property Name="MetaTitle" Type="varchar(max)" />
+          <Property Name="MetaKeywords" Type="varchar(max)" />
+          <Property Name="MetaDescription" Type="varchar(max)" />
+          <Property Name="Duncanlewis_Desc" Type="varchar(max)" />
+          <Property Name="Department_Desc" Type="varchar(max)" />
+          <Property Name="Rewards" Type="varchar(max)" />
+          <Property Name="VacancyRole" Type="varchar(max)" />
+          <Property Name="Equal_Opportunities" Type="varchar(max)" />
+          <Property Name="Recruit_Job_ID" Type="varchar(max)" />
+          <Property Name="FIlename" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SMSSentDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="varchar(max)" />
+          <Property Name="DateTimeSent" Type="datetime" />
+          <Property Name="NumberSentOn" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Staff_Details">
+          <Key>
+            <PropertyRef Name="forename" />
+            <PropertyRef Name="surname" />
+          </Key>
+          <Property Name="forename" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="department_it" Type="nvarchar" MaxLength="100" />
+          <Property Name="office_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="admitted_staff" Type="char" MaxLength="1" />
+          <Property Name="nonadmitted_staff" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="StaffWith404Error">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffName" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SubDepartments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Department" Type="varchar(max)" Nullable="false" />
+          <Property Name="SubDepartment" Type="varchar(max)" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubDepartment_Switchboard" Type="varchar(max)" />
+          <Property Name="email" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Trustpilot_Webhooks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="varchar(max)" />
+          <Property Name="Language" Type="varchar" MaxLength="50" />
+          <Property Name="Stars" Type="int" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="LocationId" Type="varchar(max)" />
+          <Property Name="ReferenceId" Type="varchar(max)" />
+          <Property Name="createdAt" Type="datetime" />
+          <Property Name="Link" Type="varchar(max)" />
+          <Property Name="IsVerified" Type="bit" />
+          <Property Name="ConsumerId" Type="varchar(max)" />
+          <Property Name="ConsumerName" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UnsubscribeEmail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar(max)" />
+          <Property Name="DateOfRequest" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VideoCallRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Forename" Type="varchar(max)" />
+          <Property Name="Surname" Type="varchar(max)" />
+          <Property Name="ZoommailId" Type="varchar(max)" />
+          <Property Name="Telephone" Type="varchar(max)" />
+          <Property Name="Reason" Type="varchar(max)" />
+          <Property Name="SubmittedDate" Type="datetime" />
+          <Property Name="Department" Type="varchar(max)" />
+          <Property Name="Timeslot" Type="datetime" />
+          <Property Name="Status" Type="varchar(max)" />
+          <Property Name="Topic" Type="varchar(max)" />
+          <Property Name="Agenda" Type="varchar(max)" />
+          <Property Name="DLZoomAccount" Type="varchar(max)" />
+          <Property Name="NotesForClient" Type="varchar(max)" />
+          <Property Name="AcceptedBy" Type="varchar(max)" />
+          <Property Name="MeetingID" Type="varchar(max)" />
+          <Property Name="start_url" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="WEBDLModelStoreContainer">
+          <EntitySet Name="AssentManagement_ProductDetails" EntityType="Self.AssentManagement_ProductDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Blue_Print" EntityType="Self.Blue_Print" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientReferrals" EntityType="Self.ClientReferrals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Internship" EntityType="Self.Internship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mobile" EntityType="Self.Mobile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recruitment" EntityType="Self.Recruitment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recruitment_CV_Binary" EntityType="Self.Recruitment_CV_Binary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recruitment_DlWeb" EntityType="Self.Recruitment_DlWeb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMSSentDetails" EntityType="Self.SMSSentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffWith404Error" EntityType="Self.StaffWith404Error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubDepartments" EntityType="Self.SubDepartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trustpilot_Webhooks" EntityType="Self.Trustpilot_Webhooks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnsubscribeEmail" EntityType="Self.UnsubscribeEmail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCallRequest" EntityType="Self.VideoCallRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff_Details" EntityType="Self.Staff_Details" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Staff_Details].[forename] AS [forename], 
+    [Staff_Details].[surname] AS [surname], 
+    [Staff_Details].[department_it] AS [department_it], 
+    [Staff_Details].[office_name] AS [office_name], 
+    [Staff_Details].[admitted_staff] AS [admitted_staff], 
+    [Staff_Details].[nonadmitted_staff] AS [nonadmitted_staff]
+    FROM [dbo].[Staff_Details] AS [Staff_Details]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WEBDLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AssentManagement_ProductDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="Int64" />
+          <Property Name="Vendor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Blue_Print">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Main_ID" Type="Int32" />
+          <Property Name="Date_Added" Type="DateTime" Precision="3" />
+          <Property Name="OfficeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Child_Care" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Civil_Litigation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Clinical_Negligence" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Community_Care" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Crime" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Employment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Housing" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Immigration" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Mental_Health" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Personal_Injury" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Prison_Law" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Public_Law" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Welfare_Benefits" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Business_Immigration" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Mental_capacity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Action_Against_Public_Authorities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Court_of_Protection" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Motoring_Law" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Wills_and_Probate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="International_Disputes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Commercial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Islamic_Law" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClientReferral">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="FeeEarner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FeeEarnerDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clientname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Client_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Mob" Type="Int64" />
+          <Property Name="Client_tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClientRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MatterNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Interpreter_Required" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ref_SubDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NewClient_Date" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Cat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateRef1" Type="DateTime" Precision="3" />
+          <Property Name="Ref_Feeearner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dir_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateRef2" Type="DateTime" Precision="3" />
+          <Property Name="NewClientRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NewMatterRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="New_FeeEarner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateRef3" Type="DateTime" Precision="3" />
+          <Property Name="Reason_Refusal" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="HR_Approval" Type="Boolean" />
+          <Property Name="FeeEarner_Response" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Urgency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Language_Needs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IP_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Referral_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Confirmed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cancel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoomBooked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FeedbackafterAppointment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reason_Cancel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fee_Earner_Attendance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Attendance_Confirmed_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerServiceMember" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Preferred_Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DetentionCenter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Forename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Legal_Private" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CFA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Insurance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="matter_allocated_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cancel_Signposted" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Step3_Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="New_old_Client" Type="Boolean" />
+          <Property Name="detained" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Module" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IRC_Surgery_ID" Type="Decimal" Precision="36" Scale="0" />
+          <Property Name="ModeOfCommunication" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ActoinedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ActionedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Internship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LPC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BVC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LLB" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Filename1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Filename2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Available" Type="DateTime" Precision="3" />
+          <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Mon_ST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Mon_ET" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tue_ST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tue_ET" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Wed_ST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Wed_ET" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thu_ST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thu_ET" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fri_ST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fri_ET" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Area1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Area2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Area3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Office1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Office2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Office3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Accepted_Area" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Accepted_Office" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Accepted_StartDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Accepted_Supervisor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Filename_Passport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Accepted_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Actual_Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="Work_Assesment_Date" Type="DateTime" Precision="3" />
+          <Property Name="Work_Assesment_Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reject_Date" Type="DateTime" Precision="3" />
+          <Property Name="Reject_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Applied" Type="DateTime" Precision="3" />
+          <Property Name="Answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer6" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer7" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer8" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer9" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer10" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer12" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer13" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer14" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer16" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer17" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer18" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer19" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer20" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer21" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer22" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer23" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer24" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer25" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer26" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer1A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer2A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer3A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer4A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer5A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer6A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer7A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer8A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer9A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer10A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer12A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer13A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer14A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer16A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer17A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer18A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer19A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer20A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer21A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer22A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer23A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer24A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer25A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer26A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer15" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer15A" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer27" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Accepted_Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cover_Letter" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CV" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Passport" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Mobile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Mobile_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Lat" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Lng" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Appointment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Google_Map_String" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="In_Out_London" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dedicated_Numbers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Business_Cards_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RoomBooking" Type="Boolean" />
+          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sequence" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientReference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Caseworker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recruitment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Post_ID" Type="Int32" />
+          <Property Name="Post_Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_CV" Type="DateTime" Precision="3" />
+          <Property Name="Agency" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Evidence" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Added_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Interview_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Time_interview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Interview" Type="DateTime" Precision="3" />
+          <Property Name="Updated_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Interview_Outcome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Interview_Outcome_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Outcome_UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Offered" Type="DateTime" Precision="3" />
+          <Property Name="Date_Offered_Updated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_LetterRequested" Type="DateTime" Precision="3" />
+          <Property Name="Requested_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Offered_Sent" Type="DateTime" Precision="3" />
+          <Property Name="Offer_Sent_Updated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Acceptance_Recieved" Type="DateTime" Precision="3" />
+          <Property Name="Acceptance_Updated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Started" Type="DateTime" Precision="3" />
+          <Property Name="Date_Archived" Type="DateTime" Precision="3" />
+          <Property Name="Archived_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Mob" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NI_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="Salary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Supervisor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Office" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Special_Conditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="admitted_staff" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Probation_Period" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Filename_CoverLetter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Job_ID" Type="Int32" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Forename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="post_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="emp_skype_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="corpost_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Applicant_status" Type="Boolean" />
+          <Property Name="status_updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status_updatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Reference_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Hr_status" Type="Boolean" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Passport" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Practicing" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="emp_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="management_approval" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="management_comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="main_add_line1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="main_add_line2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="main_add_line3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="main_add_town" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="main_add_county" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="corr_add_line1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="corr_add_line2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="corr_add_line3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="corr_add_town" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="corr_add_county" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="bank_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="bank_acc_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="bank_acc_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="bank_sort_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="next_of_kin_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="next_of_kin_relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="next_of_kin_1_address_1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="next_of_kin_1_tel_no" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="next_of_kin_1_mbile_no" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="next_of_kin_1_address_2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="nationality" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="visa_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="visa_expiry_date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nonadmitted_staff" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="admin_staff" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="freelance_consultant" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="limited_company" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="qualifications" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="date_admitted" Type="DateTime" Precision="3" />
+          <Property Name="sra_number" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Currentpractising_certificate" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="law_degree" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="law_degree_result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="copy_of_degree_given" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="qltt_grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="qltt_date" Type="DateTime" Precision="3" />
+          <Property Name="qltt_received" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="lpc_gained" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="lpc_gained_date" Type="DateTime" Precision="3" />
+          <Property Name="lpc_gained_university" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lpc_result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="copy_of_lpc_given" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="bvc_gained" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="bvc_gained_date" Type="DateTime" Precision="3" />
+          <Property Name="bvc_gained_university" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bvc_result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="copy_of_bvc_given" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="law_degree_gained_university" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="previous_organisation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_left_prev_org" Type="DateTime" Precision="3" />
+          <Property Name="prev_org_address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="admitted_staff_old2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsPractising_Condition" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Practising_Condn_Details" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FamilyLawPanel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ChildLawPanel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CrimeDutyPanel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ImmigrationPanel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MentalHealthPanel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="OtherPanel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Recruit_Dir" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Director_Approval" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Director_Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="file_downloaded" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recruitment_CV_Binary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainId" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TypeOfDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="file_downloaded" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recruitment_DlWeb">
+          <Key>
+            <PropertyRef Name="Job_Ref_Code" />
+          </Key>
+          <Property Name="Job_Ref_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Job_Brief_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Job_Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Job_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Key_Skills_Required" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_Posted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Job_Type" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Visited_Count" Type="Int32" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="Salary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Live_Inhouse" Type="Boolean" Nullable="false" />
+          <Property Name="Live" Type="Boolean" Nullable="false" />
+          <Property Name="EssentialCriteria1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EssentialCriteria2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EssentialCriteria3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EssentialCriteria4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agencies" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agency1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agency2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agency3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agency4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agency5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="S_Date1" Type="DateTime" Precision="3" />
+          <Property Name="S_Date2" Type="DateTime" Precision="3" />
+          <Property Name="S_Date3" Type="DateTime" Precision="3" />
+          <Property Name="S_Date4" Type="DateTime" Precision="3" />
+          <Property Name="S_Date5" Type="DateTime" Precision="3" />
+          <Property Name="E_Date1" Type="DateTime" Precision="3" />
+          <Property Name="E_Date2" Type="DateTime" Precision="3" />
+          <Property Name="E_Date3" Type="DateTime" Precision="3" />
+          <Property Name="E_Date4" Type="DateTime" Precision="3" />
+          <Property Name="E_Date5" Type="DateTime" Precision="3" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Created_version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Created_stamp" Type="DateTime" Precision="3" />
+          <Property Name="Created_Program" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Created_machine_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modified_stamp" Type="DateTime" Precision="3" />
+          <Property Name="modified_ueser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modified_version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modified_program" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modified_machine_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modified_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="emp_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Duncanlewis_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Department_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Rewards" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VacancyRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Equal_Opportunities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Recruit_Job_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FIlename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SMSSentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeSent" Type="DateTime" Precision="3" />
+          <Property Name="NumberSentOn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StaffWith404Error">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SubDepartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubDepartment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubDepartment_Switchboard" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Trustpilot_Webhooks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stars" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LocationId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsVerified" Type="Boolean" />
+          <Property Name="ConsumerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ConsumerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UnsubscribeEmail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfRequest" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VideoCallRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Forename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ZoommailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Timeslot" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Topic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DLZoomAccount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NotesForClient" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AcceptedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MeetingID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="start_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Staff_Details">
+          <Key>
+            <PropertyRef Name="forename" />
+            <PropertyRef Name="surname" />
+          </Key>
+          <Property Name="forename" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="department_it" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="office_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admitted_staff" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="nonadmitted_staff" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="WEBDLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AssentManagement_ProductDetails" EntityType="Self.AssentManagement_ProductDetails" />
+          <EntitySet Name="Blue_Print" EntityType="Self.Blue_Print" />
+          <EntitySet Name="ClientReferrals" EntityType="Self.ClientReferral" />
+          <EntitySet Name="Internships" EntityType="Self.Internship" />
+          <EntitySet Name="Mobiles" EntityType="Self.Mobile" />
+          <EntitySet Name="Offices" EntityType="Self.Office" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Recruitments" EntityType="Self.Recruitment" />
+          <EntitySet Name="Recruitment_CV_Binary" EntityType="Self.Recruitment_CV_Binary" />
+          <EntitySet Name="Recruitment_DlWeb" EntityType="Self.Recruitment_DlWeb" />
+          <EntitySet Name="SMSSentDetails" EntityType="Self.SMSSentDetail" />
+          <EntitySet Name="StaffWith404Error" EntityType="Self.StaffWith404Error" />
+          <EntitySet Name="SubDepartments" EntityType="Self.SubDepartment" />
+          <EntitySet Name="Trustpilot_Webhooks" EntityType="Self.Trustpilot_Webhooks" />
+          <EntitySet Name="UnsubscribeEmails" EntityType="Self.UnsubscribeEmail" />
+          <EntitySet Name="VideoCallRequests" EntityType="Self.VideoCallRequest" />
+          <EntitySet Name="Staff_Details" EntityType="Self.Staff_Details" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WEBDLModelStoreContainer" CdmEntityContainer="WEBDLEntities">
+          <EntitySetMapping Name="AssentManagement_ProductDetails">
+            <EntityTypeMapping TypeName="WEBDLModel.AssentManagement_ProductDetails">
+              <MappingFragment StoreEntitySet="AssentManagement_ProductDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blue_Print">
+            <EntityTypeMapping TypeName="WEBDLModel.Blue_Print">
+              <MappingFragment StoreEntitySet="Blue_Print">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Main_ID" ColumnName="Main_ID" />
+                <ScalarProperty Name="Date_Added" ColumnName="Date_Added" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="Child_Care" ColumnName="Child Care" />
+                <ScalarProperty Name="Civil_Litigation" ColumnName="Civil Litigation" />
+                <ScalarProperty Name="Clinical_Negligence" ColumnName="Clinical Negligence" />
+                <ScalarProperty Name="Community_Care" ColumnName="Community Care" />
+                <ScalarProperty Name="Crime" ColumnName="Crime" />
+                <ScalarProperty Name="Employment" ColumnName="Employment" />
+                <ScalarProperty Name="Housing" ColumnName="Housing" />
+                <ScalarProperty Name="Immigration" ColumnName="Immigration" />
+                <ScalarProperty Name="Mental_Health" ColumnName="Mental Health" />
+                <ScalarProperty Name="Personal_Injury" ColumnName="Personal Injury" />
+                <ScalarProperty Name="Prison_Law" ColumnName="Prison Law" />
+                <ScalarProperty Name="Public_Law" ColumnName="Public Law" />
+                <ScalarProperty Name="Welfare_Benefits" ColumnName="Welfare Benefits" />
+                <ScalarProperty Name="Business_Immigration" ColumnName="Business Immigration" />
+                <ScalarProperty Name="Mental_capacity" ColumnName="Mental capacity" />
+                <ScalarProperty Name="Action_Against_Public_Authorities" ColumnName="Action Against Public Authorities" />
+                <ScalarProperty Name="Court_of_Protection" ColumnName="Court of Protection" />
+                <ScalarProperty Name="Motoring_Law" ColumnName="Motoring Law" />
+                <ScalarProperty Name="Wills_and_Probate" ColumnName="Wills and Probate" />
+                <ScalarProperty Name="International_Disputes" ColumnName="International Disputes" />
+                <ScalarProperty Name="Commercial" ColumnName="Commercial" />
+                <ScalarProperty Name="Islamic_Law" ColumnName="Islamic Law" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientReferrals">
+            <EntityTypeMapping TypeName="WEBDLModel.ClientReferral">
+              <MappingFragment StoreEntitySet="ClientReferrals">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="FeeEarner" ColumnName="FeeEarner" />
+                <ScalarProperty Name="FeeEarnerDepartment" ColumnName="FeeEarnerDepartment" />
+                <ScalarProperty Name="Clientname" ColumnName="Clientname" />
+                <ScalarProperty Name="Client_email" ColumnName="Client_email" />
+                <ScalarProperty Name="Client_Mob" ColumnName="Client_Mob" />
+                <ScalarProperty Name="Client_tel" ColumnName="Client_tel" />
+                <ScalarProperty Name="ClientRef" ColumnName="ClientRef" />
+                <ScalarProperty Name="MatterNo" ColumnName="MatterNo" />
+                <ScalarProperty Name="Interpreter_Required" ColumnName="Interpreter_Required" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Ref_SubDepartment" ColumnName="Ref_SubDepartment" />
+                <ScalarProperty Name="Ref_Department" ColumnName="Ref_Department" />
+                <ScalarProperty Name="NewClient_Date" ColumnName="NewClient_Date" />
+                <ScalarProperty Name="Cat" ColumnName="Cat" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Ref_Director" ColumnName="Ref_Director" />
+                <ScalarProperty Name="Ref_Description" ColumnName="Ref_Description" />
+                <ScalarProperty Name="DateRef1" ColumnName="DateRef1" />
+                <ScalarProperty Name="Ref_Feeearner" ColumnName="Ref_Feeearner" />
+                <ScalarProperty Name="Dir_Description" ColumnName="Dir_Description" />
+                <ScalarProperty Name="DateRef2" ColumnName="DateRef2" />
+                <ScalarProperty Name="NewClientRef" ColumnName="NewClientRef" />
+                <ScalarProperty Name="NewMatterRef" ColumnName="NewMatterRef" />
+                <ScalarProperty Name="New_FeeEarner" ColumnName="New_FeeEarner" />
+                <ScalarProperty Name="DateRef3" ColumnName="DateRef3" />
+                <ScalarProperty Name="Reason_Refusal" ColumnName="Reason_Refusal" />
+                <ScalarProperty Name="HR_Approval" ColumnName="HR_Approval" />
+                <ScalarProperty Name="FeeEarner_Response" ColumnName="FeeEarner_Response" />
+                <ScalarProperty Name="Urgency" ColumnName="Urgency" />
+                <ScalarProperty Name="Language_Needs" ColumnName="Language_Needs" />
+                <ScalarProperty Name="Source1" ColumnName="Source1" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="IP_Address" ColumnName="IP_Address" />
+                <ScalarProperty Name="Referral_to" ColumnName="Referral_to" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+                <ScalarProperty Name="RoomBooked" ColumnName="RoomBooked" />
+                <ScalarProperty Name="FeedbackafterAppointment" ColumnName="FeedbackafterAppointment" />
+                <ScalarProperty Name="Reason_Cancel" ColumnName="Reason_Cancel" />
+                <ScalarProperty Name="Fee_Earner_Attendance" ColumnName="Fee_Earner_Attendance" />
+                <ScalarProperty Name="Attendance_Confirmed_By" ColumnName="Attendance_Confirmed_By" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="CustomerServiceMember" ColumnName="CustomerServiceMember" />
+                <ScalarProperty Name="Preferred_Location" ColumnName="Preferred_Location" />
+                <ScalarProperty Name="DetentionCenter" ColumnName="DetentionCenter" />
+                <ScalarProperty Name="Client_Forename" ColumnName="Client_Forename" />
+                <ScalarProperty Name="Client_Surname" ColumnName="Client_Surname" />
+                <ScalarProperty Name="Client_Postcode" ColumnName="Client_Postcode" />
+                <ScalarProperty Name="Legal_Private" ColumnName="Legal/Private" />
+                <ScalarProperty Name="CFA" ColumnName="CFA" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="matter_allocated_notes" ColumnName="matter_allocated_notes" />
+                <ScalarProperty Name="cancel_Signposted" ColumnName="cancel_Signposted" />
+                <ScalarProperty Name="Step3_Action" ColumnName="Step3_Action" />
+                <ScalarProperty Name="New_old_Client" ColumnName="New_old_Client" />
+                <ScalarProperty Name="detained" ColumnName="detained" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="IRC_Surgery_ID" ColumnName="IRC_Surgery_ID" />
+                <ScalarProperty Name="ModeOfCommunication" ColumnName="ModeOfCommunication" />
+                <ScalarProperty Name="ActoinedBy" ColumnName="ActoinedBy" />
+                <ScalarProperty Name="ActionedDate" ColumnName="ActionedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Internships">
+            <EntityTypeMapping TypeName="WEBDLModel.Internship">
+              <MappingFragment StoreEntitySet="Internship">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="LPC" ColumnName="LPC" />
+                <ScalarProperty Name="BVC" ColumnName="BVC" />
+                <ScalarProperty Name="LLB" ColumnName="LLB" />
+                <ScalarProperty Name="Filename1" ColumnName="Filename1" />
+                <ScalarProperty Name="Filename2" ColumnName="Filename2" />
+                <ScalarProperty Name="Date_Available" ColumnName="Date_Available" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Mon_ST" ColumnName="Mon_ST" />
+                <ScalarProperty Name="Mon_ET" ColumnName="Mon_ET" />
+                <ScalarProperty Name="Tue_ST" ColumnName="Tue_ST" />
+                <ScalarProperty Name="Tue_ET" ColumnName="Tue_ET" />
+                <ScalarProperty Name="Wed_ST" ColumnName="Wed_ST" />
+                <ScalarProperty Name="Wed_ET" ColumnName="Wed_ET" />
+                <ScalarProperty Name="Thu_ST" ColumnName="Thu_ST" />
+                <ScalarProperty Name="Thu_ET" ColumnName="Thu_ET" />
+                <ScalarProperty Name="Fri_ST" ColumnName="Fri_ST" />
+                <ScalarProperty Name="Fri_ET" ColumnName="Fri_ET" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Area1" ColumnName="Area1" />
+                <ScalarProperty Name="Area2" ColumnName="Area2" />
+                <ScalarProperty Name="Area3" ColumnName="Area3" />
+                <ScalarProperty Name="Office1" ColumnName="Office1" />
+                <ScalarProperty Name="Office2" ColumnName="Office2" />
+                <ScalarProperty Name="Office3" ColumnName="Office3" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Accepted_Area" ColumnName="Accepted_Area" />
+                <ScalarProperty Name="Accepted_Office" ColumnName="Accepted_Office" />
+                <ScalarProperty Name="Accepted_StartDate" ColumnName="Accepted_StartDate" />
+                <ScalarProperty Name="Accepted_Supervisor" ColumnName="Accepted_Supervisor" />
+                <ScalarProperty Name="Filename_Passport" ColumnName="Filename_Passport" />
+                <ScalarProperty Name="Accepted_By" ColumnName="Accepted_By" />
+                <ScalarProperty Name="Actual_Start_Date" ColumnName="Actual_Start_Date" />
+                <ScalarProperty Name="Work_Assesment_Date" ColumnName="Work_Assesment_Date" />
+                <ScalarProperty Name="Work_Assesment_Filename" ColumnName="Work_Assesment_Filename" />
+                <ScalarProperty Name="Reject_Date" ColumnName="Reject_Date" />
+                <ScalarProperty Name="Reject_Reason" ColumnName="Reject_Reason" />
+                <ScalarProperty Name="Date_Applied" ColumnName="Date_Applied" />
+                <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="Answer4" ColumnName="Answer4" />
+                <ScalarProperty Name="Answer5" ColumnName="Answer5" />
+                <ScalarProperty Name="Answer6" ColumnName="Answer6" />
+                <ScalarProperty Name="Answer7" ColumnName="Answer7" />
+                <ScalarProperty Name="Answer8" ColumnName="Answer8" />
+                <ScalarProperty Name="Answer9" ColumnName="Answer9" />
+                <ScalarProperty Name="Answer10" ColumnName="Answer10" />
+                <ScalarProperty Name="Answer11" ColumnName="Answer11" />
+                <ScalarProperty Name="Answer12" ColumnName="Answer12" />
+                <ScalarProperty Name="Answer13" ColumnName="Answer13" />
+                <ScalarProperty Name="Answer14" ColumnName="Answer14" />
+                <ScalarProperty Name="Answer16" ColumnName="Answer16" />
+                <ScalarProperty Name="Answer17" ColumnName="Answer17" />
+                <ScalarProperty Name="Answer18" ColumnName="Answer18" />
+                <ScalarProperty Name="Answer19" ColumnName="Answer19" />
+                <ScalarProperty Name="Answer20" ColumnName="Answer20" />
+                <ScalarProperty Name="Answer21" ColumnName="Answer21" />
+                <ScalarProperty Name="Answer22" ColumnName="Answer22" />
+                <ScalarProperty Name="Answer23" ColumnName="Answer23" />
+                <ScalarProperty Name="Answer24" ColumnName="Answer24" />
+                <ScalarProperty Name="Answer25" ColumnName="Answer25" />
+                <ScalarProperty Name="Answer26" ColumnName="Answer26" />
+                <ScalarProperty Name="Answer1A" ColumnName="Answer1A" />
+                <ScalarProperty Name="Answer2A" ColumnName="Answer2A" />
+                <ScalarProperty Name="Answer3A" ColumnName="Answer3A" />
+                <ScalarProperty Name="Answer4A" ColumnName="Answer4A" />
+                <ScalarProperty Name="Answer5A" ColumnName="Answer5A" />
+                <ScalarProperty Name="Answer6A" ColumnName="Answer6A" />
+                <ScalarProperty Name="Answer7A" ColumnName="Answer7A" />
+                <ScalarProperty Name="Answer8A" ColumnName="Answer8A" />
+                <ScalarProperty Name="Answer9A" ColumnName="Answer9A" />
+                <ScalarProperty Name="Answer10A" ColumnName="Answer10A" />
+                <ScalarProperty Name="Answer11A" ColumnName="Answer11A" />
+                <ScalarProperty Name="Answer12A" ColumnName="Answer12A" />
+                <ScalarProperty Name="Answer13A" ColumnName="Answer13A" />
+                <ScalarProperty Name="Answer14A" ColumnName="Answer14A" />
+                <ScalarProperty Name="Answer16A" ColumnName="Answer16A" />
+                <ScalarProperty Name="Answer17A" ColumnName="Answer17A" />
+                <ScalarProperty Name="Answer18A" ColumnName="Answer18A" />
+                <ScalarProperty Name="Answer19A" ColumnName="Answer19A" />
+                <ScalarProperty Name="Answer20A" ColumnName="Answer20A" />
+                <ScalarProperty Name="Answer21A" ColumnName="Answer21A" />
+                <ScalarProperty Name="Answer22A" ColumnName="Answer22A" />
+                <ScalarProperty Name="Answer23A" ColumnName="Answer23A" />
+                <ScalarProperty Name="Answer24A" ColumnName="Answer24A" />
+                <ScalarProperty Name="Answer25A" ColumnName="Answer25A" />
+                <ScalarProperty Name="Answer26A" ColumnName="Answer26A" />
+                <ScalarProperty Name="Answer15" ColumnName="Answer15" />
+                <ScalarProperty Name="Answer15A" ColumnName="Answer15A" />
+                <ScalarProperty Name="Answer27" ColumnName="Answer27" />
+                <ScalarProperty Name="Accepted_Duration" ColumnName="Accepted_Duration" />
+                <ScalarProperty Name="Cover_Letter" ColumnName="Cover_Letter" />
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mobiles">
+            <EntityTypeMapping TypeName="WEBDLModel.Mobile">
+              <MappingFragment StoreEntitySet="Mobile">
+                <ScalarProperty Name="Mobile_no" ColumnName="Mobile_no" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offices">
+            <EntityTypeMapping TypeName="WEBDLModel.Office">
+              <MappingFragment StoreEntitySet="Offices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Appointment" ColumnName="Appointment" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Google_Map_String" ColumnName="Google_Map_String" />
+                <ScalarProperty Name="In_Out_London" ColumnName="In_Out_London" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="OfficeCode" ColumnName="OfficeCode" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Dedicated_Numbers" ColumnName="Dedicated_Numbers" />
+                <ScalarProperty Name="Business_Cards_Address" ColumnName="Business_Cards_Address" />
+                <ScalarProperty Name="RoomBooking" ColumnName="RoomBooking" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="WEBDLModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ClientReference" ColumnName="ClientReference" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="Caseworker" ColumnName="Caseworker" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Payment_Status" ColumnName="Payment_Status" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recruitments">
+            <EntityTypeMapping TypeName="WEBDLModel.Recruitment">
+              <MappingFragment StoreEntitySet="Recruitment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Post_ID" ColumnName="Post_ID" />
+                <ScalarProperty Name="Post_Title" ColumnName="Post_Title" />
+                <ScalarProperty Name="Date_CV" ColumnName="Date_CV" />
+                <ScalarProperty Name="Agency" ColumnName="Agency" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Evidence" ColumnName="Evidence" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Added_By" ColumnName="Added_By" />
+                <ScalarProperty Name="Interview_By" ColumnName="Interview_By" />
+                <ScalarProperty Name="Time_interview" ColumnName="Time_interview" />
+                <ScalarProperty Name="Date_Interview" ColumnName="Date_Interview" />
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Interview_Outcome" ColumnName="Interview_Outcome" />
+                <ScalarProperty Name="Interview_Outcome_Notes" ColumnName="Interview_Outcome_Notes" />
+                <ScalarProperty Name="Outcome_UpdatedBy" ColumnName="Outcome_UpdatedBy" />
+                <ScalarProperty Name="Date_Offered" ColumnName="Date_Offered" />
+                <ScalarProperty Name="Date_Offered_Updated" ColumnName="Date_Offered_Updated" />
+                <ScalarProperty Name="Date_LetterRequested" ColumnName="Date_LetterRequested" />
+                <ScalarProperty Name="Requested_By" ColumnName="Requested_By" />
+                <ScalarProperty Name="Date_Offered_Sent" ColumnName="Date_Offered_Sent" />
+                <ScalarProperty Name="Offer_Sent_Updated" ColumnName="Offer_Sent_Updated" />
+                <ScalarProperty Name="Date_Acceptance_Recieved" ColumnName="Date_Acceptance_Recieved" />
+                <ScalarProperty Name="Acceptance_Updated" ColumnName="Acceptance_Updated" />
+                <ScalarProperty Name="Date_Started" ColumnName="Date_Started" />
+                <ScalarProperty Name="Date_Archived" ColumnName="Date_Archived" />
+                <ScalarProperty Name="Archived_By" ColumnName="Archived_By" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Mob" ColumnName="Mob" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="NI_Number" ColumnName="NI_Number" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Special_Conditions" ColumnName="Special_Conditions" />
+                <ScalarProperty Name="admitted_staff" ColumnName="admitted_staff" />
+                <ScalarProperty Name="Probation_Period" ColumnName="Probation_Period" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Filename_CoverLetter" ColumnName="Filename_CoverLetter" />
+                <ScalarProperty Name="Job_ID" ColumnName="Job_ID" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Forename" ColumnName="Forename" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="post_code" ColumnName="post_code" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="emp_skype_id" ColumnName="emp_skype_id" />
+                <ScalarProperty Name="corpost_code" ColumnName="corpost_code" />
+                <ScalarProperty Name="Applicant_status" ColumnName="Applicant_status" />
+                <ScalarProperty Name="status_updatedBy" ColumnName="status_updatedBy" />
+                <ScalarProperty Name="status_updatedOn" ColumnName="status_updatedOn" />
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="Hr_status" ColumnName="Hr_status" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+                <ScalarProperty Name="Practicing" ColumnName="Practicing" />
+                <ScalarProperty Name="emp_code" ColumnName="emp_code" />
+                <ScalarProperty Name="management_approval" ColumnName="management_approval" />
+                <ScalarProperty Name="management_comments" ColumnName="management_comments" />
+                <ScalarProperty Name="main_add_line1" ColumnName="main_add_line1" />
+                <ScalarProperty Name="main_add_line2" ColumnName="main_add_line2" />
+                <ScalarProperty Name="main_add_line3" ColumnName="main_add_line3" />
+                <ScalarProperty Name="main_add_town" ColumnName="main_add_town" />
+                <ScalarProperty Name="main_add_county" ColumnName="main_add_county" />
+                <ScalarProperty Name="corr_add_line1" ColumnName="corr_add_line1" />
+                <ScalarProperty Name="corr_add_line2" ColumnName="corr_add_line2" />
+                <ScalarProperty Name="corr_add_line3" ColumnName="corr_add_line3" />
+                <ScalarProperty Name="corr_add_town" ColumnName="corr_add_town" />
+                <ScalarProperty Name="corr_add_county" ColumnName="corr_add_county" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+                <ScalarProperty Name="bank_address" ColumnName="bank_address" />
+                <ScalarProperty Name="bank_acc_name" ColumnName="bank_acc_name" />
+                <ScalarProperty Name="bank_acc_no" ColumnName="bank_acc_no" />
+                <ScalarProperty Name="bank_sort_code" ColumnName="bank_sort_code" />
+                <ScalarProperty Name="next_of_kin_1" ColumnName="next_of_kin_1" />
+                <ScalarProperty Name="next_of_kin_relationship" ColumnName="next_of_kin_relationship" />
+                <ScalarProperty Name="next_of_kin_1_address_1" ColumnName="next_of_kin_1_address_1" />
+                <ScalarProperty Name="next_of_kin_1_tel_no" ColumnName="next_of_kin_1_tel_no" />
+                <ScalarProperty Name="next_of_kin_1_mbile_no" ColumnName="next_of_kin_1_mbile_no" />
+                <ScalarProperty Name="next_of_kin_1_address_2" ColumnName="next_of_kin_1_address_2" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="visa_type" ColumnName="visa_type" />
+                <ScalarProperty Name="visa_expiry_date" ColumnName="visa_expiry_date" />
+                <ScalarProperty Name="nonadmitted_staff" ColumnName="nonadmitted_staff" />
+                <ScalarProperty Name="admin_staff" ColumnName="admin_staff" />
+                <ScalarProperty Name="freelance_consultant" ColumnName="freelance_consultant" />
+                <ScalarProperty Name="limited_company" ColumnName="limited_company" />
+                <ScalarProperty Name="qualifications" ColumnName="qualifications" />
+                <ScalarProperty Name="date_admitted" ColumnName="date_admitted" />
+                <ScalarProperty Name="sra_number" ColumnName="sra_number" />
+                <ScalarProperty Name="Currentpractising_certificate" ColumnName="Currentpractising_certificate" />
+                <ScalarProperty Name="law_degree" ColumnName="law_degree" />
+                <ScalarProperty Name="law_degree_result" ColumnName="law_degree_result" />
+                <ScalarProperty Name="copy_of_degree_given" ColumnName="copy_of_degree_given" />
+                <ScalarProperty Name="qltt_grade" ColumnName="qltt_grade" />
+                <ScalarProperty Name="qltt_date" ColumnName="qltt_date" />
+                <ScalarProperty Name="qltt_received" ColumnName="qltt_received" />
+                <ScalarProperty Name="lpc_gained" ColumnName="lpc_gained" />
+                <ScalarProperty Name="lpc_gained_date" ColumnName="lpc_gained_date" />
+                <ScalarProperty Name="lpc_gained_university" ColumnName="lpc_gained_university" />
+                <ScalarProperty Name="lpc_result" ColumnName="lpc_result" />
+                <ScalarProperty Name="copy_of_lpc_given" ColumnName="copy_of_lpc_given" />
+                <ScalarProperty Name="bvc_gained" ColumnName="bvc_gained" />
+                <ScalarProperty Name="bvc_gained_date" ColumnName="bvc_gained_date" />
+                <ScalarProperty Name="bvc_gained_university" ColumnName="bvc_gained_university" />
+                <ScalarProperty Name="bvc_result" ColumnName="bvc_result" />
+                <ScalarProperty Name="copy_of_bvc_given" ColumnName="copy_of_bvc_given" />
+                <ScalarProperty Name="law_degree_gained_university" ColumnName="law_degree_gained_university" />
+                <ScalarProperty Name="previous_organisation" ColumnName="previous_organisation" />
+                <ScalarProperty Name="date_left_prev_org" ColumnName="date_left_prev_org" />
+                <ScalarProperty Name="prev_org_address" ColumnName="prev_org_address" />
+                <ScalarProperty Name="admitted_staff_old2" ColumnName="admitted_staff_old2" />
+                <ScalarProperty Name="IsPractising_Condition" ColumnName="IsPractising_Condition" />
+                <ScalarProperty Name="Practising_Condn_Details" ColumnName="Practising_Condn_Details" />
+                <ScalarProperty Name="FamilyLawPanel" ColumnName="FamilyLawPanel" />
+                <ScalarProperty Name="ChildLawPanel" ColumnName="ChildLawPanel" />
+                <ScalarProperty Name="CrimeDutyPanel" ColumnName="CrimeDutyPanel" />
+                <ScalarProperty Name="ImmigrationPanel" ColumnName="ImmigrationPanel" />
+                <ScalarProperty Name="MentalHealthPanel" ColumnName="MentalHealthPanel" />
+                <ScalarProperty Name="OtherPanel" ColumnName="OtherPanel" />
+                <ScalarProperty Name="Recruit_Dir" ColumnName="Recruit_Dir" />
+                <ScalarProperty Name="Director_Approval" ColumnName="Director_Approval" />
+                <ScalarProperty Name="Director_Comments" ColumnName="Director_Comments" />
+                <ScalarProperty Name="file_downloaded" ColumnName="file_downloaded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recruitment_CV_Binary">
+            <EntityTypeMapping TypeName="WEBDLModel.Recruitment_CV_Binary">
+              <MappingFragment StoreEntitySet="Recruitment_CV_Binary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MainId" ColumnName="MainId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="TypeOfDocument" ColumnName="TypeOfDocument" />
+                <ScalarProperty Name="file_downloaded" ColumnName="file_downloaded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recruitment_DlWeb">
+            <EntityTypeMapping TypeName="WEBDLModel.Recruitment_DlWeb">
+              <MappingFragment StoreEntitySet="Recruitment_DlWeb">
+                <ScalarProperty Name="Job_Ref_Code" ColumnName="Job_Ref_Code" />
+                <ScalarProperty Name="Job_Brief_Description" ColumnName="Job_Brief_Description" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
+                <ScalarProperty Name="Job_Description" ColumnName="Job_Description" />
+                <ScalarProperty Name="Key_Skills_Required" ColumnName="Key_Skills_Required" />
+                <ScalarProperty Name="Date_Posted" ColumnName="Date_Posted" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Job_Type" ColumnName="Job_Type" />
+                <ScalarProperty Name="Visited_Count" ColumnName="Visited_Count" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Live_Inhouse" ColumnName="Live_Inhouse" />
+                <ScalarProperty Name="Live" ColumnName="Live" />
+                <ScalarProperty Name="EssentialCriteria1" ColumnName="EssentialCriteria1" />
+                <ScalarProperty Name="EssentialCriteria2" ColumnName="EssentialCriteria2" />
+                <ScalarProperty Name="EssentialCriteria3" ColumnName="EssentialCriteria3" />
+                <ScalarProperty Name="EssentialCriteria4" ColumnName="EssentialCriteria4" />
+                <ScalarProperty Name="Agencies" ColumnName="Agencies" />
+                <ScalarProperty Name="Email1" ColumnName="Email1" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Agency1" ColumnName="Agency1" />
+                <ScalarProperty Name="Agency2" ColumnName="Agency2" />
+                <ScalarProperty Name="Agency3" ColumnName="Agency3" />
+                <ScalarProperty Name="Agency4" ColumnName="Agency4" />
+                <ScalarProperty Name="Agency5" ColumnName="Agency5" />
+                <ScalarProperty Name="S_Date1" ColumnName="S_Date1" />
+                <ScalarProperty Name="S_Date2" ColumnName="S_Date2" />
+                <ScalarProperty Name="S_Date3" ColumnName="S_Date3" />
+                <ScalarProperty Name="S_Date4" ColumnName="S_Date4" />
+                <ScalarProperty Name="S_Date5" ColumnName="S_Date5" />
+                <ScalarProperty Name="E_Date1" ColumnName="E_Date1" />
+                <ScalarProperty Name="E_Date2" ColumnName="E_Date2" />
+                <ScalarProperty Name="E_Date3" ColumnName="E_Date3" />
+                <ScalarProperty Name="E_Date4" ColumnName="E_Date4" />
+                <ScalarProperty Name="E_Date5" ColumnName="E_Date5" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Created_user" ColumnName="Created_user" />
+                <ScalarProperty Name="Created_version" ColumnName="Created_version" />
+                <ScalarProperty Name="Created_stamp" ColumnName="Created_stamp" />
+                <ScalarProperty Name="Created_Program" ColumnName="Created_Program" />
+                <ScalarProperty Name="Created_machine_name" ColumnName="Created_machine_name" />
+                <ScalarProperty Name="created_ip" ColumnName="created_ip" />
+                <ScalarProperty Name="modified_stamp" ColumnName="modified_stamp" />
+                <ScalarProperty Name="modified_ueser" ColumnName="modified_ueser" />
+                <ScalarProperty Name="modified_version" ColumnName="modified_version" />
+                <ScalarProperty Name="modified_program" ColumnName="modified_program" />
+                <ScalarProperty Name="modified_machine_name" ColumnName="modified_machine_name" />
+                <ScalarProperty Name="modified_ip" ColumnName="modified_ip" />
+                <ScalarProperty Name="emp_code" ColumnName="emp_code" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Duncanlewis_Desc" ColumnName="Duncanlewis_Desc" />
+                <ScalarProperty Name="Department_Desc" ColumnName="Department_Desc" />
+                <ScalarProperty Name="Rewards" ColumnName="Rewards" />
+                <ScalarProperty Name="VacancyRole" ColumnName="VacancyRole" />
+                <ScalarProperty Name="Equal_Opportunities" ColumnName="Equal_Opportunities" />
+                <ScalarProperty Name="Recruit_Job_ID" ColumnName="Recruit_Job_ID" />
+                <ScalarProperty Name="FIlename" ColumnName="FIlename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSSentDetails">
+            <EntityTypeMapping TypeName="WEBDLModel.SMSSentDetail">
+              <MappingFragment StoreEntitySet="SMSSentDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="DateTimeSent" ColumnName="DateTimeSent" />
+                <ScalarProperty Name="NumberSentOn" ColumnName="NumberSentOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffWith404Error">
+            <EntityTypeMapping TypeName="WEBDLModel.StaffWith404Error">
+              <MappingFragment StoreEntitySet="StaffWith404Error">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubDepartments">
+            <EntityTypeMapping TypeName="WEBDLModel.SubDepartment">
+              <MappingFragment StoreEntitySet="SubDepartments">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="SubDepartment1" ColumnName="SubDepartment" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SubDepartment_Switchboard" ColumnName="SubDepartment_Switchboard" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trustpilot_Webhooks">
+            <EntityTypeMapping TypeName="WEBDLModel.Trustpilot_Webhooks">
+              <MappingFragment StoreEntitySet="Trustpilot_Webhooks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Stars" ColumnName="Stars" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="ConsumerName" ColumnName="ConsumerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnsubscribeEmails">
+            <EntityTypeMapping TypeName="WEBDLModel.UnsubscribeEmail">
+              <MappingFragment StoreEntitySet="UnsubscribeEmail">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="DateOfRequest" ColumnName="DateOfRequest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCallRequests">
+            <EntityTypeMapping TypeName="WEBDLModel.VideoCallRequest">
+              <MappingFragment StoreEntitySet="VideoCallRequest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Forename" ColumnName="Forename" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="ZoommailId" ColumnName="ZoommailId" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Timeslot" ColumnName="Timeslot" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+                <ScalarProperty Name="DLZoomAccount" ColumnName="DLZoomAccount" />
+                <ScalarProperty Name="NotesForClient" ColumnName="NotesForClient" />
+                <ScalarProperty Name="AcceptedBy" ColumnName="AcceptedBy" />
+                <ScalarProperty Name="MeetingID" ColumnName="MeetingID" />
+                <ScalarProperty Name="start_url" ColumnName="start_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Details">
+            <EntityTypeMapping TypeName="WEBDLModel.Staff_Details">
+              <MappingFragment StoreEntitySet="Staff_Details">
+                <ScalarProperty Name="forename" ColumnName="forename" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="department_it" ColumnName="department_it" />
+                <ScalarProperty Name="office_name" ColumnName="office_name" />
+                <ScalarProperty Name="admitted_staff" ColumnName="admitted_staff" />
+                <ScalarProperty Name="nonadmitted_staff" ColumnName="nonadmitted_staff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

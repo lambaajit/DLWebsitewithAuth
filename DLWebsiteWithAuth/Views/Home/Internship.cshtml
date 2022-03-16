@@ -1,0 +1,244 @@
+﻿@model Internship
+@{
+    ViewBag.Title = "Internship";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+        $(document).ready(function () {
+            $('#FileUpload1').on('change', function () {
+                myfile = $(this).val();
+                var ext = myfile.split('.').pop();
+                if (ext == "pdf" || ext == "docx" || ext == "doc") {
+                    return;
+                } else {
+                    alert('Not a Valid File');
+                    $('#FileUpload1').val('');
+                    return false;
+                }
+            });
+            $('#FileUpload2').on('change', function () {
+                myfile = $(this).val();
+                var ext = myfile.split('.').pop();
+                if (ext == "pdf" || ext == "docx" || ext == "doc") {
+                    return;
+                } else {
+                    alert('Not a Valid File');
+                    $('#FileUpload2').val('');
+                    return false;
+                }
+            });
+        });
+</script>
+<style>
+    tr td {
+        padding: 10px !important;
+        margin: 10px !important;
+    }
+
+    input, select, textarea {
+        max-width: 100%;
+    }
+</style>
+@using (Html.BeginForm("Internship", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="container-fluid" style="padding:20px !important;">
+
+        <h1>Internship</h1>
+        <p>Please fill and submit the form if you want to do Internship with Duncanlewis.</p>
+        <table class="table table-bordered">
+
+            <tr style="background-color:#d1d6eb"><td colspan="2"><span style="font-size:medium;font-weight:bold">Personal Details</span></td></tr>
+
+            <tr>
+                <td width="50%">
+                    Name<em>*</em>
+                </td>
+                <td width="50%">
+                    @Html.TextBoxFor(model => model.Name, new  { @class = "form-control", @required = "required" })
+                </td>
+            </tr>
+            <tr>
+                <td width="15%">
+                    Email<em>*</em>
+                </td>
+                <td width="35%">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "email" } })
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Telephone<em>*</em>
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "tel", @pattern = "^\\s*\\(?(020[7,8]{1}\\)?[ ]?[1-9]{1}[0-9{2}[ ]?[0-9]{4})|(0[1-8]{1}[0-9]{3}\\)?[ ]?[1-9]{1}[0-9]{2}[ ]?[0-9]{3})\\s*$" } })
+                </td>
+            </tr>
+            <tr style="background-color:#d1d6eb"><td colspan="2"><span style="font-size:medium;font-weight:bold">Qualification Details</span></td></tr>
+            <tr>
+                <td>LPC<em>*</em>  </td>
+
+                <td>
+
+                    @Html.DropDownListFor(model => model.LPC, new List<SelectListItem>()
+                  {
+                       new SelectListItem{ Text="", Value = "" },
+                        new SelectListItem{ Text="Yes", Value = "Yes" },
+                         new SelectListItem{ Text="No", Value = "No" },
+                  }, new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr>
+                <td>BVC<em>*</em>  </td>
+
+                <td>
+
+                    @Html.DropDownListFor(model => model.BVC, new List<SelectListItem>()
+                  {
+                       new SelectListItem{ Text="", Value = "" },
+                        new SelectListItem{ Text="Yes", Value = "Yes" },
+                         new SelectListItem{ Text="No", Value = "No" },
+                  }, new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr>
+                <td>LLB<em>*</em>  </td>
+
+                <td>
+
+                    @Html.DropDownListFor(model => model.LLB, new List<SelectListItem>()
+                  {
+                       new SelectListItem{ Text="", Value = "" },
+                        new SelectListItem{ Text="Yes", Value = "Yes" },
+                         new SelectListItem{ Text="No", Value = "No" },
+                  }, new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr style="background-color:#d1d6eb"><td colspan="2"><span style="font-size:medium;font-weight:bold">Availability</span></td></tr>
+            <tr>
+                <td>
+                    Duration<em>*</em>
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Duration, new List<SelectListItem>()
+             {
+                  new SelectListItem{ Text="", Value = "" },
+                   new SelectListItem{ Text="1 Week", Value = "1 Week" },
+                    new SelectListItem{ Text="2 Weeks", Value = "2 Weeks" },
+                     new SelectListItem{ Text="3 Weeks", Value = "3 Weeks" },
+                    new SelectListItem{ Text="4 Weeks", Value = "4 Weeks" },
+             }, new { @class = "form-control", @required = "required" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Date Available<em>*</em>
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Date_Available, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "date" } })
+                </td>
+            </tr>
+            <tr style="background-color:#d1d6eb"><td colspan="2"><span style="font-size:medium;font-weight:bold">Your Preference-Area Of Law</span></td></tr>
+            <tr>
+                <td>
+                    Area 1<em>*</em>
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Area1, (IEnumerable<SelectListItem>)TempData.Peek("Area"), new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Area 2<em>*</em>
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Area2, (IEnumerable<SelectListItem>)TempData.Peek("Area"), new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Area 3<em>*</em>
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Area3, (IEnumerable<SelectListItem>)TempData.Peek("Area"), new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr style="background-color:#d1d6eb"><td colspan="2"><span style="font-size:medium;font-weight:bold">Your Preference-Area Of Office</span></td></tr>
+            <tr>
+                <td>
+                    Office 1<em>*</em>
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Office1, (IEnumerable<SelectListItem>)TempData.Peek("Office"), new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Office 2<em>*</em>
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Office2, (IEnumerable<SelectListItem>)TempData.Peek("Office"), new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Office 3<em>*</em>
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Office3, (IEnumerable<SelectListItem>)TempData.Peek("Office"), new { @class = "form-control", @required = "required" })
+
+                </td>
+            </tr>
+            <tr style="background-color:#d1d6eb"><td colspan="2"><span style="font-size:medium;font-weight:bold">Any Other</span></td></tr>
+            <tr>
+                <td>
+                    Comments<em>*</em>
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", @required = "required", @Rows = "5" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Cover Letter<em>*</em>
+                </td>
+                <td>
+                    <input type="file" id="FileUpload1" name="FileUpload1" class="form-control" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CV<em>*</em>
+                </td>
+                <td>
+                    <input type="file" id="FileUpload2" name="FileUpload2" class="form-control" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+                </td>
+            </tr>
+            <tr><td colspan="2"><input type="checkbox" id="Terms" value="Terms and Conditions" />&nbsp;<lable for="chk1">I agree to the terms above.</lable></td></tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Submit" id="submit" class="btn btn-info" /> &nbsp;<span style="color:red">@ViewBag.Msg</span>
+
+
+                </td>
+            </tr>
+        </table>
+
+
+
+
+    </div>
+
+}
+
+
+

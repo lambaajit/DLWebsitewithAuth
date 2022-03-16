@@ -1,0 +1,53 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="padding:20px !important;">
+    <div class="row">
+        <div class="col-md-8 col-lg-offset-2">
+
+            Ajit
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2 style="margin:0px !important">Send SMS to Staff for IT Issues</h2></div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("SendSMS", "SMS", FormMethod.Post))
+                    {
+                        <table class="table table-bordered table-responsive" style="font-size:20px !important">
+                            <tr id="trNotes">
+                                <td style="padding:10px">
+                                    Message (Maximum lenght is 160 Characters)
+                                </td>
+                                <td style="padding:10px">
+                                    @Html.TextBox("SMS",null, new { @class = "form-control", maxlength = "160", required = "required" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:10px; text-align:center !important;">
+                                    <input type="submit" value="Send SMS" class="btn btn-info" style="font-size:20px !important" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1" style="padding:10px; text-align:center !important;">
+                                    Message will be sent to the following Staff
+                                </td>
+                                <td>
+                                    <ul>
+                                        @foreach (var item in Model)
+                                        {
+                                            <li>@item</li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

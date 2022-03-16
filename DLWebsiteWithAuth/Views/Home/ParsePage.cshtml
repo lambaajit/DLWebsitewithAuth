@@ -1,0 +1,9 @@
+﻿@model DLWebsiteWithAuth.Models.parsepagemodel
+@{
+    ViewBag.Title = Model.title;
+    ViewBag.Keywords = Model.keywords;
+    ViewBag.Description = Model.description;
+}
+<h1>@Model.h1tag</h1>
+<h2>@Html.Raw(Model.text)</h2>
+

@@ -1,0 +1,21 @@
+﻿@model UnsubscribeEmail
+@{
+    ViewBag.Title = "Unsubscribe";
+}
+<div class="col-xs-12">
+    <div id="maincontent">
+        <h1>Unsubscribe</h1>
+        <hr />
+            <div>
+                Please enter your email address: <br /><br />
+                @using (Html.BeginForm("Unsubscribe", "Home", FormMethod.Post))
+                {
+                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder="Email" })
+                    @Html.ValidationMessageFor(m => m.email, null, new { @class = "validation-error", style="float:left !important" })
+                    <br /><br />
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                }
+            </div>
+        </div>
+    </div>
+

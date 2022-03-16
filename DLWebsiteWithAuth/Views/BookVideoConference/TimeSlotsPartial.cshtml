@@ -1,0 +1,57 @@
+﻿@model List<Slots>
+
+<h4>Choose a time below and follow the simple steps to instantly book your phone chat or video conference.</h4>
+<span class="btn btn-success">Available</span>
+<span class="btn btn-danger disabled">Not Available</span><br /><br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table table-bordered table-striped">
+                <tr>
+                    @for (int d = 1; d <= 7; d++)
+                    {
+                        if (@DateTime.Now.AddDays(d).DayOfWeek != DayOfWeek.Saturday && @DateTime.Now.AddDays(d).DayOfWeek != DayOfWeek.Sunday)
+                        {
+                            <th>
+                                @DateTime.Now.AddDays(d).DayOfWeek.ToString()<br />
+                                @DateTime.Now.AddDays(d).ToString("dd-MM-yyyy")
+                            </th>
+                        }
+
+                    }
+                </tr>
+                @for (int i = 9; i <= 17; i++)
+                {
+                    for (int m = 0; m <= 59; m++)
+                    {
+                        if ((i == 9 && m == 0) || ((i == 17 && m == 30)))
+                        {
+                        }
+                        else
+                        {
+                            <tr>
+                                @foreach (var item in Model.Where(x => x.HourNumber == i && x.MinuteNumber == m).OrderBy(y => y.DayNumber))
+                                {
+
+                                    <td>
+                                        @if (item.Active == true)
+                                        {
+                                            @Html.ActionLink((item.Slot.ToShortTimeString() + "-" + item.Slot.AddMinutes(30).ToShortTimeString()), "CLientDetails", "BookVideoConference", new { id = item.id, department=item.department }, new { @class = "btn btn-success", style = "font-weight:bold" })
+                                        }
+                                        else
+                                        {
+                                            <div class="btn btn-danger disabled" style="font-weight:bold">@item.Slot.ToShortTimeString() - @item.Slot.AddMinutes(30).ToShortTimeString()</div>
+                                        }
+                                    </td>
+
+                                }
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

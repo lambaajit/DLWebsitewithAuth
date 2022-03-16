@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <link rel="icon" href="https://www.duncanlewis.co.uk/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://www.duncanlewis.co.uk/images/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    @*<meta name="description" content="Duncan Lewis Solicitors serves both corporate entities and private individuals employing over 500 staff Nationwide." />
+        <meta name="keywords" content="Solicitor, Solicitors, Solicitor in London, Legal Advice, Corporate Lawyer, Law Firm, Law Society, Lawyer, Lawyer London, Legal Aid, Legal Help, Solicitors in Middlesex, UK Solicitors, Solicitor in Cardiff, Birmingham, Leicester, Bradford, Cambridge, Lewisham, Tooting, Shepherds Bush, East London, North London, Harrow, Hackney, Luton, Watford, Newham Legal Aid Lawyer, Legal Aid Authority, Solicitors regulation Authority, Solicitors in UK, Solicitor, Family, Divorce, Childcare, Housing, Crime, Fraud, Immigration, Benefit fraud, mental capacity, personal injury, child and social services, serious fraud, money laundering, abduction, adoption, judicial review, professional negligence, clinical negligence" />*@
+    <meta name="ROBOTS" content="INDEX, FOLLOW" />
+    <meta name="YahooSeeker" content="INDEX, FOLLOW" />
+    <meta name="msnbot" content="INDEX, FOLLOW" />
+    <meta name="googlebot" content="INDEX, FOLLOW" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angularjs")
+    @Scripts.Render("~/bundles/jqueryunobtrisive")
+
+    @RenderSection("MetaContent", false)
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2714165-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-2714165-1');
+    </script>
+</head>
+<body ng-app="myApp" id="myCtrl" ng-controller="myCtrl">
+    <div class="row nopadding">
+        <div class="col-sm-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+            <div class="row nopadding">
+                <div w3-include-html="/MainNav.html"></div>
+            </div>
+            <div class="row nopadding">
+                <div class="col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 applyblock centerdiv header nopadding">
+                    <div class="row nopadding">
+                        <div class="col-sm-4 col-xs-5 nopadding">
+                            <a href="/index.html"><img src="/Images/DL_Logo.PNG" class="img-responsive dllogo" alt="Duncan Lewis Solicitors" /></a>
+                        </div>
+                        <div class="col-sm-8 col-xs-7 nopadding">
+                            <div class="headerright">
+                                <form method="get" action="https://www.google.co.uk/search">
+                                    <p><font class="lightcyantext">Have a question?</font><br /><span class="fa fa-phone"></span>033 3772 0409</p>
+                                    <input type="text" name="q" id="q" class="form-control hidden-xs" />
+                                    <button name="searchgoogle" id="searchgoogle" class="btn btn-primary hidden-xs" value="search"><span class="fa fa-search"></span></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row nopadding">
+                        <div class="col-sm-8 col-xs-12 col-sm-offset-2 nopadding applyblock centerdiv">
+                            <div class="row nopadding">
+                                <div class="col-sm-12 col-md-7 col-xs-12 col-md-offset-5 depttabs">
+                                    <a class="dept_default forecolor lightkolor over" href="/our_team.html">Our Team<span class="fa fa-users"></span></a>
+                                    <a class="dept_default forecolor lightkolor over" href="/news.html">News<span class="fa fa-newspaper-o"></span></a>
+                                    <a class="dept_default forecolor lightkolor over" href="/video.html">Videos<span class="fa fa-video-camera"></span></a>
+                                    <a class="dept_default forecolor lightkolor over" href="/brochures.html">Brochures<span class="fa fa-book"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row deptreverseband dept_default lightkolor  nopadding">
+                        <div class="col-sm-8 col-xs-12 col-lg-offset-2 nopadding applyblock centerdiv">
+                            <div class="row nopadding">
+                                <div class="col-sm-9 col-xs-12 col-sm-offset-3 breadcrumbs">
+                                    <p><a class="dept_default forecolor" href="/index.html">Home</a><span class="fa fa-angle-double-right"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dept_default row nopadding">
+                        <div class="col-sm-8 col-xs-12 col-lg-offset-2 nopadding applyblock centerdiv">
+                            <div class="row nopadding">
+                                <div class="col-sm-3 col-xs-12 nopadding">
+                                    <div id="deptmenu" class="dept_default">
+                                        <div class="panel panel-default deptbordercolor">
+                                            <div class="dept_default deptbordercolor forecolor deptmenumainheading nopadding">
+                                                <a data-toggle="collapse" href="#deptnavigationmenu">About Us<span class="fa fa-caret-down"></span></a>
+                                            </div>
+                                            <div id="deptnavigationmenu" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#AboutUsLevel1"><p>About Us</p><span></span></a>
+                                                            <ul class="collapse in " id="AboutUsLevel1">
+                                                                <li class="lastnode"><a class="active" href="/about.html"><p>Overview</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/about_expertise.html"><p>Expertise</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/about_quality.html"><p>Quality</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/about_corporatesocial.html"><p>Corporate Social Responsibility</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/about_languages.html"><p>Languages we Speak</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/about_managementboard.html"><p>Management Team</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/our_team.html"><p>Our Team</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/brochures.html"><p>Brochures</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Red-Alerts.html"><p>Red Alerts</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#FeesampFundingLevel1"><p>Fees &amp; Funding</p><span></span></a>
+                                                            <ul class="collapse in " id="FeesampFundingLevel1">
+                                                                <li class="lastnode"><a href="/fees.html"><p>Fees & Funding</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/fees_publicfunding.html"><p>Legal Aid / Public Funding </p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/fees_franchises.html"><p>Legal Aid Franchises</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/fees_eligibility.html"><p>Eligibility</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/fees_Right-to-Cancel.html"><p>Right to Cancel</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/fees_complaintprocedure.html"><p>Complaint Procedures</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="lastmenuitem">
+                                                            <a data-toggle="collapse" " href="#PrivacyLevel1"><p>Privacy</p><span></span></a>
+                                                            <ul class="collapse in " id="PrivacyLevel1">
+                                                                <li class="lastnode"><a href="/Cookie-Policy.html"><p>Cookie Policy</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/about_disclaimer.html"><p>Privacy Notice - Website</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-9 col-xs-12">
+                                    <div id="container">
+                                        @RenderBody()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="row footerrowtop  dept_default  kolor nopadding">
+                <div class="col-sm-12 col-xs-12 col-sm-offset-2 applyblock centerdiv nopadding">
+                    Call us now on 033 3772 0409 or click <a href="/contactUs.aspx">here to send online enquiry</a>.
+                </div>
+            </div>
+
+            <div class="row nopadding footerrowmiddle  dept_default  lightkolor">
+                <div class="col-sm-8 col-xs-12 col-sm-offset-2 applyblock centerdiv">
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-12 footercolumn socialicons  dept_default  forecolor">
+                            <h6>Our Social Network</h6>
+                            <a class="dept_default forecolor" href="https://twitter.com/DuncanLewis/" target="_blank" title="Duncan Lewis" class="socialIcons"><span class="fa fa-twitter-square"></span></a>
+                            <a class="dept_default forecolor" href="https://www.youtube.com/duncanlewislawyers" class="socialIcons"><span class="fa fa-youtube-square"></span></a>
+                            <a class="dept_default forecolor" href="https://www.linkedin.com/companies/duncan-lewis-%26-co-solicitors-greater-london?trk=fc_badge" class="socialIcons"><span class="fa fa-linkedin-square"></span></a>
+                            <a class="dept_default forecolor" href="https://www.facebook.com/duncanlewislawfirm" title="Duncan Lewis" class="socialIcons"><span class="fa fa-facebook-square"></span></a>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_default  forecolor">Our Services</h6>
+                            <ul>
+                                <li><a href="/Action-Against-Public-Authorities.html">Action Against Public Authorities</a></li>
+                                <li><a href="/uk-visas-uk-immigration.html">Business Immigration</a></li>
+                                <li><a href="/childcare.html">Child Care</a></li>
+                                <li><a href="/clinicalnegligence.html">Clinical Negligence</a></li>
+                                <li><a href="/communitycare.html">Community Care</a></li>
+                                <li><a href="/crime.html">Crime</a></li>
+                                <li><a href="/employment.html">Employment</a></li>
+                                <li><a href="/willsandprobate.html">Wills and Probate</a></li>
+                                <li><a href="/family.html">Family</a></li>
+                                <li><a href="/housing.html">Housing</a></li>
+                                <li><a href="/immigration.html">Immigration</a></li>
+                                <li><a href="/litigation.html">Civil Litigation</a></li>
+                                <li><a href="/mentalhealth.html">Mental Health</a></li>
+                                <li><a href="/personalinjury.html">Personal Injury</a></li>
+                                <li><a href="/prisonlaw.html">Prison Law</a></li>
+                                <li><a href="/Professionalnegligence.html">Professional Negligence</a></li>
+                                <li><a href="/publiclaw.html">Public Law</a></li>
+                                <li><a href="/welfarebenefits.html">Welfare Benefits</a></li>
+                                <li><a href="/Regulatory-Law.html">Regulatory Law</a></li>
+                                <li><a href="/motoring_law.html">Motoring Law</a></li>
+                                <li><a href="/Commercial-Company.html">Commercial & Company</a></li>
+                                <li><a href="/Commercial-Litigation-Disputes.html">Commercial Litigation & Disputes</a></li>
+                                <li><a href="/Commercial-Property-Services.html">Commercial Property Services</a></li>
+                                <li><a href="/Business-Crime-Investigation.html">Business Crime & Investigation</a></li>
+                                <li><a href="/International-litigation.html">International Disputes</a></li>
+                                <li><a href="/Charities.html">Charities</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_default  forecolor">About Us</h6>
+                            <ul class="footeraboutlinks">
+                                <li><a href="/onlineenquiry.html">Contact Us</a></li>
+                                <li><a href="/branchLocator_DL_WithMap.aspx">Find Nearest Branch</a></li>
+                                <li><a href="/Our_Team_Alphabetic_A.html">Our Staff</a></li>
+                                <li><a href="/about_languages.html">We Speak</a></li>
+                                <li><a href="/about_managementboard.html">Management Team</a></li>
+                                <li><a href="/brochures.html">Brochures</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_default  forecolor">Offices In London</h6>
+                            <ul>
+                                <li><a href="/offices/Barking_office.html">Solicitor in Barking</a></li>
+                                <li><a href="/offices/Barnet_office.html">Solicitor in Barnet</a></li>
+                                <li><a href="/offices/Camden_office.html">Solicitor in Camden</a></li>
+                                <li><a href="/offices/Central London_office.html">Solicitor in Central London</a></li>
+                                <li><a href="/offices/Croydon_office.html">Solicitor in Croydon</a></li>
+                                <li><a href="/offices/East Ham_office.html">Solicitor in East Ham</a></li>
+                                <li><a href="/offices/Hackney_office.html">Solicitor in Hackney</a></li>
+                                <li><a href="/offices/Harrow_office.html">Solicitor in Harrow</a></li>
+                                <li><a href="/offices/Holborn_office.html">Solicitor in Holborn</a></li>
+                                <li><a href="/offices/Hounslow_office.html">Solicitor in Hounslow</a></li>
+                                <li><a href="/offices/Islington_office.html">Solicitor in Islington</a></li>
+                                <li><a href="/offices/London_office.html">Solicitor in London</a></li>
+                                <li><a href="/offices/New Cross Gate_office.html">Solicitor in New Cross Gate</a></li>
+                                <li><a href="/offices/Shepherds Bush_office.html">Solicitor in Shepherds Bush</a></li>
+                                <li><a href="/offices/Southall_office.html">Solicitor in Southall</a></li>
+                                <li><a href="/offices/Uxbridge_office.html">Solicitor in Uxbridge</a></li>
+                                <li><a href="/offices/Vauxhall_office.html">Solicitor in Vauxhall</a></li>
+                                <li><a href="/offices/Walthamstow_office.html">Solicitor in Walthamstow</a></li>
+                                <li><a href="/offices/Wembley_office.html">Solicitor in Wembley</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_default  forecolor">Offices Outside London</h6>
+                            <ul>
+                                <li><a href="/offices/Aylesbury_office.html">Solicitor in Aylesbury</a></li>
+                                <li><a href="/offices/Bedford_office.html">Solicitor in Bedford</a></li>
+                                <li><a href="/offices/Birmingham_office.html">Solicitor in Birmingham</a></li>
+                                <li><a href="/offices/Bradford_office.html">Solicitor in Bradford</a></li>
+                                <li><a href="/offices/Brighton_office.html">Solicitor in Brighton</a></li>
+                                <li><a href="/offices/Bristol_office.html">Solicitor in Bristol</a></li>
+                                <li><a href="/offices/Cambridge_office.html">Solicitor in Cambridge</a></li>
+                                <li><a href="/offices/Cardiff_office.html">Solicitor in Cardiff</a></li>
+                                <li><a href="/offices/Chatham_office.html">Solicitor in Chatham</a></li>
+                                <li><a href="/offices/Coventry_office.html">Solicitor in Coventry</a></li>
+                                <li><a href="/offices/Derby_office.html">Solicitor in Derby</a></li>
+                                <li><a href="/offices/Folkestone_office.html">Solicitor in Folkestone</a></li>
+                                <li><a href="/offices/Gravesend_office.html">Solicitor in Gravesend</a></li>
+                                <li><a href="/offices/Ipswich_office.html">Solicitor in Ipswich</a></li>
+                                <li><a href="/offices/Leeds_office.html">Solicitor in Leeds</a></li>
+                                <li><a href="/offices/Leicester_office.html">Solicitor in Leicester</a></li>
+                                <li><a href="/offices/Liverpool_office.html">Solicitor in Liverpool</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_default  forecolor">Offices Outside London</h6>
+                            <ul>
+                                <li><a href="/offices/Luton_office.html">Solicitor in Luton</a></li>
+                                <li><a href="/offices/Manchester_office.html">Solicitor in Manchester</a></li>
+                                <li><a href="/offices/Milton Keynes_office.html">Solicitor in Milton Keynes</a></li>
+                                <li><a href="/offices/Newcastle_office.html">Solicitor in Newcastle</a></li>
+                                <li><a href="/offices/Northampton_office.html">Solicitor in Northampton</a></li>
+                                <li><a href="/offices/Nottingham_office.html">Solicitor in Nottingham</a></li>
+                                <li><a href="/offices/Oxfordshire_office.html">Solicitor in Oxfordshire</a></li>
+                                <li><a href="/offices/Peterborough_office.html">Solicitor in Peterborough</a></li>
+                                <li><a href="/offices/Reading_office.html">Solicitor in Reading</a></li>
+                                <li><a href="/offices/Romford_office.html">Solicitor in Romford</a></li>
+                                <li><a href="/offices/Sheffield_office.html">Solicitor in Sheffield</a></li>
+                                <li><a href="/offices/Slough_office.html">Solicitor in Slough</a></li>
+                                <li><a href="/offices/Swansea_office.html">Solicitor in Swansea</a></li>
+                                <li><a href="/offices/Walsall_office.html">Solicitor in Walsall</a></li>
+                                <li><a href="/offices/Watford_office.html">Solicitor in Watford</a></li>
+                                <li><a href="/offices/Wolverhampton_office.html">Solicitor in Wolverhampton</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row footerrowbottom nopadding">
+                <div class="col-sm-8 col-sm-offset-2 applyblock centerdiv nopadding">
+                    Duncan Lewis is the trading name of Duncan Lewis (Solicitors) Limited.
+                    Registered Office is 143-149 Fenchurch St, London, EC3M 6BL. Company Reg. No. 3718422. VAT Reg. No. 718729013.
+                    A list of the company's Directors is displayed at the registered offices address. Authorised and Regulated by the Solicitors Regulation Authority
+                    . Offices all across London and in major cities in the UK.
+                    ©Duncan Lewis >><a href="/about_disclaimer.html">Legal Disclaimer</a>, Copyright & Privacy Policy. Duncan Lewis do not accept service by email.
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+<script>
+includeHTML();
+</script>
+</html>
