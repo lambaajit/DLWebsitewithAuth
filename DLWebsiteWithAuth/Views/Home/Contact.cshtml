@@ -6,8 +6,6 @@
     ViewBag.Keywords = "Contact " + ViewBag.dept + " Solicitor, Contact " + ViewBag.dept + " Lawyer";
 }
 
-
-<span>Ajit @User.Identity.Name</span>
             @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()

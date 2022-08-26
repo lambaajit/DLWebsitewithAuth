@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WEBDLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WEBDLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AssentManagement_ProductDetails">
           <Key>
             <PropertyRef Name="ID" />
@@ -397,6 +397,15 @@
           <Property Name="Director_Approval" Type="varchar" MaxLength="20" />
           <Property Name="Director_Comments" Type="varchar(max)" />
           <Property Name="file_downloaded" Type="char" MaxLength="1" />
+          <Property Name="eligible_to_work" Type="bit" />
+          <Property Name="require_a_visa" Type="bit" />
+          <Property Name="details_visa" Type="varchar(max)" />
+          <Property Name="convicted_by_court" Type="bit" />
+          <Property Name="details_convicted_by_court" Type="nchar" MaxLength="10" />
+          <Property Name="police_enquires" Type="bit" />
+          <Property Name="details_police_enquires" Type="varchar(max)" />
+          <Property Name="connected_to_DLStaff" Type="bit" />
+          <Property Name="previously_worked_DL" Type="bit" />
         </EntityType>
         <EntityType Name="Recruitment_CV_Binary">
           <Key>
@@ -514,6 +523,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubDepartment_Switchboard" Type="varchar(max)" />
           <Property Name="email" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="Trustpilot_Webhooks">
           <Key>
@@ -591,8 +601,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
     FROM [dbo].[Staff_Details] AS [Staff_Details]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WEBDLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -988,6 +997,15 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="Director_Approval" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Director_Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="file_downloaded" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="eligible_to_work" Type="Boolean" />
+          <Property Name="require_a_visa" Type="Boolean" />
+          <Property Name="convicted_by_court" Type="Boolean" />
+          <Property Name="police_enquires" Type="Boolean" />
+          <Property Name="connected_to_DLStaff" Type="Boolean" />
+          <Property Name="previously_worked_DL" Type="Boolean" />
+          <Property Name="details_visa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="details_convicted_by_court" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="details_police_enquires" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Recruitment_CV_Binary">
           <Key>
@@ -1091,6 +1109,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubDepartment_Switchboard" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
         </EntityType>
         <EntityType Name="Trustpilot_Webhooks">
           <Key>
@@ -1443,6 +1462,15 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="Recruitments">
             <EntityTypeMapping TypeName="WEBDLModel.Recruitment">
               <MappingFragment StoreEntitySet="Recruitment">
+                <ScalarProperty Name="details_police_enquires" ColumnName="details_police_enquires" />
+                <ScalarProperty Name="details_convicted_by_court" ColumnName="details_convicted_by_court" />
+                <ScalarProperty Name="details_visa" ColumnName="details_visa" />
+                <ScalarProperty Name="previously_worked_DL" ColumnName="previously_worked_DL" />
+                <ScalarProperty Name="connected_to_DLStaff" ColumnName="connected_to_DLStaff" />
+                <ScalarProperty Name="police_enquires" ColumnName="police_enquires" />
+                <ScalarProperty Name="convicted_by_court" ColumnName="convicted_by_court" />
+                <ScalarProperty Name="require_a_visa" ColumnName="require_a_visa" />
+                <ScalarProperty Name="eligible_to_work" ColumnName="eligible_to_work" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1678,6 +1706,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="SubDepartments">
             <EntityTypeMapping TypeName="WEBDLModel.SubDepartment">
               <MappingFragment StoreEntitySet="SubDepartments">
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="SubDepartment1" ColumnName="SubDepartment" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

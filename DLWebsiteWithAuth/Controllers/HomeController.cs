@@ -72,7 +72,7 @@ namespace DLWebsiteWithAuth.Controllers
                         contactModel.Ref_SubDepartment = "Education";
                         contactModel.Ref_Department = "Public Law";
                     }
-                        contactModel.Ref_Department = contactModel.Ref_Department.Replace("Education", "Public Law").Replace("Family", "Child Care").Replace("Immigration - Asylum and Human Rights","Immigration").Replace("Immigration - Private and Business", "Business Immigration");
+                        contactModel.Ref_Department = contactModel.Ref_Department.Replace("Family", "Child Care").Replace("Immigration - Asylum and Human Rights","Immigration").Replace("Immigration - Private and Business", "Business Immigration");
                     
 
                     contactModel.Preferred_Location = "To Be Evaluated";
@@ -125,7 +125,7 @@ namespace DLWebsiteWithAuth.Controllers
                     else if (contactModel.Ref_Department == "Facilities")
                         em.cclist.Add("dorinaw@duncanlewis.com");
                     else if (contactModel.Ref_Department == "Finance")
-                        em.cclist.Add("dimples@duncanlewis.com");
+                        em.cclist.Add("KlaudiaD@Duncanlewis.com");
                     else if (contactModel.Ref_Department == "Human Resources")
                         em.cclist.Add("hrindia@duncanlewis.com");
                     else if (contactModel.Ref_Department == "Marketing")
@@ -368,7 +368,7 @@ namespace DLWebsiteWithAuth.Controllers
         }
 
         [HttpPost]
-        public ActionResult Apply([Bind(Include = "Post_ID,Email,ConfirmEmail,Source,Source_Others,Forename,Surname,consent")] ApplyModel applyModel)
+        public ActionResult Apply([Bind(Include = "Post_ID,Email,ConfirmEmail,Source,Source_Others,Forename,Surname,consent, eligible_to_work,require_a_visa,details_visa,convicted_by_court,details_convicted_by_court,police_enquires, details_police_enquires, connected_to_DLStaff, previously_worked_DL")] ApplyModel applyModel)
         {
             WEBDLEntities dbweb = new WEBDLEntities();
             //if (this.IsCaptchaValid("Captcha is not valid"))
@@ -666,7 +666,7 @@ namespace DLWebsiteWithAuth.Controllers
         public JsonResult getDepartmentsvalues()
         {
             WEBDLEntities db = new WEBDLEntities();
-            List<dropdownlistvalues> sds = db.SubDepartments.GroupBy(y =>  y.Department).OrderBy(z => z.Key).Select(x => new dropdownlistvalues { text = x.Key.Trim(), Value=x.Key.Trim() }).ToList();
+            List<dropdownlistvalues> sds = db.SubDepartments.Where(x => x.Active == true).GroupBy(y =>  y.Department).OrderBy(z => z.Key).Select(x => new dropdownlistvalues { text = x.Key.Trim(), Value=x.Key.Trim() }).ToList();
             return Json(sds, JsonRequestBehavior.AllowGet);
         }
 

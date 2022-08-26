@@ -146,5 +146,14 @@ namespace DLWebsiteWithAuth
         public string Director_Approval { get; set; }
         public string Director_Comments { get; set; }
         public string file_downloaded { get; set; }
+        public Nullable<bool> eligible_to_work { get; set; }
+        public Nullable<bool> require_a_visa { get; set; }
+        public Nullable<bool> convicted_by_court { get; set; }
+        public Nullable<bool> police_enquires { get; set; }
+        public Nullable<bool> connected_to_DLStaff { get; set; }
+        public Nullable<bool> previously_worked_DL { get; set; }
+        public string details_visa { get; set; }
+        public string details_convicted_by_court { get; set; }
+        public string details_police_enquires { get; set; }
     }
 }

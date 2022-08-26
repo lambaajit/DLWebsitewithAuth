@@ -19,5 +19,6 @@ namespace DLWebsiteWithAuth
         public int ID { get; set; }
         public string SubDepartment_Switchboard { get; set; }
         public string email { get; set; }
+        public Nullable<bool> Active { get; set; }
     }
 }

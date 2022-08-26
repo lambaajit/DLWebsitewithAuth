@@ -25,7 +25,7 @@ namespace DLWebsiteWithAuth.Controllers
         [HttpPost]
         public ActionResult SendSMS(string SMS)
         {
-            foreach (var item in dbweb.Mobiles.Where(x => x.Mobile_no.StartsWith("07") && x.Mobile_no.Length == 11 && x.Mobile_no == "07806801334").Select(x => x.Mobile_no).ToList())
+            foreach (var item in dbweb.Mobiles.Where(x => x.Mobile_no.StartsWith("07") && x.Mobile_no.Length == 11).Select(x => x.Mobile_no).ToList())
             {
                 sendSMSMessage(SMS, item.Substring(1));
             }
