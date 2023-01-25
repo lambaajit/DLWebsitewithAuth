@@ -675,7 +675,7 @@ namespace DLWebsiteWithAuth.Controllers
         {
             WEBDLEntities db = new WEBDLEntities();
             List<string> sds = db.SubDepartments.Where(x => x.Department == id).GroupBy(m => m.SubDepartment1).OrderBy(y => y.Key).Select(x => x.Key.Trim()).ToList();
-            if (sds.Contains("Others") == false)
+            if (sds.Contains("Others") == false && id != "Education Law")
             sds.Add("Others");
             return Json(sds, JsonRequestBehavior.AllowGet);
         }
