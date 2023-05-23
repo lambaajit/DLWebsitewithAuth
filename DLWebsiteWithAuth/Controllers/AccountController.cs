@@ -54,8 +54,9 @@ namespace DLWebsiteWithAuth.Controllers
 
         //
         // GET: /Account/Login
-        [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        //[AllowAnonymous]
+        [Authorize]
+        public ActionResult Login_Removed(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();

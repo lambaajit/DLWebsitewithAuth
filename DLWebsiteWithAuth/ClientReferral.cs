@@ -77,5 +77,6 @@ namespace DLWebsiteWithAuth
         public string ModeOfCommunication { get; set; }
         public string ActoinedBy { get; set; }
         public Nullable<System.DateTime> ActionedDate { get; set; }
+        public Nullable<int> HousingDisrepairCalculatorId { get; set; }
     }
 }

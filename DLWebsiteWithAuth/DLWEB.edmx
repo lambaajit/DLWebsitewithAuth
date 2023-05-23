@@ -112,6 +112,30 @@
           <Property Name="ModeOfCommunication" Type="varchar(max)" />
           <Property Name="ActoinedBy" Type="varchar(max)" />
           <Property Name="ActionedDate" Type="datetime" />
+          <Property Name="HousingDisrepairCalculatorId" Type="int" />
+        </EntityType>
+        <EntityType Name="HousingDisrepairCalculator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rooms" Type="int" />
+          <Property Name="RoomTypes" Type="varchar(max)" />
+          <Property Name="RoomsInhabitable" Type="int" />
+          <Property Name="TypesOfDisrepair" Type="varchar(max)" />
+          <Property Name="DateDisrepairReported" Type="datetime" />
+          <Property Name="YearsOfDisrepair" Type="int" />
+          <Property Name="SeverityOfDisrepair" Type="int" />
+          <Property Name="DisrepairRectified" Type="varchar(max)" />
+          <Property Name="DateDisrepairRectified" Type="datetime" />
+          <Property Name="SeriousRisk" Type="varchar(max)" />
+          <Property Name="SeriousRiskDetails" Type="varchar(max)" />
+          <Property Name="PersonalBelongingsValue" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RentArrears" Type="varchar(max)" />
+          <Property Name="RentArrearsValue" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Landlord" Type="varchar(max)" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Internship">
           <Key>
@@ -524,6 +548,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="SubDepartment_Switchboard" Type="varchar(max)" />
           <Property Name="email" Type="varchar(max)" />
           <Property Name="Active" Type="bit" />
+          <Property Name="DelayOpeningToAllOffices" Type="int" />
         </EntityType>
         <EntityType Name="Trustpilot_Webhooks">
           <Key>
@@ -577,6 +602,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySet Name="AssentManagement_ProductDetails" EntityType="Self.AssentManagement_ProductDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Blue_Print" EntityType="Self.Blue_Print" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientReferrals" EntityType="Self.ClientReferrals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HousingDisrepairCalculator" EntityType="Self.HousingDisrepairCalculator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Internship" EntityType="Self.Internship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mobile" EntityType="Self.Mobile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
@@ -712,6 +738,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="ModeOfCommunication" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ActoinedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ActionedDate" Type="DateTime" Precision="3" />
+          <Property Name="HousingDisrepairCalculatorId" Type="Int32" />
         </EntityType>
         <EntityType Name="Internship">
           <Key>
@@ -1110,6 +1137,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="SubDepartment_Switchboard" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
+          <Property Name="DelayOpeningToAllOffices" Type="Int32" />
         </EntityType>
         <EntityType Name="Trustpilot_Webhooks">
           <Key>
@@ -1189,7 +1217,31 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySet Name="UnsubscribeEmails" EntityType="Self.UnsubscribeEmail" />
           <EntitySet Name="VideoCallRequests" EntityType="Self.VideoCallRequest" />
           <EntitySet Name="Staff_Details" EntityType="Self.Staff_Details" />
+          <EntitySet Name="HousingDisrepairCalculators" EntityType="WEBDLModel.HousingDisrepairCalculator" />
         </EntityContainer>
+        <EntityType Name="HousingDisrepairCalculator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Rent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rooms" Type="Int32" />
+          <Property Name="RoomTypes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RoomsInhabitable" Type="Int32" />
+          <Property Name="TypesOfDisrepair" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateDisrepairReported" Type="DateTime" Precision="3" />
+          <Property Name="YearsOfDisrepair" Type="Int32" />
+          <Property Name="SeverityOfDisrepair" Type="Int32" />
+          <Property Name="DisrepairRectified" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateDisrepairRectified" Type="DateTime" Precision="3" />
+          <Property Name="SeriousRisk" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SeriousRiskDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalBelongingsValue" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RentArrears" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RentArrearsValue" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Landlord" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1241,6 +1293,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="ClientReferrals">
             <EntityTypeMapping TypeName="WEBDLModel.ClientReferral">
               <MappingFragment StoreEntitySet="ClientReferrals">
+                <ScalarProperty Name="HousingDisrepairCalculatorId" ColumnName="HousingDisrepairCalculatorId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Step" ColumnName="Step" />
                 <ScalarProperty Name="FeeEarner" ColumnName="FeeEarner" />
@@ -1706,6 +1759,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="SubDepartments">
             <EntityTypeMapping TypeName="WEBDLModel.SubDepartment">
               <MappingFragment StoreEntitySet="SubDepartments">
+                <ScalarProperty Name="DelayOpeningToAllOffices" ColumnName="DelayOpeningToAllOffices" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="SubDepartment1" ColumnName="SubDepartment" />
@@ -1775,6 +1829,30 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
                 <ScalarProperty Name="office_name" ColumnName="office_name" />
                 <ScalarProperty Name="admitted_staff" ColumnName="admitted_staff" />
                 <ScalarProperty Name="nonadmitted_staff" ColumnName="nonadmitted_staff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HousingDisrepairCalculators">
+            <EntityTypeMapping TypeName="WEBDLModel.HousingDisrepairCalculator">
+              <MappingFragment StoreEntitySet="HousingDisrepairCalculator">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Landlord" ColumnName="Landlord" />
+                <ScalarProperty Name="RentArrearsValue" ColumnName="RentArrearsValue" />
+                <ScalarProperty Name="RentArrears" ColumnName="RentArrears" />
+                <ScalarProperty Name="PersonalBelongingsValue" ColumnName="PersonalBelongingsValue" />
+                <ScalarProperty Name="SeriousRiskDetails" ColumnName="SeriousRiskDetails" />
+                <ScalarProperty Name="SeriousRisk" ColumnName="SeriousRisk" />
+                <ScalarProperty Name="DateDisrepairRectified" ColumnName="DateDisrepairRectified" />
+                <ScalarProperty Name="DisrepairRectified" ColumnName="DisrepairRectified" />
+                <ScalarProperty Name="SeverityOfDisrepair" ColumnName="SeverityOfDisrepair" />
+                <ScalarProperty Name="YearsOfDisrepair" ColumnName="YearsOfDisrepair" />
+                <ScalarProperty Name="DateDisrepairReported" ColumnName="DateDisrepairReported" />
+                <ScalarProperty Name="TypesOfDisrepair" ColumnName="TypesOfDisrepair" />
+                <ScalarProperty Name="RoomsInhabitable" ColumnName="RoomsInhabitable" />
+                <ScalarProperty Name="RoomTypes" ColumnName="RoomTypes" />
+                <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

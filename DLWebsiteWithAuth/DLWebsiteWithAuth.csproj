@@ -264,6 +264,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HousingDisrepairCalculator.cs">
+      <DependentUpon>DLWEB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Internship.cs">
       <DependentUpon>DLWEB.tt</DependentUpon>
     </Compile>
@@ -441,6 +444,7 @@
     <Content Include="Views\Home\Thanks.cshtml" />
     <Content Include="Views\Home\Unsubscribe.cshtml" />
     <Content Include="Views\SMS\Index.cshtml" />
+    <Content Include="Views\Home\HousingDisrepairCalculator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -42,5 +42,6 @@ namespace DLWebsiteWithAuth
         public virtual DbSet<UnsubscribeEmail> UnsubscribeEmails { get; set; }
         public virtual DbSet<VideoCallRequest> VideoCallRequests { get; set; }
         public virtual DbSet<Staff_Details> Staff_Details { get; set; }
+        public virtual DbSet<HousingDisrepairCalculator> HousingDisrepairCalculators { get; set; }
     }
 }

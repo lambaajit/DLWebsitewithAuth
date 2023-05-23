@@ -37,6 +37,7 @@ namespace DLWebsiteWithAuth.Models
         public string ConfirmEmail { get; set; }
         public string QueryType { get; set; }
         public string ModeOfCommunication { get; set; }
+        public int? HousingDisrepairCalculatorId { get; set; }
 
     }
 }

@@ -1,0 +1,651 @@
+﻿@model DLWebsiteWithAuth.HousingDisrepairCalculator
+
+@{
+    ViewBag.Title = "Housing Disrepair Calculator";
+    ViewBag.Description = "Housing Disrepair Calculator";
+    ViewBag.Keywords = "Housing Disrepair Calculator";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <link rel="icon" href="https://www.duncanlewis.co.uk/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://www.duncanlewis.co.uk/images/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    @*<meta name="description" content="Duncan Lewis Solicitors serves both corporate entities and private individuals employing over 500 staff Nationwide." />
+        <meta name="keywords" content="Solicitor, Solicitors, Solicitor in London, Legal Advice, Corporate Lawyer, Law Firm, Law Society, Lawyer, Lawyer London, Legal Aid, Legal Help, Solicitors in Middlesex, UK Solicitors, Solicitor in Cardiff, Birmingham, Leicester, Bradford, Cambridge, Lewisham, Tooting, Shepherds Bush, East London, North London, Harrow, Hackney, Luton, Watford, Newham Legal Aid Lawyer, Legal Aid Authority, Solicitors regulation Authority, Solicitors in UK, Solicitor, Family, Divorce, Childcare, Housing, Crime, Fraud, Immigration, Benefit fraud, mental capacity, personal injury, child and social services, serious fraud, money laundering, abduction, adoption, judicial review, professional negligence, clinical negligence" />*@
+    <meta name="ROBOTS" content="INDEX, FOLLOW" />
+    <meta name="YahooSeeker" content="INDEX, FOLLOW" />
+    <meta name="msnbot" content="INDEX, FOLLOW" />
+    <meta name="googlebot" content="INDEX, FOLLOW" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angularjs")
+    @Scripts.Render("~/bundles/jqueryunobtrisive")
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2714165-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-2714165-1');
+    </script>
+</head>
+<body ng-app="myApp" id="myCtrl" ng-controller="myCtrl">
+    <div class="row nopadding">
+        <div class="col-sm-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+            <div class="row nopadding">
+                <div w3-include-html="/MainNav.html"></div>
+            </div>
+            <div class="row nopadding">
+                <div class="col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 applyblock centerdiv header nopadding">
+                    <div class="row nopadding">
+                        <div class="col-sm-4 col-xs-5 nopadding">
+                            <a href="/index.html"><img src="/Images/DL_Logo.PNG" alt="Duncan Lewis Solicitors" class="img-responsive dllogo" /></a>
+                        </div>
+                        <div class="col-sm-8 col-xs-7 nopadding">
+                            <div class="headerright">
+                                <form method="get" action="https://www.google.co.uk/search">
+                                    <p><font class="lightcyantext">Have a question?</font><br /><span class="fa fa-phone"></span>033 3772 0409</p>
+                                    <input type="text" name="q" id="q" class="form-control hidden-xs" />
+                                    <button name="searchgoogle" id="searchgoogle" class="btn btn-primary hidden-xs" value="search"><span class="fa fa-search"></span></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row nopadding crouselsection dept_Housing deptbordercolor">
+                <div class="col-md-12 col-lg-12 col-sm-12 nopadding">
+                    <div id="deptpage-carousel" class="carousel slide nopadding" data-ride="carousel" data-interval="18000">
+                        <ol class="carousel-indicators">
+                            <li class="dept_Housing kolor" data-target="#deptpage-carousel" data-slide-to="0"></li>
+                            <li class="dept_Housing kolor" data-target="#deptpage-carousel" data-slide-to="1"></li>
+                            <li class="dept_Housing kolor" data-target="#deptpage-carousel" data-slide-to="2"></li>
+                            <li class="dept_Housing kolor" data-target="#deptpage-carousel" data-slide-to="3"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item">
+                                <a href="">
+                                    <img src="/WebBanners/Housing1.jpg" class="visible-lg visible-md visible-sm hidden-xs" alt="Landlord and Tenant Advice" width="100%" />
+                                    <img src="/WebBanners/Housing1_M.jpg" class="hidden-lg hidden-md hidden-sm visible-xs" alt="Landlord and Tenant Advice" width="100%" />
+                                </a>
+                                <div class="deptpage-carousel-caption">
+                                    <h3 class="dept_Housing forecolorlight">Landlord and Tenant Advice</h3>
+                                    <h4 class="dept_Housing forecolorlight deptbordercolorlight">We offer advice and assistance to landlords and tenants so that everybody understands the rules and regulations involved.</h4>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="">
+                                    <img src="/WebBanners/Housing2.jpg" class="visible-lg visible-md visible-sm hidden-xs" alt="Supporting and Understanding" width="100%" />
+                                    <img src="/WebBanners/Housing2_M.jpg" class="hidden-lg hidden-md hidden-sm visible-xs" alt="Supporting and Understanding" width="100%" />
+                                </a>
+                                <div class="deptpage-carousel-caption">
+                                    <h3 class="dept_Housing forecolorlight">Supporting and Understanding</h3>
+                                    <h4 class="dept_Housing forecolorlight deptbordercolorlight">We are sympathetic to the housing difficulties that can arise and are here to help and support you.  </h4>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="">
+                                    <img src="/WebBanners/Housing4.jpg" class="visible-lg visible-md visible-sm hidden-xs" alt="The Highest Standards" width="100%" />
+                                    <img src="/WebBanners/Housing4_M.jpg" class="hidden-lg hidden-md hidden-sm visible-xs" alt="The Highest Standards" width="100%" />
+                                </a>
+                                <div class="deptpage-carousel-caption">
+                                    <h3 class="dept_Housing forecolorlight">The Highest Standards</h3>
+                                    <h4 class="dept_Housing forecolorlight deptbordercolorlight">We're here to help those whose landlords have allowed properties to fall into disrepair. </h4>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="">
+                                    <img src="/WebBanners/Housing3.jpg" class="visible-lg visible-md visible-sm hidden-xs" alt="We have the key to success" width="100%" />
+                                    <img src="/WebBanners/Housing3_M.jpg" class="hidden-lg hidden-md hidden-sm visible-xs" alt="We have the key to success" width="100%" />
+                                </a>
+                                <div class="deptpage-carousel-caption">
+                                    <h3 class="dept_Housing forecolorlight">We have the key to success</h3>
+                                    <h4 class="dept_Housing forecolorlight deptbordercolorlight">Our Housing Solicitors have a wealth of knowledge and extensive experience in all manners of housing law matters. </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#deptpage-carousel" data-slide="prev">
+                            <span class="fa fa-caret-left deptcarouselcontrol dept_Housing forecolor"></span>
+                        </a>
+                        <a class="right carousel-control" href="#deptpage-carousel" data-slide="next">
+                            <span class="fa fa-caret-right deptcarouselcontrol dept_Housing forecolor"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="parentrowoffixedrow">
+                    <div class="row nopadding dept_Housing kolor deptheading" data-spy="affix" data-offset-top="500">
+                        <div class="col-sm-8 col-xs-12 col-lg-offset-2 nopadding applyblock centerdiv">
+                            <h1 class="dept_Housing">Housing</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row nopadding">
+                <div class="col-sm-8 col-xs-12 col-sm-offset-2 nopadding applyblock centerdiv">
+                    <div class="row nopadding">
+                        <div class="col-sm-12 col-md-7 col-xs-12 col-md-offset-5 depttabs">
+                            <a class="dept_Housing forecolor lightkolor over" href="/housing_ourteam.html">Our Team<span class="fa fa-users"></span></a>
+                            <a class="dept_Housing forecolor lightkolor over" href="/housing_news.html">News<span class="fa fa-newspaper-o"></span></a>
+                            <a class="dept_Housing forecolor lightkolor over" href="/housing_articles.html">Articles<span class="fa fa-book"></span></a>
+                            <a class="dept_Housing forecolor lightkolor over" href="/Housing-Video.html">Videos<span class="fa fa-video-camera"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row deptreverseband dept_Housing lightkolor  nopadding">
+                <div class="col-sm-8 col-xs-12 col-lg-offset-2 nopadding applyblock centerdiv">
+                    <div class="row nopadding">
+                        <div class="col-sm-9 col-xs-12 col-sm-offset-3 breadcrumbs">
+                            <p><a class="dept_Housing forecolor" href="/index.html"><p>Home</a><span class="fa fa-angle-double-right"></span><a class="dept_Housing forecolor" href="/housing.html"><p>Housing</a><span class="fa fa-angle-double-right"></span>Housing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dept_Housing row nopadding">
+                <div class="col-sm-8 col-xs-12 col-lg-offset-2 nopadding applyblock centerdiv">
+                    <div class="row nopadding">
+                        <div class="col-sm-3 col-xs-12 nopadding">
+                            <div id="deptmenu" class="dept_Housing">
+                                <div class="panel panel-default deptbordercolor">
+                                    <div class="dept_Housing deptbordercolor forecolor deptmenumainheading nopadding">
+                                        <a data-toggle="collapse" href="#deptnavigationmenu">Housing Services<span class="fa fa-caret-down"></span></a>
+                                    </div>
+                                    <div id="deptnavigationmenu" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li class="lastnode"><a class="active" href="/housing.html"><p>Overview</p><span></span></a></li>
+                                                <li>
+                                                    <a data-toggle="collapse" " href="#AdviceforTenantsLevel1"><p>Advice for Tenants</p><span></span></a>
+                                                    <ul class="collapse in " id="AdviceforTenantsLevel1">
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#RepairsLevel2"><p>Repairs</p><span></span></a>
+                                                            <ul class="collapse in " id="RepairsLevel2">
+                                                                <li class="lastnode"><a href="/Housing-Disrepair-Compensation-Guide.html"><p>Housing Disrepair Compensation Guide</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Housing-Disrepair-Calculator.html"><p>Housing Disrepair Calculator</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Collapsed-Ceiling.html"><p>Collapsed Ceiling</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Damaged-Walls-and-Plaster.html"><p>Damaged Walls and Plaster</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Damp.html"><p>Damp</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Drains-and-Gutters.html"><p>Drains and Gutters</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Electrical-Damage.html"><p>Electrical Damage</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Gas.html"><p>Gas</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Plumbing-Problems.html"><p>Plumbing Problems</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Roof-Problems.html"><p>Roof Problems</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Subsidence.html"><p>Subsidence</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Broken-or-Faulty-Boiler.html"><p>Broken or Faulty Boiler</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Disrepair-Local-Authorities.html"><p>Disrepair Local Authorities</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Disrepair-Housing-Association.html"><p>Disrepair Housing Association</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Repairs-to-be-carried-out-by-a-landlord.html"><p>Disrepair Private Landlords</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Remedies-in-County-Courts.html"><p>Remedies in County Courts</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Actions-in-Magistrates-Court.html"><p>Actions in Magistrates Court</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Legal-Aid-For-Disrepair-Claims.html"><p>Legal Aid For Disrepair Claims</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/No-Win-No-Fee-Claims.html"><p>No Win No Fee Claims</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/No-Hot-Water-or-Heating.html"><p>No Hot Water or Heating</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Water-Damage.html"><p>Water Damage</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Tower-Block-Repairs.html"><p>Tower Block Repairs</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Mould.html"><p>Mould</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Asbestos.html"><p>Asbestos</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Personal-Injury-arising-from-disrepair.html"><p>Personal Injury</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Problems-During-Repairs.html"><p>Problems During Repairs</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#HomelessnessLevel2"><p>Homelessness</p><span></span></a>
+                                                            <ul class="collapse in " id="HomelessnessLevel2">
+                                                                <li class="lastnode"><a href="/The-Homelessness-Test.html"><p>The Homelessness Test</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Homelessness-Accommodation-Duties.html"><p>Homelessness Accommodation Duties</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Homelessness-Review.html"><p>Homelessness Review</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Homelessness-Appeals.html"><p>Homelessness Appeals</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Challenging-Local-Authority.html"><p>Challenging Local Authority</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Funding-Housing.html"><p>Funding</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#IllegalEvictionLevel2"><p>Illegal Eviction</p><span></span></a>
+                                                            <ul class="collapse in " id="IllegalEvictionLevel2">
+                                                                <li class="lastnode"><a href="/Unlawful-Eviction-By-Private-Landlord.html"><p>Illegal Eviction By Private Landlord</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Unlawful-Eviction-By-Local-Authorities.html"><p>Illegal Eviction By Local Authorities</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Revenge-Eviction.html"><p>Revenge Eviction</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Funding-Unlawful-Eviction-Matters.html"><p>Funding Illegal Eviction Matters</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Injunctions.html"><p>Obtaining an Injunction</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#PossessionLevel2"><p>Possession</p><span></span></a>
+                                                            <ul class="collapse in " id="PossessionLevel2">
+                                                                <li class="lastnode"><a href="/Section--21-Possession-Claims.html"><p>Section  21 Possession Claims</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Rent--Arrears-–-Local-Authorities.html"><p>Rent  Arrears – Local Authorities</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Rent--Arrears-–-Private-Landlord.html"><p>Rent  Arrears – Private Landlord</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Rent--Arrears-–-Housing-Association.html"><p>Rent  Arrears – Housing Association</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Breach--Of-Tenancy-Agreement.html"><p>Breach  Of Tenancy Agreement</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Defending-Possession-Claims.html"><p>Defending Possession Claims</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Mortgage-Repossession-Claims.html"><p>Mortgage Repossession Claims</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Eviction-Notice.html"><p>Eviction Notice</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Funding-Possession-Claims.html"><p>Funding Possession Claims</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#LandlordDisputeLevel2"><p>Landlord Dispute</p><span></span></a>
+                                                            <ul class="collapse in " id="LandlordDisputeLevel2">
+                                                                <li class="lastnode"><a href="/Tenancy-Deposit-Dispute.html"><p>Tenancy Deposit Dispute</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Breach-of-Tenancy-Agreement-Dispute.html"><p>Breach of Tenancy Agreement Dispute</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="lastmenuitem">
+                                                            <a data-toggle="collapse" " href="#HarassmentAntisocialbehaviourLevel2"><p>Harassment & Anti-social behaviour</p><span></span></a>
+                                                            <ul class="collapse in " id="HarassmentAntisocialbehaviourLevel2">
+                                                                <li class="lastnode"><a href="/Harassment-by-Landlord.html"><p>Harassment by Landlord or Landlord’s Agents</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Neighbour-Disputes-Solicitor.html"><p>Harassment By Neighbours</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Anti-Social-Behaviour.html"><p>Anti-Social Behaviour</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a data-toggle="collapse" " href="#AdviceforLandlordsLevel1"><p>Advice for Landlords</p><span></span></a>
+                                                    <ul class="collapse in " id="AdviceforLandlordsLevel1">
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#DisrepairLandlordLevel2"><p>Disrepair - Landlord</p><span></span></a>
+                                                            <ul class="collapse in " id="DisrepairLandlordLevel2">
+                                                                <li class="lastnode"><a href="/Defending-Disrepair-Claims.html"><p>Defending Disrepair Claims</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Environmental-Act-.html"><p>Environmental Act </p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#UnlawfulEvictionLandlordLevel2"><p>Unlawful Eviction - Landlord</p><span></span></a>
+                                                            <ul class="collapse in " id="UnlawfulEvictionLandlordLevel2">
+                                                                <li class="lastmenuitem lastnode"><a href="/Defending-An-Unlawful--Eviction-Claim.html"><p>Defending An Unlawful  Eviction Claim</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse" " href="#LandlordClaimLevel2"><p>Landlord Claim</p><span></span></a>
+                                                            <ul class="collapse in " id="LandlordClaimLevel2">
+                                                                <li class="lastnode"><a href="/Tenant-Eviction.html"><p>Tenant Eviction</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/S21-Notices.html"><p>Section 21 Notice</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Assured--Shorthold-Tenancy-Claims.html"><p>Assured  Shorthold Tenancy Claims</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Section-8-Housing-Act.html"><p>Section 8 Housing Act</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="lastmenuitem">
+                                                            <a data-toggle="collapse" " href="#HarassmentClaimLevel2"><p>Harassment Claim</p><span></span></a>
+                                                            <ul class="collapse in " id="HarassmentClaimLevel2">
+                                                                <li class="lastnode"><a href="/Defending-Harassment-Claims.html"><p>Defending Harassment Claims</p><span></span></a></li>
+                                                                <li class="lastnode"><a href="/Civil-Penalties-For-No-Right--To-Rent.html"><p>Civil Penalties For No Right  To Rent</p><span></span></a></li>
+                                                                <li class="lastmenuitem lastnode"><a href="/Criminal-Penalties-For-No--Right-To-Rent.html"><p>Criminal Penalties For No  Right To Rent</p><span></span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="lastmenuitem">
+                                                    <a data-toggle="collapse" " href="#PropertyDisputesLevel1"><p>Property Disputes</p><span></span></a>
+                                                    <ul class="collapse in " id="PropertyDisputesLevel1">
+                                                        <li class="lastnode"><a href="/Property-Disputes.html"><p>Overview</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Lease-renewals-extensions.html"><p>Lease renewals extensions</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Leasehold-Disputes.html"><p>Leasehold Disputes</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Repairs-to-leaseholds.html"><p>Repairs to leaseholds</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Right-to-manage-collective-enfranchisement.html"><p>Right to manage collective enfranchisement</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Service-charge-disputes.html"><p>Service charge disputes</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Restrictive-Covenant-Disputes.html"><p>Restrictive Covenant Disputes</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Commercial-Landlord-and-Tenant-Disputes.html"><p>Commercial Landlord and Tenant Disputes</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Trespassers.html"><p>Trespassers</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Dilapidations-and-Repairing-Claims-and-Obligations.html"><p>Dilapidations and Repairing Claims and Obligations</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Possession-actions.html"><p>ForfeiturePossession actions</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Planning-Permission-and-Refusals.html"><p>Planning Permission and Refusals</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Actions-in-trespass.html"><p>Actions in trespass</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Adverse-possession-claims.html"><p>Adverse possession claims</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Building-disputes-Solicitor.html"><p>Building disputes Solicitor</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Boundary-disputes-Solicitor.html"><p>Boundary disputes Solicitor</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Co-ownership-disputes-Solicitor.html"><p>Co-ownership disputes Solicitor</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Japanese-knotweed-disputes.html"><p>Japanese knotweed disputes</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Negligence-Housing.html"><p>Negligence</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Ownership-disputes-and-shares-in-property.html"><p>Ownership disputes and shares in property</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Party-Wall-Act-disputes-Solicitor.html"><p>Party Wall Act disputes Solicitor</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Property-repairs-Solicitor.html"><p>Property repairs Solicitor</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Rights-of-way-Solicitor.html"><p>Rights of way Solicitor</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Judicial-Review-in-homelessness-matters.html"><p>Judicial Review in homelessness matters</p><span></span></a></li>
+                                                        <li class="lastnode"><a href="/Possession-claims-Solicitor-Mortgage-arrears.html"><p>Possession claims Solicitor- Mortgage arrears</p><span></span></a></li>
+                                                        <li class="lastmenuitem lastnode"><a href="/Issue-of-Adverse-Possession.html"><p>Issue of Adverse Possession</p><span></span></a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-9 col-xs-12">
+                            <div id="container">
+                                
+                                    @using (Html.BeginForm("HousingDisrepairCalculatorPost", "Home", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true)
+
+
+                                        <div class="col-sm-12">
+                                            <div class="hidden-xs" style="padding-top:10px;">
+                                                <p style="float:right;color:Red;">* this information is required</p>
+                                                <h2>Housing Disrepair Calculator</h2>
+                                                <br />
+                                                @Html.Hidden("ID", 0)
+                                            </div>
+                                            <table class="table table-bordered">
+                                                <thead style="padding:10px">
+                                                    <b>
+                                                        Use our Housing Disrepair calculator* to see the amount of compensation you may be entitled to receive if your landlord is failing to keep your home in a good state of repair, for example mould, damp, leaks and structural issues.
+                                                        <br /><br />
+                                                        Please note the calculation provided will be an estimate only of how much compensation you could be entitled to, as every housing disrepair case is different. For a free, confidential call with our Housing team to discuss your personal circumstances in relation to your housing disrepair matter, please contact us 033 3772 0409 or online via our ‘Contact Us’ button below.
+                                                    </b>
+                                                </thead>
+                                                <hr />
+                                                <tr>
+                                                    <td>1) How much is your monthly rent? (to the nearest hundred)<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.TextBoxFor(x => x.Rent, new { @class = "form-control", type = "number" })
+                                                        @Html.ValidationMessageFor(x => x.Rent, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        2) How many rooms are affected by the disrepair?<font class="required1">*</font>
+                                                    </td>
+                                                    <td style="width:50%">
+                                                        @Html.TextBoxFor(x => x.Rooms, new { @class = "form-control", type = "number" })
+                                                        @Html.ValidationMessageFor(x => x.Rooms, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        3) Which rooms are affected by the disrepair?<font class="required1">*</font>
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBoxFor(x => x.RoomTypes, new { @class = "form-control", autocomplete = "off" })
+                                                        @Html.ValidationMessageFor(x => x.RoomTypes, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4) How many rooms are uninhabitable?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.TextBoxFor(x => x.RoomsInhabitable, new { @class = "form-control", type = "number" })
+                                                        @Html.ValidationMessageFor(x => x.RoomsInhabitable, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5) What is the type of disrepair?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.DropDownListFor(x => x.TypesOfDisrepair, new List<SelectListItem>()
+                                                           { new SelectListItem(){ Text="Inadequate heating and/or hot water", Value="Inadequate heating and/or hot water" },
+                                                                   new SelectListItem(){ Text="Damp", Value="Damp" },
+                                                                   new SelectListItem(){ Text="Roof Leaks", Value="Roof Leaks" },
+                                                                   new SelectListItem(){ Text="Water Leaks", Value="Roof Leaks" },
+                                                                   new SelectListItem(){ Text="Blocked pipes and/or drains", Value="Roof Leaks" },
+                                                                   new SelectListItem(){ Text="Structural problems", Value="Roof Leaks" },
+                                                                   new SelectListItem(){ Text="Electrical Issues", Value="Roof Leaks" },
+                                                                   new SelectListItem(){ Text="Others", Value="Roof Leaks" }
+                                                     }
+                                                        , new { @class = "form-control", multiple = "multiple", style="height:175px" })
+                                                        @Html.ValidationMessageFor(x => x.TypesOfDisrepair, null, new { @class = "validation-error", autocomplete = "off" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6) When did you first report the disrepair to your landlord?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.TextBoxFor(x => x.DateDisrepairReported, new { @class = "form-control date", type = "date" })
+                                                        @Html.ValidationMessageFor(x => x.RoomsInhabitable, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7) How severe is the disrepair? (5 being the highest)?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.DropDownListFor(x => x.SeverityOfDisrepair, new List<SelectListItem>()
+                                                                  { new SelectListItem(){ Text="1", Value="1" },
+                                                                  new SelectListItem(){ Text="2", Value="2" },
+                                                                  new SelectListItem(){ Text="3", Value="3" },
+                                                                  new SelectListItem(){ Text="4", Value="4" },
+                                                                  new SelectListItem(){ Text="5", Value="5" }
+                                                                }
+                                                       , "Please Select", new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(x => x.SeverityOfDisrepair, null, new { @class = "validation-error", autocomplete = "off" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8) Has your repair been rectified?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.DropDownListFor(x => x.DisrepairRectified, new List<SelectListItem>()
+                                                                    { new SelectListItem(){ Text="No", Value="No" },
+                                                                    new SelectListItem(){ Text="Yes", Value="Yes" }
+                                                                  }
+                                                         , "Please Select", new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(x => x.DisrepairRectified, null, new { @class = "validation-error", autocomplete = "off" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>9} If "Yes"", When was your Disrepair Rectified</td>
+                                                    <td>
+                                                        @Html.TextBoxFor(x => x.DateDisrepairRectified, new { @class = "form-control date", type = "date" })
+                                                        @Html.ValidationMessageFor(x => x.DateDisrepairRectified, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>10) Is the disrepair causing any serious risk of harm to your health and safety?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.DropDownListFor(x => x.SeriousRisk, new List<SelectListItem>()
+                                                             { new SelectListItem(){ Text="No", Value="No" },
+                                                             new SelectListItem(){ Text="Yes", Value="Yes" }
+                                                           }
+                                                  , "Please Select", new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(x => x.SeriousRisk, null, new { @class = "validation-error", autocomplete = "off" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>If ""Yes", Please describe the risks to your health</td>
+                                                    <td>
+                                                        @Html.TextBoxFor(x => x.SeriousRiskDetails, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(x => x.SeriousRiskDetails, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>11) Approximately, what is the replacement value of your personal belongings that have damaged by the disrepair?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.TextBoxFor(x => x.PersonalBelongingsValue, new { @class = "form-control", type = "number" })
+                                                        @Html.ValidationMessageFor(x => x.PersonalBelongingsValue, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>12) Do you have rent arrears?<font class="required1">*</font></td>
+                                                    <td>
+                                                        @Html.DropDownListFor(x => x.RentArrears, new List<SelectListItem>()
+                                                             { new SelectListItem(){ Text="No", Value="No" },
+                                                             new SelectListItem(){ Text="Yes", Value="Yes" }
+                                                           }
+                                                  , "Please Select", new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(x => x.PersonalBelongingsValue, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>
+                                                        13) If "Yes" Please provide details of your rent arrears<font class="required1">*</font>
+                                                    </td>
+                                                    <td>
+                                                        <br />
+                                                        @Html.TextBoxFor(x => x.RentArrearsValue, new { @class = "form-control", type = "number" })
+                                                        @Html.ValidationMessageFor(x => x.RentArrearsValue, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        14) Who is your landlord?<font class="required1">*</font>
+                                                    </td>
+                                                    <td>
+                                                        @Html.DropDownListFor(x => x.Landlord, new List<SelectListItem>()
+                                                                { new SelectListItem(){ Text="Local Authority", Value="Local Authority" },
+                                                                new SelectListItem(){ Text="Housing Association", Value="Housing Association" },
+                                                                new SelectListItem(){ Text="Private Landlord", Value="Private Landlord" }
+                                                              }
+                                                        , "Please Select", new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(x => x.Landlord, null, new { @class = "validation-error" })
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center">
+                                                        <input type="submit" class="btn btn-primary" id="Save" value="Submit" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    }
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row footerrowtop  dept_Housing  kolor nopadding">
+                <div class="col-sm-12 col-xs-12 col-sm-offset-2 applyblock centerdiv nopadding">
+                    Call us now on 033 3772 0409 or click <a href="/Home/contact">here to send online enquiry</a>.
+                </div>
+            </div>
+            <div class="row nopadding footerrowmiddle  dept_Housing  lightkolor">
+                <div class="col-sm-8 col-xs-12 col-sm-offset-2 applyblock centerdiv">
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-12 footercolumn socialicons  dept_Housing  forecolor">
+                            <h6>Our Social Network</h6>
+                            <a class="dept_Housing forecolor" href="https://twitter.com/DuncanLewis/" target="_blank" title="Duncan Lewis" class="socialIcons"><span class="fa fa-twitter-square"></span></a>
+                            <a class="dept_Housing forecolor" href="https://www.youtube.com/duncanlewislawyers" class="socialIcons"><span class="fa fa-youtube-square"></span></a>
+                            <a class="dept_Housing forecolor" href="https://www.linkedin.com/companies/duncan-lewis-%26-co-solicitors-greater-london?trk=fc_badge" class="socialIcons"><span class="fa fa-linkedin-square"></span></a>
+                            <a class="dept_Housing forecolor" href="https://www.facebook.com/duncanlewislawfirm" title="Duncan Lewis" class="socialIcons"><span class="fa fa-facebook-square"></span></a>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_Housing  forecolor">Our Services</h6>
+                            <ul>
+                                <li><a href="/Action-Against-Public-Authorities.html">Action Against Public Authorities</a></li>
+                                <li><a href="/uk-visas-uk-immigration.html">Business Immigration</a></li>
+                                <li><a href="/childcare.html">Child Care</a></li>
+                                <li><a href="/clinicalnegligence.html">Clinical Negligence</a></li>
+                                <li><a href="/communitycare.html">Community Care</a></li>
+                                <li><a href="/crime.html">Crime</a></li>
+                                <li><a href="/employment.html">Employment</a></li>
+                                <li><a href="/willsandprobate.html">Wills and Probate</a></li>
+                                <li><a href="/family.html">Family</a></li>
+                                <li><a href="/housing.html">Housing</a></li>
+                                <li><a href="/HumanRights.html">Civil Liberties and Human Rights</a></li>
+                                <li><a href="/immigration.html">Immigration</a></li>
+                                <li><a href="/litigation.html">Civil Litigation</a></li>
+                                <li><a href="/personalinjury.html">Personal Injury</a></li>
+                                <li><a href="/prisonlaw.html">Prison Law</a></li>
+                                <li><a href="/Professionalnegligence.html">Professional Negligence</a></li>
+                                <li><a href="/publiclaw.html">Public Law</a></li>
+                                <li><a href="/welfarebenefits.html">Welfare Benefits</a></li>
+                                <li><a href="/Regulatory-Law.html">Regulatory Law</a></li>
+                                <li><a href="/motoring_law.html">Motoring Law</a></li>
+                                <li><a href="/Commercial-Company.html">Commercial & Company</a></li>
+                                <li><a href="/Commercial-Litigation-Disputes.html">Commercial Litigation & Disputes</a></li>
+                                <li><a href="/Commercial-Property-Services.html">Commercial Property Services</a></li>
+                                <li><a href="/Business-Crime-Investigation.html">Business Crime & Investigation</a></li>
+                                <li><a href="/International-litigation.html">International Disputes</a></li>
+                                <li><a href="/Charities.html">Charities</a></li>
+                                <li><a href="/Education-Law.html">Education Law</a></li>
+                                <li><a href="/family_abuse.html">Domestic Abuse and Violence</a></li>
+                                <li><a href="/High-net-worth-divorce.html">High Net Worth Divorce</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_Housing  forecolor">About Us</h6>
+                            <ul class="footeraboutlinks">
+                                <li><a href="/Home/Contact">Contact Us</a></li>
+                                <li><a href="/branchLocator_DL_WithMap.aspx">Find Nearest Branch</a></li>
+                                <li><a href="/Our_Team_Alphabetic_A.html">Our Staff</a></li>
+                                <li><a href="/about_languages.html">We Speak</a></li>
+                                <li><a href="/about_managementboard.html">Management Team</a></li>
+                                <li><a href="/brochures.html">Brochures</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_Housing  forecolor">Offices In London</h6>
+                            <ul>
+                                <li><a href="/offices/Barnet_office.html">Housing Solicitor in Barnet</a></li>
+                                <li><a href="/offices/City of London_office.html">Housing Solicitor in City of London</a></li>
+                                <li><a href="/offices/Croydon_office.html">Housing Solicitor in Croydon</a></li>
+                                <li><a href="/offices/Hackney_office.html">Housing Solicitor in Hackney</a></li>
+                                <li><a href="/offices/Harrow_office.html">Housing Solicitor in Harrow</a></li>
+                                <li><a href="/offices/Islington-London_office.html">Housing Solicitor in Islington-London</a></li>
+                                <li><a href="/offices/Shepherds Bush_office.html">Housing Solicitor in Shepherds Bush</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 footercolumn">
+                            <h6 class=" dept_Housing  forecolor">Offices Outside London</h6>
+                            <ul>
+                                <li><a href="/offices/Birmingham_office.html">Housing Solicitor in Birmingham</a></li>
+                                <li><a href="/offices/Bradford_office.html">Housing Solicitor in Bradford</a></li>
+                                <li><a href="/offices/Gravesend_office.html">Housing Solicitor in Gravesend</a></li>
+                                <li><a href="/offices/Leeds_office.html">Housing Solicitor in Leeds</a></li>
+                                <li><a href="/offices/Leicester_office.html">Housing Solicitor in Leicester</a></li>
+                                <li><a href="/offices/Luton_office.html">Housing Solicitor in Luton</a></li>
+                                <li><a href="/offices/Manchester_office.html">Housing Solicitor in Manchester</a></li>
+                                <li><a href="/offices/Milton Keynes_office.html">Housing Solicitor in Milton Keynes</a></li>
+                                <li><a href="/offices/Newcastle_office.html">Housing Solicitor in Newcastle</a></li>
+                                <li><a href="/offices/Northampton_office.html">Housing Solicitor in Northampton</a></li>
+                                <li><a href="/offices/Peterborough_office.html">Housing Solicitor in Peterborough</a></li>
+                                <li><a href="/offices/St. Albans_office.html">Housing Solicitor in St. Albans</a></li>
+                                <li><a href="/offices/Swansea_office.html">Housing Solicitor in Swansea</a></li>
+                                <li><a href="/offices/Weymouth_office.html">Housing Solicitor in Weymouth</a></li>
+                                <li><a href="/offices/Wolverhampton_office.html">Housing Solicitor in Wolverhampton</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footerrowbottom nopadding">
+                <div class="col-sm-8 col-sm-offset-2 applyblock centerdiv nopadding">
+                    Duncan Lewis is the trading name of Duncan Lewis (Solicitors) Limited.
+                    Registered Office is 143-149 Fenchurch St, London, EC3M 6BL. Company Reg. No. 3718422. VAT Reg. No. 718729013.
+                    A list of the company's Directors is displayed at the registered offices address. Authorised and Regulated by the Solicitors Regulation Authority
+                    . Offices all across London and in major cities in the UK.
+                    ©Duncan Lewis >><a href="/about_disclaimer.html" style="font-size:9px  !important">Legal Disclaimer</a>, Copyright & Privacy Policy. Duncan Lewis do not accept service by email.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+    includeHTML();
+</script>
+</html>
+
+
+
+
+

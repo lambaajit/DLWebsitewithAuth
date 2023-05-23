@@ -32,6 +32,7 @@ namespace DLWebsiteWithAuth.Controllers
             return RedirectToAction("Thanks", "Home", new { id = "You have sucessfully send SMS to all staff" });
         }
 
+        [Authorize]
         public string sendSMSMessage(string message1, string number)
         {
             String message = HttpUtility.UrlEncode(message1);

@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="WEBDLModel.UnsubscribeEmail" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WEBDLModel.VideoCallRequest" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WEBDLModel.Staff_Details" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBDLModel.HousingDisrepairCalculator" Width="1.5" PointX="17.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

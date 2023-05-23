@@ -17,12 +17,13 @@ namespace DLWebsiteWithAuth.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Contact(string dept, string subDepartment = "")
+        public ActionResult Contact(string dept, string subDepartment = "", int? hdlId = null)
         {
             WEBDLEntities db = new WEBDLEntities();
             if (db.SubDepartments.Where(x => x.Department == dept).FirstOrDefault() != null)
             {
                 ViewBag.dept = dept;
+                ViewBag.HousingDisrepairCalculatorId = hdlId;
                 if (db.SubDepartments.Where(x => x.SubDepartment1 == subDepartment).FirstOrDefault() != null)
                     ViewBag.SubDepartment = subDepartment;
 
@@ -663,6 +664,42 @@ namespace DLWebsiteWithAuth.Controllers
         }
 
 
+        public ActionResult HousingDisrepairCalculator(int? Id = null)
+        {
+            WEBDLEntities db = new WEBDLEntities();
+            if (Id == null)
+                return View();
+            else
+                return View(db.HousingDisrepairCalculators.Where(x => x.Id == Id).FirstOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult HousingDisrepairCalculatorPost(HousingDisrepairCalculator housingDisrepairCalculator, List<string> TypesOfDisrepair)
+        {
+            WEBDLEntities db = new WEBDLEntities();
+            housingDisrepairCalculator.TypesOfDisrepair = string.Join(",", TypesOfDisrepair);
+            var _numberOfMonths = (DateTime.Now - housingDisrepairCalculator.DateDisrepairReported).Value.Days / 30;
+            if (housingDisrepairCalculator.DisrepairRectified == "Yes" && housingDisrepairCalculator.DateDisrepairRectified != null)
+            {
+                _numberOfMonths = (housingDisrepairCalculator.DateDisrepairRectified - housingDisrepairCalculator.DateDisrepairReported).Value.Days / 30;
+            }
+                var _cost = (_numberOfMonths * housingDisrepairCalculator.Rent) * (((decimal)housingDisrepairCalculator.SeverityOfDisrepair * 20) / 100);
+                if (housingDisrepairCalculator.RentArrearsValue != null && housingDisrepairCalculator.RentArrearsValue > 0)
+                    _cost = _cost - housingDisrepairCalculator.RentArrearsValue;
+
+                if (housingDisrepairCalculator.PersonalBelongingsValue != null && housingDisrepairCalculator.PersonalBelongingsValue > 0)
+                    _cost = _cost + housingDisrepairCalculator.PersonalBelongingsValue;
+
+                housingDisrepairCalculator.Cost = _cost;
+            
+
+            db.HousingDisrepairCalculators.Add(housingDisrepairCalculator);
+            db.SaveChanges();
+            var id = db.HousingDisrepairCalculators.Max(x => x.Id);
+            return RedirectToAction("Thanks", "Home", new { id = "HousingDisrepairCalculator", housingDesrepairCost = housingDisrepairCalculator.Cost, hdlId = id });
+        }
+
+
         public JsonResult getDepartmentsvalues()
         {
             WEBDLEntities db = new WEBDLEntities();
@@ -680,7 +717,7 @@ namespace DLWebsiteWithAuth.Controllers
             return Json(sds, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Thanks(string id)
+        public ActionResult Thanks(string id, decimal? housingDesrepairCost = null,int hdlId = 0)
         {
             if (id != null)
             {
@@ -709,6 +746,13 @@ namespace DLWebsiteWithAuth.Controllers
                     "Thank you for your interest.<br/><br/>" +
                     "Best wishes<br/><br/>" +
                     "Duncan Lewis Solicitors";
+                }
+                else if (id.Equals("HousingDisrepairCalculator"))
+                {
+                    ViewBag.Message = "<br/><br/>Based on your details submitted your claim could be worth* an estimated: " + (housingDesrepairCost ?? 0) + "<br/><br/>" +
+                    "<p style=\"font-size:12px !important\">*This tool provides an estimate of compensation in a housing disrepair claim or unfitness for human habitation claim (Homes Act). This is not necessarily the amount of compensation you will be awarded. Actual compensation may be higher or lower as each case is different, and some cases may settle for a different amount before reaching trial. Our aim is to look at your case and give you a breakdown of what you may claim.<br/><br/> " +
+                    "For a more accurate and detailed estimation of how much compensation you could be owed, please contact our Housing team via the Contact Us button below. A copy of your completed calculator submission will be sent to our Housing team to consider before their first contact with you.</p><br/>" +
+                    "<div class=\"deptcontactus dept_Housing lightkolor\"><span class=\"dept_Housing forecolor\">PLEASE CONTACT US TO MAKE A DISREPAIR CLAIM NOW</span><a class=\"deptcontactus dept_Housing kolor\" href=\"/Home/Contact/?dept=Housing&amp;subDepartment=Disrepair - Tenant&amp;hdlId=" + hdlId + "\">Contact Us</a></div>";
                 }
                 else
                 {
