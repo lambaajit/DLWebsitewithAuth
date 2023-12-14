@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 //using CaptchaMvc.HtmlHelpers;
 using AutoMapper;
+using static System.Net.Mime.MediaTypeNames;
+using System.Configuration;
 
 namespace DLWebsiteWithAuth.Controllers
 {
@@ -96,6 +98,58 @@ namespace DLWebsiteWithAuth.Controllers
                     WEBDLEntities db = new WEBDLEntities();
                     db.ClientReferrals.Add(cr);
                     db.SaveChanges();
+
+                    long maxidstr = db.ClientReferrals.Max(x => x.ID);
+
+                    if (contactModel.Client_email.Contains("@"))
+                    {
+                        emailfields em = new emailfields();
+                        em.To_whom = contactModel.Client_email;
+                        em.from_whom = "contact@duncanlewis.com";
+                        em.subject = "Your Query with Duncan Lewis";
+
+                        em.msg = "Dear " + contactModel.Clientname + "</br><br />" +
+                    "<strong>Thank you for contacting Duncan Lewis Solicitors recently.</strong><br /><br />Your query and contact details have been forwarded to our legal team. One of our solicitors will contact you at their earliest opportunity to explore if we are able to assist you in this matter. If we are not able to assist you, you will be advised of this and signposted accordingly.</br></br>" +
+            "<strong> Contact us</strong></br>" +
+            "</br>" +
+            "Any queries before our first contact With you, please Do Not hesitate To contact us On 033 3772 0409 And cite your Client Referral ID Number, which Is " + maxidstr.ToString() + ".</br>" +
+        "<strong>Duncan Lewis - We Give People a Voice</strong></br>" +
+        "</br>" +
+        "We are headquartered In the City Of London And have offices nationwide. We are recognised by The Legal 500 And Chambers & Partners UK independent legal directories As a top-tier law firm – \"a diligent And professional team that Is prepared To go the extra mile For its clients\".<br /><br /> To learn more about Duncan Lewis please consider <a href=\"http://www.duncanlewis.co.uk/brochures/DL002_210%20MAIN%20BROCHURE_Final.pdf\">our brochure.</a></br>" +
+        "</br>" +
+        "</br>" +
+        "<strong>Your Legal Documents</strong></br>" +
+        "If we are able to assist you, you will be advised to show us your legal documents either before or during a first appointment, please therefore arrange:</br>" +
+        "<ul><li>	All of your legal documents and case papers relevant to your legal matter; </li>" +
+        "<li>Letters from your previous solicitors / other relevant organisations that have assisted you, in relation to your legal matter</li>" +
+        "<li>Any court documents. </li></ul>" +
+        "</br>" +
+        "<strong>Funding of your case – Documents to bring to your first appointment</strong></br>" +
+        "</br>" +
+        "It is important that you bring sufficient documents with you to your first appointment to enable us to explore with you how your case will be funded.</br> " +
+        "</br>" +
+        "Legal Aid</br>" +
+        "</br>" +
+        "We are able to offer free legal advice & assistance in many areas of law for a variety of cases, dependent on the legal issue being in scope for legal aid and you as an individual being financially eligible. Please refer to our list of <a href=\"http://www.duncanlewis.co.uk/LegalAidClients_Documents.html\">Legal Aid documents</a> that we advise you to bring to your first appointment to enable us to see if you are eligible. If any of these documents are not available in time for your first appointment, please inform your representative before/during your meeting. If your case appears to be a matter where you may be eligible for legal aid, additional time can be given to provide these.</br>" +
+        "</br>" +
+        "Privately funded</br>" +
+        "</br>" +
+        "If you are not eligible for legal aid or legal aid is not available in your matter, Duncan Lewis offers a very high quality and cost effective service to privately paying clients at competitive rates. We have much experience assisting privately paying clients using clear fixed fees or other packages such as No Win No Fee / Damage Based Agreements and can advise you private funding options that are available to your particular matter that suit your needs.</br>" +
+        "</br>" +
+        "So we can assist you promptly, please refer to the list of <a href=\"http://www.duncanlewis.co.uk/PrivateClients_Documents.html\">Private Client documents</a> that we advise that you try and bring with you to your first appointment.</br>" +
+        "</br>" +
+        "</br>" +
+        "<u>Covered by Insurance?</u></br>" +
+        "</br>" +
+        "Many household, motor or credit card insurance policies include cover for your legal costs on your behalf. If we schedule an appointment with you, we suggest that you check your policy wording to see if this is an option in your case. Please feel free to bring these documents with you to your first appointment and your advisor will be happy to explore whether this is a funding option in your matter.</br>" +
+        "</br>" +
+        "<strong>How to Find Us</strong></br>" +
+        "If one of our solicitors liaises with you in relation to a first contact, this may be in person at one of our offices, via video conferencing or by telephone – dependent on preferred communications. If you are asked to attend one of our offices, for directions and a map on how to find us, please click here: <a href=\"http://www.duncanlewis.co.uk/findus.html\">how to find us.</a></br>";
+
+                        ExtensionsMethods.sendemail(em);
+
+                    }
+
                 }
                 else
                 {
@@ -137,6 +191,7 @@ namespace DLWebsiteWithAuth.Controllers
                         em.cclist.Add("hrindia@duncanlewis.com");
                         em.cclist.Add("ClientCareTeam@Duncanlewis.com");
                         em.cclist.Add("NarayanaraoP@Duncanlewis.com");
+                        em.cclist.Add("MumtazS@Duncanlewis.com");
                     }
                     else if (contactModel.Ref_Department == "Press Inquiry")
                         em.cclist.Add("Marketing@Duncanlewis.com");
@@ -155,6 +210,10 @@ namespace DLWebsiteWithAuth.Controllers
                     em.bcclist.Add("nadiabe@duncanlewis.com");
                     ExtensionsMethods.sendemail(em);
                 }
+
+
+                
+
                 return RedirectToAction("Confirmation", "Home", new { id = 5 });
             }
             return View();
@@ -608,7 +667,7 @@ namespace DLWebsiteWithAuth.Controllers
                     _parsepagemodel.title = _parsepagemodel.title + " " + resolveteampages(deptname).Replace("_ourteam.html", "").Replace("about_managementboard.html", "Our Staff ");
                     _parsepagemodel.description = _parsepagemodel.description + " " + resolveteampages(deptname).Replace("_ourteam.html", "").Replace("about_managementboard.html", "Our Staff ");
                     _parsepagemodel.h1tag = _parsepagemodel.h1tag;// + " - " + resolveteampages(deptname).Replace("_ourteam.html", "").Replace("about_managementboard.html", "Our Staff ");
-                    _parsepagemodel.text = "<h3>" + resolveteampages(deptname).Replace("_ourteam.html", "").Replace("about_managementboard.html", "Our Staff ") + " team.</h3> <br /><br /><a href=\"/" + resolveteampages(deptname) + "\" class=\"btn btn-primary\" />Please click here to visit our " + resolveteampages(deptname).Replace("_ourteam.html", "").Replace("about_managementboard.html", "Our Staff ") + " team</a>";
+                    _parsepagemodel.text = "<h3>This individual no longer works for Duncan Lewis. Click here to view our " + resolveteampages(deptname).Replace("_ourteam.html", "").Replace("about_managementboard.html", "Our Staff ") + " team.</h3> <br /><br /><a href=\"/" + resolveteampages(deptname) + "\" class=\"btn btn-primary\" />Please click here to visit our " + resolveteampages(deptname).Replace("_ourteam.html", "").Replace("about_managementboard.html", "Our Staff ") + " team</a>";
                 }
                 else
                 {
