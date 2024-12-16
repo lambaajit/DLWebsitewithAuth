@@ -57,10 +57,13 @@
           <Property Name="Client_email" Type="varchar(max)" />
           <Property Name="Client_Mob" Type="bigint" />
           <Property Name="Client_tel" Type="varchar(max)" />
+          <Property Name="Client_Nationality" Type="varchar(max)" />
+          <Property Name="Date_Claimed_Asylum" Type="varchar(max)" />
+          <Property Name="Date_Asylum_Interview" Type="varchar(max)" />
           <Property Name="ClientRef" Type="varchar" MaxLength="10" />
           <Property Name="MatterNo" Type="varchar" MaxLength="10" />
           <Property Name="Interpreter_Required" Type="varchar(max)" />
-          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
           <Property Name="Ref_SubDepartment" Type="varchar(max)" />
           <Property Name="Ref_Department" Type="varchar(max)" />
           <Property Name="NewClient_Date" Type="decimal" Precision="18" Scale="0" />
@@ -83,7 +86,7 @@
           <Property Name="Language_Needs" Type="varchar(max)" />
           <Property Name="Source1" Type="varchar(max)" />
           <Property Name="Source" Type="varchar(max)" />
-          <Property Name="IP_Address" Type="varchar(max)" />
+          <Property Name="ip_address" Type="varchar(max)" />
           <Property Name="Referral_to" Type="varchar(max)" />
           <Property Name="Confirmed" Type="varchar(max)" />
           <Property Name="Cancel" Type="varchar" MaxLength="50" />
@@ -113,6 +116,20 @@
           <Property Name="ActoinedBy" Type="varchar(max)" />
           <Property Name="ActionedDate" Type="datetime" />
           <Property Name="HousingDisrepairCalculatorId" Type="int" />
+          <Property Name="SwitchboardCallBackRequired" Type="varchar(max)" />
+          <Property Name="SwitchboardCallBackNotes" Type="varchar(max)" />
+          <Property Name="SwitchboardCallBackStaffName" Type="varchar(max)" />
+          <Property Name="SwitchboardCallbackDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar(max)" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="WarningColorCode" Type="int" />
+          <Property Name="WarningMessage" Type="varchar(max)" />
+          <Property Name="IndigoMatterOpen" Type="bit" />
+          <Property Name="IndigoMatterNotOpenReason" Type="bit" />
+          <Property Name="Cancel_Category" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="HousingDisrepairCalculator">
           <Key>
@@ -270,6 +287,20 @@
           <Property Name="RoomBooking" Type="bit" />
           <Property Name="Company" Type="varchar(max)" />
           <Property Name="Sequence" Type="int" />
+          <Property Name="BluePrintActive" Type="bit" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar(max)" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="VideoId" Type="int" />
+          <Property Name="WarningColorCode" Type="int" />
+          <Property Name="WarningMessage" Type="varchar(max)" />
+          <Property Name="ip_address" Type="varchar(max)" />
+          <Property Name="GoogleReviewLink" Type="varchar(max)" />
+          <Property Name="ReviewSolicitorsFirmID" Type="varchar(max)" />
+          <Property Name="ReviewSolicitorsOfficeLinks" Type="varchar(max)" />
+          <Property Name="PriorityForClientReviews" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -507,6 +538,14 @@
           <Property Name="Equal_Opportunities" Type="varchar(max)" />
           <Property Name="Recruit_Job_ID" Type="varchar(max)" />
           <Property Name="FIlename" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar(max)" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="WarningColorCode" Type="int" />
+          <Property Name="WarningMessage" Type="varchar(max)" />
+          <Property Name="ip_address" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="SMSSentDetails">
           <Key>
@@ -671,75 +710,6 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="Commercial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Islamic_Law" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ClientReferral">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Step" Type="Int32" Nullable="false" />
-          <Property Name="FeeEarner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FeeEarnerDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Clientname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Client_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Client_Mob" Type="Int64" />
-          <Property Name="Client_tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ClientRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MatterNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Interpreter_Required" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ref_SubDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Ref_Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="NewClient_Date" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Cat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Ref_Director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Ref_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DateRef1" Type="DateTime" Precision="3" />
-          <Property Name="Ref_Feeearner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Dir_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DateRef2" Type="DateTime" Precision="3" />
-          <Property Name="NewClientRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NewMatterRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="New_FeeEarner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DateRef3" Type="DateTime" Precision="3" />
-          <Property Name="Reason_Refusal" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="HR_Approval" Type="Boolean" />
-          <Property Name="FeeEarner_Response" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Urgency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Language_Needs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Source1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IP_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Referral_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Confirmed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Cancel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RoomBooked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FeedbackafterAppointment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Reason_Cancel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Fee_Earner_Attendance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Attendance_Confirmed_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerServiceMember" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Preferred_Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DetentionCenter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Client_Forename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Client_Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Client_Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Legal_Private" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CFA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Insurance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="matter_allocated_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="cancel_Signposted" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Step3_Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="New_old_Client" Type="Boolean" />
-          <Property Name="detained" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Module" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IRC_Surgery_ID" Type="Decimal" Precision="36" Scale="0" />
-          <Property Name="ModeOfCommunication" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ActoinedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ActionedDate" Type="DateTime" Precision="3" />
-          <Property Name="HousingDisrepairCalculatorId" Type="Int32" />
-        </EntityType>
         <EntityType Name="Internship">
           <Key>
             <PropertyRef Name="ID" />
@@ -873,6 +843,20 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="RoomBooking" Type="Boolean" />
           <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Sequence" Type="Int32" />
+          <Property Name="BluePrintActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="VideoId" Type="Int32" />
+          <Property Name="WarningColorCode" Type="Int32" />
+          <Property Name="WarningMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ip_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GoogleReviewLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReviewSolicitorsFirmID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReviewSolicitorsOfficeLinks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PriorityForClientReviews" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -1110,6 +1094,14 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="Equal_Opportunities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Recruit_Job_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FIlename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="WarningColorCode" Type="Int32" />
+          <Property Name="WarningMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ip_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SMSSentDetail">
           <Key>
@@ -1202,7 +1194,6 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
         <EntityContainer Name="WEBDLEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AssentManagement_ProductDetails" EntityType="Self.AssentManagement_ProductDetails" />
           <EntitySet Name="Blue_Print" EntityType="Self.Blue_Print" />
-          <EntitySet Name="ClientReferrals" EntityType="Self.ClientReferral" />
           <EntitySet Name="Internships" EntityType="Self.Internship" />
           <EntitySet Name="Mobiles" EntityType="Self.Mobile" />
           <EntitySet Name="Offices" EntityType="Self.Office" />
@@ -1218,6 +1209,7 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySet Name="VideoCallRequests" EntityType="Self.VideoCallRequest" />
           <EntitySet Name="Staff_Details" EntityType="Self.Staff_Details" />
           <EntitySet Name="HousingDisrepairCalculators" EntityType="WEBDLModel.HousingDisrepairCalculator" />
+          <EntitySet Name="ClientReferrals" EntityType="WEBDLModel.ClientReferral" />
         </EntityContainer>
         <EntityType Name="HousingDisrepairCalculator">
           <Key>
@@ -1241,6 +1233,92 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="RentArrearsValue" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Landlord" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="ClientReferral">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="FeeEarner" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FeeEarnerDepartment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Clientname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Client_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Mob" Type="Int64" />
+          <Property Name="Client_tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Nationality" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Claimed_Asylum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Asylum_Interview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClientRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MatterNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Interpreter_Required" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_SubDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NewClient_Date" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Cat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ref_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateRef1" Type="DateTime" Precision="3" />
+          <Property Name="Ref_Feeearner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dir_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateRef2" Type="DateTime" Precision="3" />
+          <Property Name="NewClientRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NewMatterRef" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="New_FeeEarner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateRef3" Type="DateTime" Precision="3" />
+          <Property Name="Reason_Refusal" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="HR_Approval" Type="Boolean" />
+          <Property Name="FeeEarner_Response" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Urgency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Language_Needs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ip_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Referral_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Confirmed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cancel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoomBooked" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FeedbackafterAppointment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reason_Cancel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fee_Earner_Attendance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Attendance_Confirmed_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerServiceMember" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Preferred_Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DetentionCenter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Forename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Legal_Private" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CFA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Insurance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="matter_allocated_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cancel_Signposted" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Step3_Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="New_old_Client" Type="Boolean" />
+          <Property Name="detained" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Module" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IRC_Surgery_ID" Type="Decimal" Precision="36" Scale="0" />
+          <Property Name="ModeOfCommunication" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ActoinedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ActionedDate" Type="DateTime" Precision="3" />
+          <Property Name="HousingDisrepairCalculatorId" Type="Int32" />
+          <Property Name="SwitchboardCallBackRequired" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SwitchboardCallBackNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SwitchboardCallBackStaffName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SwitchboardCallbackDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="WarningColorCode" Type="Int32" />
+          <Property Name="WarningMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IndigoMatterOpen" Type="Boolean" />
+          <Property Name="IndigoMatterNotOpenReason" Type="Boolean" />
+          <Property Name="Cancel_Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1287,76 +1365,6 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
                 <ScalarProperty Name="International_Disputes" ColumnName="International Disputes" />
                 <ScalarProperty Name="Commercial" ColumnName="Commercial" />
                 <ScalarProperty Name="Islamic_Law" ColumnName="Islamic Law" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClientReferrals">
-            <EntityTypeMapping TypeName="WEBDLModel.ClientReferral">
-              <MappingFragment StoreEntitySet="ClientReferrals">
-                <ScalarProperty Name="HousingDisrepairCalculatorId" ColumnName="HousingDisrepairCalculatorId" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Step" ColumnName="Step" />
-                <ScalarProperty Name="FeeEarner" ColumnName="FeeEarner" />
-                <ScalarProperty Name="FeeEarnerDepartment" ColumnName="FeeEarnerDepartment" />
-                <ScalarProperty Name="Clientname" ColumnName="Clientname" />
-                <ScalarProperty Name="Client_email" ColumnName="Client_email" />
-                <ScalarProperty Name="Client_Mob" ColumnName="Client_Mob" />
-                <ScalarProperty Name="Client_tel" ColumnName="Client_tel" />
-                <ScalarProperty Name="ClientRef" ColumnName="ClientRef" />
-                <ScalarProperty Name="MatterNo" ColumnName="MatterNo" />
-                <ScalarProperty Name="Interpreter_Required" ColumnName="Interpreter_Required" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Ref_SubDepartment" ColumnName="Ref_SubDepartment" />
-                <ScalarProperty Name="Ref_Department" ColumnName="Ref_Department" />
-                <ScalarProperty Name="NewClient_Date" ColumnName="NewClient_Date" />
-                <ScalarProperty Name="Cat" ColumnName="Cat" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Ref_Director" ColumnName="Ref_Director" />
-                <ScalarProperty Name="Ref_Description" ColumnName="Ref_Description" />
-                <ScalarProperty Name="DateRef1" ColumnName="DateRef1" />
-                <ScalarProperty Name="Ref_Feeearner" ColumnName="Ref_Feeearner" />
-                <ScalarProperty Name="Dir_Description" ColumnName="Dir_Description" />
-                <ScalarProperty Name="DateRef2" ColumnName="DateRef2" />
-                <ScalarProperty Name="NewClientRef" ColumnName="NewClientRef" />
-                <ScalarProperty Name="NewMatterRef" ColumnName="NewMatterRef" />
-                <ScalarProperty Name="New_FeeEarner" ColumnName="New_FeeEarner" />
-                <ScalarProperty Name="DateRef3" ColumnName="DateRef3" />
-                <ScalarProperty Name="Reason_Refusal" ColumnName="Reason_Refusal" />
-                <ScalarProperty Name="HR_Approval" ColumnName="HR_Approval" />
-                <ScalarProperty Name="FeeEarner_Response" ColumnName="FeeEarner_Response" />
-                <ScalarProperty Name="Urgency" ColumnName="Urgency" />
-                <ScalarProperty Name="Language_Needs" ColumnName="Language_Needs" />
-                <ScalarProperty Name="Source1" ColumnName="Source1" />
-                <ScalarProperty Name="Source" ColumnName="Source" />
-                <ScalarProperty Name="IP_Address" ColumnName="IP_Address" />
-                <ScalarProperty Name="Referral_to" ColumnName="Referral_to" />
-                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
-                <ScalarProperty Name="Cancel" ColumnName="Cancel" />
-                <ScalarProperty Name="RoomBooked" ColumnName="RoomBooked" />
-                <ScalarProperty Name="FeedbackafterAppointment" ColumnName="FeedbackafterAppointment" />
-                <ScalarProperty Name="Reason_Cancel" ColumnName="Reason_Cancel" />
-                <ScalarProperty Name="Fee_Earner_Attendance" ColumnName="Fee_Earner_Attendance" />
-                <ScalarProperty Name="Attendance_Confirmed_By" ColumnName="Attendance_Confirmed_By" />
-                <ScalarProperty Name="Filename" ColumnName="Filename" />
-                <ScalarProperty Name="CustomerServiceMember" ColumnName="CustomerServiceMember" />
-                <ScalarProperty Name="Preferred_Location" ColumnName="Preferred_Location" />
-                <ScalarProperty Name="DetentionCenter" ColumnName="DetentionCenter" />
-                <ScalarProperty Name="Client_Forename" ColumnName="Client_Forename" />
-                <ScalarProperty Name="Client_Surname" ColumnName="Client_Surname" />
-                <ScalarProperty Name="Client_Postcode" ColumnName="Client_Postcode" />
-                <ScalarProperty Name="Legal_Private" ColumnName="Legal/Private" />
-                <ScalarProperty Name="CFA" ColumnName="CFA" />
-                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
-                <ScalarProperty Name="matter_allocated_notes" ColumnName="matter_allocated_notes" />
-                <ScalarProperty Name="cancel_Signposted" ColumnName="cancel_Signposted" />
-                <ScalarProperty Name="Step3_Action" ColumnName="Step3_Action" />
-                <ScalarProperty Name="New_old_Client" ColumnName="New_old_Client" />
-                <ScalarProperty Name="detained" ColumnName="detained" />
-                <ScalarProperty Name="Module" ColumnName="Module" />
-                <ScalarProperty Name="IRC_Surgery_ID" ColumnName="IRC_Surgery_ID" />
-                <ScalarProperty Name="ModeOfCommunication" ColumnName="ModeOfCommunication" />
-                <ScalarProperty Name="ActoinedBy" ColumnName="ActoinedBy" />
-                <ScalarProperty Name="ActionedDate" ColumnName="ActionedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1476,6 +1484,20 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="Offices">
             <EntityTypeMapping TypeName="WEBDLModel.Office">
               <MappingFragment StoreEntitySet="Offices">
+                <ScalarProperty Name="PriorityForClientReviews" ColumnName="PriorityForClientReviews" />
+                <ScalarProperty Name="ReviewSolicitorsOfficeLinks" ColumnName="ReviewSolicitorsOfficeLinks" />
+                <ScalarProperty Name="ReviewSolicitorsFirmID" ColumnName="ReviewSolicitorsFirmID" />
+                <ScalarProperty Name="GoogleReviewLink" ColumnName="GoogleReviewLink" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="WarningMessage" ColumnName="WarningMessage" />
+                <ScalarProperty Name="WarningColorCode" ColumnName="WarningColorCode" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="BluePrintActive" ColumnName="BluePrintActive" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -1674,6 +1696,14 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="Recruitment_DlWeb">
             <EntityTypeMapping TypeName="WEBDLModel.Recruitment_DlWeb">
               <MappingFragment StoreEntitySet="Recruitment_DlWeb">
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="WarningMessage" ColumnName="WarningMessage" />
+                <ScalarProperty Name="WarningColorCode" ColumnName="WarningColorCode" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Job_Ref_Code" ColumnName="Job_Ref_Code" />
                 <ScalarProperty Name="Job_Brief_Description" ColumnName="Job_Brief_Description" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
@@ -1853,6 +1883,93 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
                 <ScalarProperty Name="Rooms" ColumnName="Rooms" />
                 <ScalarProperty Name="Rent" ColumnName="Rent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientReferrals">
+            <EntityTypeMapping TypeName="WEBDLModel.ClientReferral">
+              <MappingFragment StoreEntitySet="ClientReferrals">
+                <ScalarProperty Name="Cancel_Category" ColumnName="Cancel_Category" />
+                <ScalarProperty Name="IndigoMatterNotOpenReason" ColumnName="IndigoMatterNotOpenReason" />
+                <ScalarProperty Name="IndigoMatterOpen" ColumnName="IndigoMatterOpen" />
+                <ScalarProperty Name="WarningMessage" ColumnName="WarningMessage" />
+                <ScalarProperty Name="WarningColorCode" ColumnName="WarningColorCode" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SwitchboardCallbackDateTime" ColumnName="SwitchboardCallbackDateTime" />
+                <ScalarProperty Name="SwitchboardCallBackStaffName" ColumnName="SwitchboardCallBackStaffName" />
+                <ScalarProperty Name="SwitchboardCallBackNotes" ColumnName="SwitchboardCallBackNotes" />
+                <ScalarProperty Name="SwitchboardCallBackRequired" ColumnName="SwitchboardCallBackRequired" />
+                <ScalarProperty Name="HousingDisrepairCalculatorId" ColumnName="HousingDisrepairCalculatorId" />
+                <ScalarProperty Name="ActionedDate" ColumnName="ActionedDate" />
+                <ScalarProperty Name="ActoinedBy" ColumnName="ActoinedBy" />
+                <ScalarProperty Name="ModeOfCommunication" ColumnName="ModeOfCommunication" />
+                <ScalarProperty Name="IRC_Surgery_ID" ColumnName="IRC_Surgery_ID" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="detained" ColumnName="detained" />
+                <ScalarProperty Name="New_old_Client" ColumnName="New_old_Client" />
+                <ScalarProperty Name="Step3_Action" ColumnName="Step3_Action" />
+                <ScalarProperty Name="cancel_Signposted" ColumnName="cancel_Signposted" />
+                <ScalarProperty Name="matter_allocated_notes" ColumnName="matter_allocated_notes" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="CFA" ColumnName="CFA" />
+                <ScalarProperty Name="Legal_Private" ColumnName="Legal/Private" />
+                <ScalarProperty Name="Client_Postcode" ColumnName="Client_Postcode" />
+                <ScalarProperty Name="Client_Surname" ColumnName="Client_Surname" />
+                <ScalarProperty Name="Client_Forename" ColumnName="Client_Forename" />
+                <ScalarProperty Name="DetentionCenter" ColumnName="DetentionCenter" />
+                <ScalarProperty Name="Preferred_Location" ColumnName="Preferred_Location" />
+                <ScalarProperty Name="CustomerServiceMember" ColumnName="CustomerServiceMember" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Attendance_Confirmed_By" ColumnName="Attendance_Confirmed_By" />
+                <ScalarProperty Name="Fee_Earner_Attendance" ColumnName="Fee_Earner_Attendance" />
+                <ScalarProperty Name="Reason_Cancel" ColumnName="Reason_Cancel" />
+                <ScalarProperty Name="FeedbackafterAppointment" ColumnName="FeedbackafterAppointment" />
+                <ScalarProperty Name="RoomBooked" ColumnName="RoomBooked" />
+                <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="Referral_to" ColumnName="Referral_to" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Source1" ColumnName="Source1" />
+                <ScalarProperty Name="Language_Needs" ColumnName="Language_Needs" />
+                <ScalarProperty Name="Urgency" ColumnName="Urgency" />
+                <ScalarProperty Name="FeeEarner_Response" ColumnName="FeeEarner_Response" />
+                <ScalarProperty Name="HR_Approval" ColumnName="HR_Approval" />
+                <ScalarProperty Name="Reason_Refusal" ColumnName="Reason_Refusal" />
+                <ScalarProperty Name="DateRef3" ColumnName="DateRef3" />
+                <ScalarProperty Name="New_FeeEarner" ColumnName="New_FeeEarner" />
+                <ScalarProperty Name="NewMatterRef" ColumnName="NewMatterRef" />
+                <ScalarProperty Name="NewClientRef" ColumnName="NewClientRef" />
+                <ScalarProperty Name="DateRef2" ColumnName="DateRef2" />
+                <ScalarProperty Name="Dir_Description" ColumnName="Dir_Description" />
+                <ScalarProperty Name="Ref_Feeearner" ColumnName="Ref_Feeearner" />
+                <ScalarProperty Name="DateRef1" ColumnName="DateRef1" />
+                <ScalarProperty Name="Ref_Description" ColumnName="Ref_Description" />
+                <ScalarProperty Name="Ref_Director" ColumnName="Ref_Director" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Cat" ColumnName="Cat" />
+                <ScalarProperty Name="NewClient_Date" ColumnName="NewClient_Date" />
+                <ScalarProperty Name="Ref_Department" ColumnName="Ref_Department" />
+                <ScalarProperty Name="Ref_SubDepartment" ColumnName="Ref_SubDepartment" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Interpreter_Required" ColumnName="Interpreter_Required" />
+                <ScalarProperty Name="MatterNo" ColumnName="MatterNo" />
+                <ScalarProperty Name="ClientRef" ColumnName="ClientRef" />
+                <ScalarProperty Name="Date_Asylum_Interview" ColumnName="Date_Asylum_Interview" />
+                <ScalarProperty Name="Date_Claimed_Asylum" ColumnName="Date_Claimed_Asylum" />
+                <ScalarProperty Name="Client_Nationality" ColumnName="Client_Nationality" />
+                <ScalarProperty Name="Client_tel" ColumnName="Client_tel" />
+                <ScalarProperty Name="Client_Mob" ColumnName="Client_Mob" />
+                <ScalarProperty Name="Client_email" ColumnName="Client_email" />
+                <ScalarProperty Name="Clientname" ColumnName="Clientname" />
+                <ScalarProperty Name="FeeEarnerDepartment" ColumnName="FeeEarnerDepartment" />
+                <ScalarProperty Name="FeeEarner" ColumnName="FeeEarner" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

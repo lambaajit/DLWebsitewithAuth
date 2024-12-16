@@ -1,0 +1,14 @@
+﻿@model Office
+@{
+    ViewBag.Title = "GoogleReviewOffice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GoogleReviewOffice</h2>
+<table class="table table-bordered table-responsive">
+    <tr>
+        <td>@Model.Name</td>
+        <td><a href="@Model.Google_Map_String"></a>@Model.Name</td>
+    </tr>
+</table>
+

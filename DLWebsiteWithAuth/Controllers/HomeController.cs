@@ -75,7 +75,7 @@ namespace DLWebsiteWithAuth.Controllers
                         contactModel.Ref_SubDepartment = "Education";
                         contactModel.Ref_Department = "Public Law";
                     }
-                        contactModel.Ref_Department = contactModel.Ref_Department.Replace("Family", "Child Care").Replace("Immigration - Asylum and Human Rights","Immigration").Replace("Immigration - Private and Business", "Business Immigration");
+                        contactModel.Ref_Department = contactModel.Ref_Department.Replace("Immigration - Asylum and Human Rights","Immigration").Replace("Immigration - Private and Business", "Business Immigration");
                     
 
                     contactModel.Preferred_Location = "To Be Evaluated";
@@ -109,42 +109,14 @@ namespace DLWebsiteWithAuth.Controllers
                         em.subject = "Your Query with Duncan Lewis";
 
                         em.msg = "Dear " + contactModel.Clientname + "</br><br />" +
-                    "<strong>Thank you for contacting Duncan Lewis Solicitors recently.</strong><br /><br />Your query and contact details have been forwarded to our legal team. One of our solicitors will contact you at their earliest opportunity to explore if we are able to assist you in this matter. If we are not able to assist you, you will be advised of this and signposted accordingly.</br></br>" +
+                    "<strong>Thank you for contacting Duncan Lewis Solicitors recently.</strong><br /><br />This automated-reply is to let you know that your query and contact details have been forwarded to the relevant legal team at Duncan Lewis. One of our legal team will contact you at their earliest opportunity (during office hours) to explore if we are able to assist you in this matter. If we are not able to assist you, you will be advised of this by phone or email and signposted accordingly. </br></br>" +
             "<strong> Contact us</strong></br>" +
             "</br>" +
-            "Any queries before our first contact With you, please Do Not hesitate To contact us On 033 3772 0409 And cite your Client Referral ID Number, which Is " + maxidstr.ToString() + ".</br>" +
+            "For any queries before our first contact with you, please do not hesitate to contact us on 033 3772 0409 and cite your Client Referral ID number, which is " + maxidstr.ToString() + ".<br /><br />" +
         "<strong>Duncan Lewis - We Give People a Voice</strong></br>" +
         "</br>" +
-        "We are headquartered In the City Of London And have offices nationwide. We are recognised by The Legal 500 And Chambers & Partners UK independent legal directories As a top-tier law firm – \"a diligent And professional team that Is prepared To go the extra mile For its clients\".<br /><br /> To learn more about Duncan Lewis please consider <a href=\"http://www.duncanlewis.co.uk/brochures/DL002_210%20MAIN%20BROCHURE_Final.pdf\">our brochure.</a></br>" +
-        "</br>" +
-        "</br>" +
-        "<strong>Your Legal Documents</strong></br>" +
-        "If we are able to assist you, you will be advised to show us your legal documents either before or during a first appointment, please therefore arrange:</br>" +
-        "<ul><li>	All of your legal documents and case papers relevant to your legal matter; </li>" +
-        "<li>Letters from your previous solicitors / other relevant organisations that have assisted you, in relation to your legal matter</li>" +
-        "<li>Any court documents. </li></ul>" +
-        "</br>" +
-        "<strong>Funding of your case – Documents to bring to your first appointment</strong></br>" +
-        "</br>" +
-        "It is important that you bring sufficient documents with you to your first appointment to enable us to explore with you how your case will be funded.</br> " +
-        "</br>" +
-        "Legal Aid</br>" +
-        "</br>" +
-        "We are able to offer free legal advice & assistance in many areas of law for a variety of cases, dependent on the legal issue being in scope for legal aid and you as an individual being financially eligible. Please refer to our list of <a href=\"http://www.duncanlewis.co.uk/LegalAidClients_Documents.html\">Legal Aid documents</a> that we advise you to bring to your first appointment to enable us to see if you are eligible. If any of these documents are not available in time for your first appointment, please inform your representative before/during your meeting. If your case appears to be a matter where you may be eligible for legal aid, additional time can be given to provide these.</br>" +
-        "</br>" +
-        "Privately funded</br>" +
-        "</br>" +
-        "If you are not eligible for legal aid or legal aid is not available in your matter, Duncan Lewis offers a very high quality and cost effective service to privately paying clients at competitive rates. We have much experience assisting privately paying clients using clear fixed fees or other packages such as No Win No Fee / Damage Based Agreements and can advise you private funding options that are available to your particular matter that suit your needs.</br>" +
-        "</br>" +
-        "So we can assist you promptly, please refer to the list of <a href=\"http://www.duncanlewis.co.uk/PrivateClients_Documents.html\">Private Client documents</a> that we advise that you try and bring with you to your first appointment.</br>" +
-        "</br>" +
-        "</br>" +
-        "<u>Covered by Insurance?</u></br>" +
-        "</br>" +
-        "Many household, motor or credit card insurance policies include cover for your legal costs on your behalf. If we schedule an appointment with you, we suggest that you check your policy wording to see if this is an option in your case. Please feel free to bring these documents with you to your first appointment and your advisor will be happy to explore whether this is a funding option in your matter.</br>" +
-        "</br>" +
-        "<strong>How to Find Us</strong></br>" +
-        "If one of our solicitors liaises with you in relation to a first contact, this may be in person at one of our offices, via video conferencing or by telephone – dependent on preferred communications. If you are asked to attend one of our offices, for directions and a map on how to find us, please click here: <a href=\"http://www.duncanlewis.co.uk/findus.html\">how to find us.</a></br>";
+        "We are headquartered in the City of London and have offices nationwide. We are recognised by The Legal 500 and Chambers & Partners UK independent legal directories as a top-tier law firm – \"a diligent and professional team that is prepared to go the extra mile for its clients\".<br /><br />To learn more about Duncan Lewis please visit our website – <a href=\"https://www.duncanlewis.co.uk\">www.duncanlewis.co.uk</a><br /><br />" +
+        "<br /><br />Yours Sincerely<br /><br />Duncan Lewis";
 
                         ExtensionsMethods.sendemail(em);
 
@@ -178,7 +150,7 @@ namespace DLWebsiteWithAuth.Controllers
                     else if (contactModel.Ref_Department == "Complaint")
                         em.cclist.Add("ClientCareTeam@Duncanlewis.com");
                     else if (contactModel.Ref_Department == "Facilities")
-                        em.cclist.Add("dorinaw@duncanlewis.com");
+                        em.cclist.Add("HollieA@Duncanlewis.com");
                     else if (contactModel.Ref_Department == "Finance")
                         em.cclist.Add("KlaudiaD@Duncanlewis.com");
                     else if (contactModel.Ref_Department == "Human Resources")
@@ -193,7 +165,7 @@ namespace DLWebsiteWithAuth.Controllers
                         em.cclist.Add("NarayanaraoP@Duncanlewis.com");
                         em.cclist.Add("MumtazS@Duncanlewis.com");
                     }
-                    else if (contactModel.Ref_Department == "Press Inquiry")
+                    else if (contactModel.Ref_Department == "Media Enquiry")
                         em.cclist.Add("Marketing@Duncanlewis.com");
                     else if (contactModel.Ref_Department == "Existing Clients")
                     {
@@ -242,7 +214,7 @@ namespace DLWebsiteWithAuth.Controllers
                 db.Payments.Add(_payment);
                 db.SaveChanges();
                 long cartid = db.Payments.Max(x => x.ID);
-                return Redirect("https://secure.worldpay.com/wcc/purchase?instId=1168361&cartId=" + cartid.ToString() + "&amount=" + paymentModel.Amount.ToString() + "&currency=GBP&testMode=0");
+                return Redirect("https://secure.worldpay.com/wcc/purchase?instId=434C52C6C192A9130047DE67496&cartId=" + cartid.ToString() + "&amount=" + paymentModel.Amount.ToString() + "&currency=GBP&testMode=0");
             }
             return View();
         }
@@ -759,6 +731,12 @@ namespace DLWebsiteWithAuth.Controllers
         }
 
 
+        public ActionResult GoogleReviewOffice()
+        {
+            return View();
+        }
+
+
         public JsonResult getDepartmentsvalues()
         {
             WEBDLEntities db = new WEBDLEntities();
@@ -929,8 +907,7 @@ namespace DLWebsiteWithAuth.Controllers
             else if (htmlpage.ToLower().Contains("courtofprotection")) { return "courtofprotection_ourteam.html"; }
             else if (htmlpage.ToLower().Contains("motoringlaw")) { return "motoringlaw_ourteam.html"; }
             else if (htmlpage.ToLower().Contains("internationaldisputes")) { return "InternationalDisputes_ourteam.html"; }
-            else if (htmlpage.Contains("immigration")) { return "Immigration_ourteam.html"; }
-            else if (htmlpage.Contains("Immigration")) { return "courtofprotection_ourteam.html"; }
+            else if (htmlpage.ToLower().Contains("immigration")) { return "Immigration_ourteam.html"; }
             else { return "about_managementboard.html"; }
 
         }
@@ -979,6 +956,44 @@ namespace DLWebsiteWithAuth.Controllers
 
         }
 
+
+        [HttpPost]
+        public void ReviewSolicitors()
+        {
+            Stream req = Request.InputStream;
+            req.Seek(0, System.IO.SeekOrigin.Begin);
+            string json = new StreamReader(req).ReadToEnd();
+            //ReviewSolilitorsModel _reviewSolilitorsModel = JsonConvert.DeserializeObject<ReviewSolilitorsModel>(json);
+            StreamWriter fp;
+            fp = System.IO.File.CreateText(Server.MapPath("~") + "/test" + DateTime.Now.ToString() + ".txt");
+            fp.WriteLine("Ajit");
+            fp.WriteLine(json);
+            fp.WriteLine(Environment.NewLine);
+            fp.Close();
+
+            //foreach (var item in _TrustpilotObject.events)
+            //{
+            //    Trustpilot_Webhooks TPWH = new Trustpilot_Webhooks();
+            //    TPWH.ConsumerId = item.eventData.consumer.id;
+            //    TPWH.ConsumerName = item.eventData.consumer.name;
+            //    TPWH.createdAt = item.eventData.createdAt;
+            //    TPWH.EventId = item.eventData.id;
+            //    TPWH.IsVerified = item.eventData.isVerified;
+            //    TPWH.Language = item.eventData.language;
+            //    TPWH.Link = item.eventData.link;
+            //    TPWH.LocationId = item.eventData.locationId;
+            //    TPWH.ReferenceId = item.eventData.referenceId;
+            //    TPWH.Stars = item.eventData.stars;
+            //    TPWH.Text = item.eventData.text;
+            //    TPWH.Title = item.eventData.title;
+            //    WEBDLEntities dbweb = new WEBDLEntities();
+            //    dbweb.Trustpilot_Webhooks.Add(TPWH);
+            //    dbweb.SaveChanges();
+
+            //}
+
+
+        }
 
 
     }
@@ -1055,6 +1070,30 @@ namespace DLWebsiteWithAuth.Controllers
     public class TrustpilotObject
     {
         public List<Event> events { get; set; }
+    }
+
+    public class ReviewSolilitorsModel
+    {
+        public int id { get; set; }
+        public string title { get; set; }
+        public string text { get; set; }
+        public int rating { get; set; }
+        public Stats stats { get; set; }
+        public string areaOfLaw { get; set; }
+        public string solicitor { get; set; }
+        public string caseReference { get; set; }
+        public bool satisfied { get; set; }
+        public bool recommended { get; set; }
+    }
+
+    public class Stats
+    {
+        public int services { get; set; }
+        public int knowledge { get; set; }
+        public int approachability { get; set; }
+        public int professionalism { get; set; }
+        public int value_for_money { get; set; }
+        public int initial_impression { get; set; }
     }
 
     public class MimeType

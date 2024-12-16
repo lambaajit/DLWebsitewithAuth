@@ -21,6 +21,7 @@ namespace DLWebsiteWithAuth.Models
         public Nullable<long> Client_Mob { get; set; }
         public Nullable<System.DateTime> DateRef1 { get; set; }
         public string Ref_Department { get; set; }
+        public string Client_Nationality { get; set; }
         public string Preferred_Location { get; set; }
         public string Location { get; set; }
         public string Ref_Feeearner { get; set; }
@@ -38,6 +39,8 @@ namespace DLWebsiteWithAuth.Models
         public string QueryType { get; set; }
         public string ModeOfCommunication { get; set; }
         public int? HousingDisrepairCalculatorId { get; set; }
+        public string Date_Claimed_Asylum { get; set; }
+        public string Date_Asylum_Interview { get; set; }
 
     }
 }

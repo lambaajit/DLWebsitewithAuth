@@ -107,13 +107,15 @@ app.controller('myCtrl', ['$scope', '$http', function ($scope, $http) {
             $scope.Queryrelatesto = [{
                 "text": "Client Care", "Value": "Client Care"
             }, {
-                "text": "Feedback", "Value": "Feedback"
-            }, {
                 "text": "Complaint", "Value": "Complaint"
+            }, {
+                "text": "Data Protection", "Value": "Data Protection"
             }, {
                 "text": "Existing Clients", "Value": "Existing Clients"
             }, {
                 "text": "Facilities", "Value": "Facilities"
+            }, {
+                "text": "Feedback", "Value": "Feedback"
             }, {
                 "text": "Finance", "Value": "Finance"
             }, {
@@ -121,11 +123,9 @@ app.controller('myCtrl', ['$scope', '$http', function ($scope, $http) {
             }, {
                 "text": "Marketing", "Value": "Marketing"
             }, {
+                "text": "Media Enquiry", "Value": "Media Enquiry"
+            }, {
                 "text": "Other", "Value": "Other"
-            }, {
-                "text": "Press Inquiry", "Value": "Press Inquiry"
-            }, {
-                "text": "Data Protection", "Value": "Data Protection"
             }];
         }
         $scope.$apply;

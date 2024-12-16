@@ -27,7 +27,6 @@ namespace DLWebsiteWithAuth
     
         public virtual DbSet<AssentManagement_ProductDetails> AssentManagement_ProductDetails { get; set; }
         public virtual DbSet<Blue_Print> Blue_Print { get; set; }
-        public virtual DbSet<ClientReferral> ClientReferrals { get; set; }
         public virtual DbSet<Internship> Internships { get; set; }
         public virtual DbSet<Mobile> Mobiles { get; set; }
         public virtual DbSet<Office> Offices { get; set; }
@@ -43,5 +42,6 @@ namespace DLWebsiteWithAuth
         public virtual DbSet<VideoCallRequest> VideoCallRequests { get; set; }
         public virtual DbSet<Staff_Details> Staff_Details { get; set; }
         public virtual DbSet<HousingDisrepairCalculator> HousingDisrepairCalculators { get; set; }
+        public virtual DbSet<ClientReferral> ClientReferrals { get; set; }
     }
 }

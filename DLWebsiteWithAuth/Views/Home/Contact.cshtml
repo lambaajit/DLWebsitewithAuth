@@ -6,158 +6,205 @@
     ViewBag.Keywords = "Contact " + ViewBag.dept + " Solicitor, Contact " + ViewBag.dept + " Lawyer";
 }
 
-            @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-
-
-                <div class="col-sm-12" ng-init="initialise('@(ViewBag.dept)', '@(ViewBag.SubDepartment)')">
-                    <div class="hidden-xs" style="padding-top:10px;">
-                        <p style="float:right;color:Red;">* this information is required</p>
-                        <h1>Contact Us</h1>
-                        <p style="font-size:11px !important; font-weight:normal !important; border:solid 1px #808080 !important; padding:5px !important; line-height:12px !important">Not sure about an email received? Please be vigilant to cyber security risks at all times. If the email id from which an email came from does not end with @@duncanlewis.com, this this is not a genuine email from Duncan Lewis Solicitors. Do not open any attachments or links contained therein and delete such emails received. It is a good practice to avoid clicking on any links in emails that you are not expecting to receive. In accordance with our regulatory obligations, to assist our clients and members of the public we maintain a history of scam alerts that have been brought to our attention – here. If you wish to notify us of any concerns you have then please use this Contact Us Page > Other > Data Protection.</p>
-                        <br />
-                        <br />
-                        @Html.Hidden("ID", 0)
-                        @Html.Hidden("HousingDisrepairCalculatorId")
-                    </div>
-                    <table class="table table-bordered">
-                        <thead style="padding:10px"><b>Please complete the sections below to contact us. Your enquiry will be treated in confidence. Please remember to provide as much information as possible so that your enquiry can be directed to the most appropriate lawyer.</b><br /><br /></thead>
-                        <tr>
-                            <td>Please select one of the option for which your query is related to:</td>
-                            <td>
-                                @Html.RadioButtonFor(m => m.QueryType, "Law", new { ng_model = "QueryType", ng_change = "changequerytype()", ng_readonly = "deptfilled" }) <span>I am looking for a lawyer to help me </span><br />
-                                @Html.RadioButtonFor(m => m.QueryType, "Recruitment", new { onclick = "window.location='/careers.html'", ng_hide = "deptfilled" }) <span ng-hide="deptfilled">I want to apply for a vacancy </span><br />
-                                @Html.RadioButtonFor(m => m.QueryType, "Admin", new { ng_model = "QueryType", ng_change = "changequerytype()", ng_hide = "deptfilled" }) <span ng-hide="deptfilled">Other </span><br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                First name<font class="required1">*</font>
-                            </td>
-                            <td style="width:50%">
-                                @Html.TextBoxFor(x => x.Client_Forename, new { @class = "form-control col-sm-6 col-xs-12", autocomplete = "off" })
-                                @Html.ValidationMessageFor(x => x.Client_Forename, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Surname<font class="required1">*</font>
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(x => x.Client_Surname, new { @class = "form-control col-sm-6 col-xs-12", autocomplete = "off" })
-                                @Html.ValidationMessageFor(x => x.Client_Surname, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Postcode <font class="required1">*</font></td>
-                            <td>
-                                @Html.TextBoxFor(x => x.Client_Postcode, new { @class = "form-control", autocomplete = "off" })
-                                @Html.ValidationMessageFor(x => x.Client_Postcode, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mobile/tel number <font class="required1">*</font> (Enter &quot;0&quot; if you do not have a contact number)</td>
-                            <td>
-                                @Html.TextBoxFor(x => x.Client_Mob, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(x => x.Client_Mob, null, new { @class = "validation-error", autocomplete = "off" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Are you an existing client or a new client?<font class="required1">*</font></td>
-                            <td>
-                                @Html.RadioButtonFor(m => m.New_old_Client, false) Existing client &nbsp;&nbsp;&nbsp;
-                                @Html.RadioButtonFor(m => m.New_old_Client, true) New client<br />
-                                @Html.ValidationMessageFor(x => x.New_old_Client, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Email<font class="required1">*</font></td>
-                            <td>
-                                @Html.TextBoxFor(x => x.Client_email, new { @class = "form-control", autocomplete = "off" })
-                                @Html.ValidationMessageFor(x => x.Client_email, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Confirm email<font class="required1">*</font></td>
-                            <td>
-                                @Html.TextBoxFor(x => x.ConfirmEmail, new { @class = "form-control", autocomplete = "off" })
-                                @Html.ValidationMessageFor(x => x.ConfirmEmail, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Please select area of law that your query relates to:<font class="required1">*</font></td>
-                            <td>
-                                <select ng_readonly="deptfilled" name="Ref_Department" class="form-control" ng-model="dept" ng-change="changesubDepartment()">
-                                    <option></option>
-                                    <option ng-repeat="x in Queryrelatesto" value="{{x.Value}}">{{x.text}}</option>
-                                </select>
-                                @*@Html.TextBoxFor(x => x.Ref_SubDepartment, new { style = "display:none;" })*@
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Please select issue that your query relates to: <font class="required1">*</font></td>
-                            <td>
-                                <select ng_readonly="subdeptfilled" name="Ref_SubDepartment" class="form-control" ng-model="SubDepartment">
-                                    <option></option>
-                                    <option ng-repeat="x in subdept" value="{{x}}">{{x}}</option>
-                                </select>
-                                @*@Html.TextBoxFor(x => x.Ref_SubDepartment, new { style = "display:none;" })*@
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Once contact is made please select how you wish to be attended to: <font class="required1">*</font></td>
-                            <td>
-                                <select name="ModeOfCommunication" class="form-control" required>
-                                    <option></option>
-                                    <option value="By Telephone">By Telephone</option>
-                                    <option value="Zoom / Teams Online Meeting">Zoom / Teams Online Meeting</option>
-                                    <option value="Attendance at Local Office">Attendance at Local Office</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                Message<font class="required1">*</font>
-                                <br />
-                                @Html.TextAreaFor(m => m.Description, new { @style = "width:100% !Important; min-width:100%", rows = "5", autocomplete = "off", placeholder = "Please enter your message here", @class = "form-control" })
-                                @Html.ValidationMessageFor(x => x.Description, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" ng-show="dept=='Civil Litigation'">
-                                The potential value of your claim/dispute <font style="font-size:12px">If you are not sure please write "I don’t know"</font>
-                                <br />
-                                <input type="text" class="form-control" name="PotentialClaim" id="PotentialClaim" style="width:100%; max-width:100%" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="panel panel-default" style="padding:10px; margin-top:10px;">
-                                    <p style="font-size:smaller !important; line-height:16px !important; font-weight:normal !important;">
-                                        We may require basic information which identifies you as an individual (“Personal Information”), such as your name, email address and phone number, in order to enable you to take advantage of particular services that we offer, for example when you send us a question / request from our “contact us” page, request one of our newsletters or further information on a specific department. We will only use such Personal Information for the purposes of providing information which you have requested, or for other purposes set out in our Privacy Notice. This Notice provides detailed information on how we use and protect your personal information, and your rights in relation to this.
-                                        If you wish to unsubscribe from any communication from Duncan Lewis, please email <a style="font-size:smaller !important; line-height:16px !important; font-weight:normal !important;" href="mailto:dataprotection@duncanlewis.com">dataprotection@duncanlewis.com</a>
-                                    </p>
-                                </div>
-                                @Html.CheckBoxFor(m => m.consent, new { id = "Terms" }) I agree to the terms above.
-                                @Html.ValidationMessageFor(x => x.consent, null, new { @class = "validation-error" })
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="2" style="text-align:center">
-                                <input type="submit" class="btn btn-primary" id="submit" value=" Submit" />
-                            </td>
-                        </tr>
-                    </table>
-
-                </div>
-            }
-
-
-    @section MetaContent
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post))
 {
-        <link rel="canonical" href="https://www.duncanlewis.com/Home/Contact" />
-    }
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <div class="col-sm-12" ng-init="initialise('@(ViewBag.dept)', '@(ViewBag.SubDepartment)')">
+        <div class="hidden-xs" style="padding-top:10px;">
+            <p style="float:right;color:Red;">* this information is required</p>
+            <h1>Contact Us</h1>
+            <p style="font-size:11px !important; font-weight:normal !important; border:solid 1px #808080 !important; padding:5px !important; line-height:12px !important">Not sure about an email received? Please be vigilant to cyber security risks at all times. If the email id from which an email came from does not end with @@duncanlewis.com, this is not a genuine email from Duncan Lewis Solicitors. Do not open any attachments or links contained therein and delete such emails received. It is a good practice to avoid clicking on any links in emails that you are not expecting to receive. In accordance with our regulatory obligations, to assist our clients and members of the public we maintain a history of scam alerts that have been brought to our attention – here. If you wish to notify us of any concerns you have then please use this Contact Us Page > Other > Data Protection.</p>
+            <br />
+            <br />
+            @Html.Hidden("ID", 0)
+            @Html.Hidden("HousingDisrepairCalculatorId")
+        </div>
+        <table class="table table-bordered">
+            <thead style="padding:10px"><b>Please complete the sections below to contact us. Your enquiry will be treated in confidence. Please remember to provide as much information as possible so that your enquiry can be directed to the most appropriate lawyer.</b><br /><br /></thead>
+            <tr>
+                <td>Please select one of the option for which your query is related to:</td>
+                <td>
+                    @Html.RadioButtonFor(m => m.QueryType, "Law", new { ng_model = "QueryType", ng_change = "changequerytype()", ng_readonly = "deptfilled" }) <span>I am looking for a lawyer to help me </span><br />
+                    @Html.RadioButtonFor(m => m.QueryType, "Recruitment", new { onclick = "window.location='/careers.html'", ng_hide = "deptfilled" }) <span ng-hide="deptfilled">I want to apply for a vacancy </span><br />
+                    @Html.RadioButtonFor(m => m.QueryType, "Admin", new { ng_model = "QueryType", ng_change = "changequerytype()", ng_hide = "deptfilled" }) <span ng-hide="deptfilled">Other </span><br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First name<font class="required1">*</font>
+                </td>
+                <td style="width:50%">
+                    @Html.TextBoxFor(x => x.Client_Forename, new { @class = "form-control col-sm-6 col-xs-12", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Client_Forename, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Surname<font class="required1">*</font>
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Client_Surname, new { @class = "form-control col-sm-6 col-xs-12", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Client_Surname, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>Postcode <font class="required1">*</font></td>
+                <td>
+                    @Html.TextBoxFor(x => x.Client_Postcode, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Client_Postcode, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile/tel number <font class="required1">*</font> (Enter &quot;0&quot; if you do not have a contact number)</td>
+                <td>
+                    @Html.TextBoxFor(x => x.Client_Mob, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Client_Mob, null, new { @class = "validation-error", autocomplete = "off" })
+                </td>
+            </tr>
+            <tr>
+                <td>Are you an existing client or a new client?<font class="required1">*</font></td>
+                <td>
+                    @Html.RadioButtonFor(m => m.New_old_Client, false) Existing client &nbsp;&nbsp;&nbsp;
+                    @Html.RadioButtonFor(m => m.New_old_Client, true) New client<br />
+                    @Html.ValidationMessageFor(x => x.New_old_Client, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>Email<font class="required1">*</font></td>
+                <td>
+                    @Html.TextBoxFor(x => x.Client_email, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Client_email, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm email<font class="required1">*</font></td>
+                <td>
+                    @Html.TextBoxFor(x => x.ConfirmEmail, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.ConfirmEmail, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td>Please select area of law that your query relates to:<font class="required1">*</font></td>
+                <td>
+                    <select ng_readonly="deptfilled" name="Ref_Department" class="form-control" ng-model="dept" ng-change="changesubDepartment()">
+                        <option></option>
+                        <option ng-repeat="x in Queryrelatesto" value="{{x.Value}}">{{x.text}}</option>
+                    </select>
+                    @*@Html.TextBoxFor(x => x.Ref_SubDepartment, new { style = "display:none;" })*@
+                </td>
+            </tr>
+            <tr>
+                <td>Please select issue that your query relates to: <font class="required1">*</font></td>
+                <td>
+                    <select ng_readonly="subdeptfilled" name="Ref_SubDepartment" class="form-control" ng-model="SubDepartment" id="Ref_SubDepartment" onchange="CheckNationality()">
+                        <option></option>
+                        <option ng-repeat="x in subdept" value="{{x}}">{{x}}</option>
+                    </select>
+                    @*@Html.TextBoxFor(x => x.Ref_SubDepartment, new { style = "display:none;" })*@
+                </td>
+            </tr>
+
+
+            <tr id="ClientNationalityTr" style="display:none">
+                <td>Client Nationality<font class="required1">*</font></td>
+                <td>
+                    @Html.TextBoxFor(model => model.Client_Nationality, new { @class = "form-control", id = "Client_Nationality" })
+                    @Html.ValidationMessageFor(model => model.Client_Nationality, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr id="DateAsylumTr" style="display:none">
+                <td>What date claimed Asylum?</td>
+                <td>
+                    @Html.TextBoxFor(model => model.Date_Claimed_Asylum, new { @class = "form-control", id = "Date_Claimed_Asylum" })
+                    @Html.ValidationMessageFor(model => model.Date_Claimed_Asylum, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr id="DateAsylumInterviewTr" style="display:none">
+                <td>What date is substantive Asylum interview?</td>
+                <td>
+                    @Html.TextBoxFor(model => model.Date_Asylum_Interview, new { @class = "form-control", id = "Date_Asylum_Interview" })
+                    @Html.ValidationMessageFor(model => model.Date_Asylum_Interview, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>Once contact is made please select how you wish to be attended to: <font class="required1">*</font></td>
+                <td>
+                    <select name="ModeOfCommunication" class="form-control" required>
+                        <option></option>
+                        <option value="By Telephone">By Telephone</option>
+                        <option value="Zoom / Teams Online Meeting">Zoom / Teams Online Meeting</option>
+                        <option value="Attendance at Local Office">Attendance at Local Office</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Message<font class="required1">*</font>
+                    <br />
+                    @Html.TextAreaFor(m => m.Description, new { @style = "width:100% !Important; min-width:100%", rows = "5", autocomplete = "off", placeholder = "Please enter your message here", @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Description, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" ng-show="dept=='Civil Litigation'">
+                    The potential value of your claim/dispute <font style="font-size:12px">If you are not sure please write "I don’t know"</font>
+                    <br />
+                    <input type="text" class="form-control" name="PotentialClaim" id="PotentialClaim" style="width:100%; max-width:100%" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="panel panel-default" style="padding:10px; margin-top:10px;">
+                        <p style="font-size:smaller !important; line-height:16px !important; font-weight:normal !important;">
+                            We may require basic information which identifies you as an individual (“Personal Information”), such as your name, email address and phone number, in order to enable you to take advantage of particular services that we offer, for example when you send us a question / request from our “contact us” page, request one of our newsletters or further information on a specific department. We will only use such Personal Information for the purposes of providing information which you have requested, or for other purposes set out in our Privacy Notice. This Notice provides detailed information on how we use and protect your personal information, and your rights in relation to this.
+                            If you wish to unsubscribe from any communication from Duncan Lewis, please email <a style="font-size:smaller !important; line-height:16px !important; font-weight:normal !important;" href="mailto:dataprotection@duncanlewis.com">dataprotection@duncanlewis.com</a>
+                        </p>
+                    </div>
+                    @Html.CheckBoxFor(m => m.consent, new { id = "Terms" }) I agree to the terms above.
+                    @Html.ValidationMessageFor(x => x.consent, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input type="submit" class="btn btn-primary" id="submit" value=" Submit" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+}
+
+
+@section MetaContent
+{
+    <link rel="canonical" href="https://www.duncanlewis.com/Home/Contact" />
+}
+
+@section scripts{
+    <script>
+        function CheckNationality() {
+            if ($("#Ref_SubDepartment").val().indexOf("Asylum") >= 0) {
+                $("#ClientNationalityTr").show();
+                $("#Client_Nationality").prop('required', true);
+                $("#DateAsylumTr").show();
+                $("#DateAsylumInterviewTr").show();
+            }
+            else {
+                $("#ClientNationalityTr").hide();
+                $("#Client_Nationality").prop('required', false);
+                $("#DateAsylumTr").hide();
+                $("#DateAsylumInterviewTr").hide();
+            }
+        }
+    </script>
+
+}
 

@@ -22,6 +22,9 @@ namespace DLWebsiteWithAuth
         public string Client_email { get; set; }
         public Nullable<long> Client_Mob { get; set; }
         public string Client_tel { get; set; }
+        public string Client_Nationality { get; set; }
+        public string Date_Claimed_Asylum { get; set; }
+        public string Date_Asylum_Interview { get; set; }
         public string ClientRef { get; set; }
         public string MatterNo { get; set; }
         public string Interpreter_Required { get; set; }
@@ -48,7 +51,7 @@ namespace DLWebsiteWithAuth
         public string Language_Needs { get; set; }
         public string Source1 { get; set; }
         public string Source { get; set; }
-        public string IP_Address { get; set; }
+        public string ip_address { get; set; }
         public string Referral_to { get; set; }
         public string Confirmed { get; set; }
         public string Cancel { get; set; }
@@ -78,5 +81,19 @@ namespace DLWebsiteWithAuth
         public string ActoinedBy { get; set; }
         public Nullable<System.DateTime> ActionedDate { get; set; }
         public Nullable<int> HousingDisrepairCalculatorId { get; set; }
+        public string SwitchboardCallBackRequired { get; set; }
+        public string SwitchboardCallBackNotes { get; set; }
+        public string SwitchboardCallBackStaffName { get; set; }
+        public Nullable<System.DateTime> SwitchboardCallbackDateTime { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string ModifiedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<bool> Enabled { get; set; }
+        public Nullable<int> WarningColorCode { get; set; }
+        public string WarningMessage { get; set; }
+        public Nullable<bool> IndigoMatterOpen { get; set; }
+        public Nullable<bool> IndigoMatterNotOpenReason { get; set; }
+        public string Cancel_Category { get; set; }
     }
 }
