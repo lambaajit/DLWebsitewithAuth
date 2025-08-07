@@ -46,5 +46,8 @@ namespace DLWebsiteWithAuth
         public string ReviewSolicitorsFirmID { get; set; }
         public string ReviewSolicitorsOfficeLinks { get; set; }
         public bool PriorityForClientReviews { get; set; }
+        public string PageTitle { get; set; }
+        public string MetaDescription { get; set; }
+        public string MetaKeywords { get; set; }
     }
 }

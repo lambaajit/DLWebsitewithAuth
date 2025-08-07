@@ -131,6 +131,21 @@
           <Property Name="IndigoMatterNotOpenReason" Type="bit" />
           <Property Name="Cancel_Category" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="EmailScrutiny">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar(max)" />
+          <Property Name="dateOfReferral" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HackersList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emailAddress" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="HousingDisrepairCalculator">
           <Key>
             <PropertyRef Name="Id" />
@@ -301,6 +316,9 @@
           <Property Name="ReviewSolicitorsFirmID" Type="varchar(max)" />
           <Property Name="ReviewSolicitorsOfficeLinks" Type="varchar(max)" />
           <Property Name="PriorityForClientReviews" Type="bit" Nullable="false" />
+          <Property Name="PageTitle" Type="varchar(max)" />
+          <Property Name="MetaDescription" Type="varchar(max)" />
+          <Property Name="MetaKeywords" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
@@ -641,6 +659,8 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySet Name="AssentManagement_ProductDetails" EntityType="Self.AssentManagement_ProductDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Blue_Print" EntityType="Self.Blue_Print" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientReferrals" EntityType="Self.ClientReferrals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailScrutiny" EntityType="Self.EmailScrutiny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HackersList" EntityType="Self.HackersList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HousingDisrepairCalculator" EntityType="Self.HousingDisrepairCalculator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Internship" EntityType="Self.Internship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mobile" EntityType="Self.Mobile" Schema="dbo" store:Type="Tables" />
@@ -857,6 +877,9 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="ReviewSolicitorsFirmID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ReviewSolicitorsOfficeLinks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PriorityForClientReviews" Type="Boolean" Nullable="false" />
+          <Property Name="PageTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -1210,6 +1233,8 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySet Name="Staff_Details" EntityType="Self.Staff_Details" />
           <EntitySet Name="HousingDisrepairCalculators" EntityType="WEBDLModel.HousingDisrepairCalculator" />
           <EntitySet Name="ClientReferrals" EntityType="WEBDLModel.ClientReferral" />
+          <EntitySet Name="EmailScrutinies" EntityType="WEBDLModel.EmailScrutiny" />
+          <EntitySet Name="HackersLists" EntityType="WEBDLModel.HackersList" />
         </EntityContainer>
         <EntityType Name="HousingDisrepairCalculator">
           <Key>
@@ -1319,6 +1344,21 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="IndigoMatterOpen" Type="Boolean" />
           <Property Name="IndigoMatterNotOpenReason" Type="Boolean" />
           <Property Name="Cancel_Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmailScrutiny">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfReferral" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="HackersList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1484,6 +1524,9 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="Offices">
             <EntityTypeMapping TypeName="WEBDLModel.Office">
               <MappingFragment StoreEntitySet="Offices">
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
                 <ScalarProperty Name="PriorityForClientReviews" ColumnName="PriorityForClientReviews" />
                 <ScalarProperty Name="ReviewSolicitorsOfficeLinks" ColumnName="ReviewSolicitorsOfficeLinks" />
                 <ScalarProperty Name="ReviewSolicitorsFirmID" ColumnName="ReviewSolicitorsFirmID" />
@@ -1970,6 +2013,23 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
                 <ScalarProperty Name="FeeEarner" ColumnName="FeeEarner" />
                 <ScalarProperty Name="Step" ColumnName="Step" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailScrutinies">
+            <EntityTypeMapping TypeName="WEBDLModel.EmailScrutiny">
+              <MappingFragment StoreEntitySet="EmailScrutiny">
+                <ScalarProperty Name="dateOfReferral" ColumnName="dateOfReferral" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HackersLists">
+            <EntityTypeMapping TypeName="WEBDLModel.HackersList">
+              <MappingFragment StoreEntitySet="HackersList">
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

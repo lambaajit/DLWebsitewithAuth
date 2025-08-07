@@ -23,6 +23,8 @@
         <EntityTypeShape EntityType="WEBDLModel.Staff_Details" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WEBDLModel.HousingDisrepairCalculator" Width="1.5" PointX="17.375" PointY="3.75" />
         <EntityTypeShape EntityType="WEBDLModel.ClientReferral" Width="1.5" PointX="17.375" PointY="9.75" />
+        <EntityTypeShape EntityType="WEBDLModel.EmailScrutiny" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="WEBDLModel.HackersList" Width="1.5" PointX="3.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

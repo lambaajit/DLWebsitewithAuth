@@ -1,4 +1,6 @@
 ﻿@model DLWebsiteWithAuth.Models.ContactModel
+@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
 
 @{
     ViewBag.Title = "Contact " + ViewBag.dept + " Solicitor";
@@ -99,7 +101,7 @@
             <tr>
                 <td>Please select issue that your query relates to: <font class="required1">*</font></td>
                 <td>
-                    <select ng_readonly="subdeptfilled" name="Ref_SubDepartment" class="form-control" ng-model="SubDepartment" id="Ref_SubDepartment" onchange="CheckNationality()">
+                    <select ng_readonly="subdeptfilled" name="Ref_SubDepartment" class="form-control" ng-model="SubDepartment" id="Ref_SubDepartment" onchange="CheckNationality()" required>
                         <option></option>
                         <option ng-repeat="x in subdept" value="{{x}}">{{x}}</option>
                     </select>
@@ -169,6 +171,11 @@
                     </div>
                     @Html.CheckBoxFor(m => m.consent, new { id = "Terms" }) I agree to the terms above.
                     @Html.ValidationMessageFor(x => x.consent, null, new { @class = "validation-error" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @Html.MathCaptcha()
                 </td>
             </tr>
 

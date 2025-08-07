@@ -147,7 +147,7 @@ namespace DLWebsiteWithAuth.Models
                 }
             }
 
-            var basicCredential = new NetworkCredential("booking@24-7languageservices.com", "24-7languageservices.com");
+            var basicCredential = new NetworkCredential("DLWebsiteSMTP@Duncanlewis.com", "MondayisMonday11!");
             //SmtpClient smtpClient = new SmtpClient("81.150.163.113", 25);
             //smtpClient.Host = "81.150.163.113";
             //smtpClient.UseDefaultCredentials = false;

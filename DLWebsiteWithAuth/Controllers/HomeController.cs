@@ -14,6 +14,7 @@ using Newtonsoft.Json.Linq;
 using AutoMapper;
 using static System.Net.Mime.MediaTypeNames;
 using System.Configuration;
+using CaptchaMvc.HtmlHelpers;
 
 namespace DLWebsiteWithAuth.Controllers
 {
@@ -52,143 +53,171 @@ namespace DLWebsiteWithAuth.Controllers
         [HttpPost]
         public ActionResult Contact(ContactModel contactModel, string PotentialClaim = "")
         {
-
-            if (ModelState.IsValid)
+            if (this.IsCaptchaValid("Captcha is not valid"))
             {
-                if (contactModel.QueryType != "Admin")
+                WEBDLEntities db = new WEBDLEntities();
+                List<string> listOfHackers = db.HackersLists.Select(x => x.emailAddress).Distinct().ToList();
+                var _date = DateTime.Now.Date;
+                var _checkTodaysEmail = db.EmailScrutinies.Where(x => x.dateOfReferral == _date && x.email.ToLower() == contactModel.Client_email.ToLower()).ToList();
+                if (_checkTodaysEmail.Count > 1)
                 {
-                    contactModel.Description = contactModel.Description.ReplaceString("select", "^select^");
-                    contactModel.Description = contactModel.Description.ReplaceString("drop", "^drop^");
-                    contactModel.Description = contactModel.Description.ReplaceString("update", "^update^");
-                    contactModel.Description = contactModel.Description.ReplaceString("insert", "^insert^");
-                    contactModel.Description = contactModel.Description.ReplaceString("delete", "^delete^");
-                    contactModel.Description = contactModel.Description.ReplaceString("script", "^story^");
-
-                    contactModel.Clientname = contactModel.Client_Forename + " " + contactModel.Client_Surname;
-                    contactModel.CustomerServiceMember = "Ajit Lamba";
-                    contactModel.Step = 1;
-                    contactModel.FeeEarner = "Jason Bruce";
-                    contactModel.FeeEarnerDepartment = "Switchboard-Team";
-                    if (contactModel.Ref_Department == "Education")
-                    {
-                        contactModel.Description = contactModel.Ref_SubDepartment + Environment.NewLine + contactModel.Description;
-                        contactModel.Ref_SubDepartment = "Education";
-                        contactModel.Ref_Department = "Public Law";
-                    }
-                        contactModel.Ref_Department = contactModel.Ref_Department.Replace("Immigration - Asylum and Human Rights","Immigration").Replace("Immigration - Private and Business", "Business Immigration");
-                    
-
-                    contactModel.Preferred_Location = "To Be Evaluated";
-                    contactModel.Location = "To Be Evaluated";
-                    contactModel.DateRef1 = DateTime.Now;
-                    contactModel.Ref_Feeearner = "";
-                    contactModel.New_FeeEarner = "";
-                    contactModel.Referral_to = "";
-                    contactModel.RoomBooked = "No";
-                    contactModel.RoomBooked = "No";
-                    contactModel.Source = "Online Referral";
-
-                    if (!string.IsNullOrEmpty(PotentialClaim))
-                        contactModel.Description = contactModel.Description + Environment.NewLine + Environment.NewLine + "Potential value of claim/dispute: " + PotentialClaim.ToString(); 
-
-
-                    ClientReferral cr = new ClientReferral();
-                    cr = Mapper.Map<ClientReferral>(contactModel);
-                    cr.Cancel = "No";
-                    WEBDLEntities db = new WEBDLEntities();
-                    db.ClientReferrals.Add(cr);
-                    db.SaveChanges();
-
-                    long maxidstr = db.ClientReferrals.Max(x => x.ID);
-
-                    if (contactModel.Client_email.Contains("@"))
-                    {
-                        emailfields em = new emailfields();
-                        em.To_whom = contactModel.Client_email;
-                        em.from_whom = "contact@duncanlewis.com";
-                        em.subject = "Your Query with Duncan Lewis";
-
-                        em.msg = "Dear " + contactModel.Clientname + "</br><br />" +
-                    "<strong>Thank you for contacting Duncan Lewis Solicitors recently.</strong><br /><br />This automated-reply is to let you know that your query and contact details have been forwarded to the relevant legal team at Duncan Lewis. One of our legal team will contact you at their earliest opportunity (during office hours) to explore if we are able to assist you in this matter. If we are not able to assist you, you will be advised of this by phone or email and signposted accordingly. </br></br>" +
-            "<strong> Contact us</strong></br>" +
-            "</br>" +
-            "For any queries before our first contact with you, please do not hesitate to contact us on 033 3772 0409 and cite your Client Referral ID number, which is " + maxidstr.ToString() + ".<br /><br />" +
-        "<strong>Duncan Lewis - We Give People a Voice</strong></br>" +
-        "</br>" +
-        "We are headquartered in the City of London and have offices nationwide. We are recognised by The Legal 500 and Chambers & Partners UK independent legal directories as a top-tier law firm – \"a diligent and professional team that is prepared to go the extra mile for its clients\".<br /><br />To learn more about Duncan Lewis please visit our website – <a href=\"https://www.duncanlewis.co.uk\">www.duncanlewis.co.uk</a><br /><br />" +
-        "<br /><br />Yours Sincerely<br /><br />Duncan Lewis";
-
-                        ExtensionsMethods.sendemail(em);
-
-                    }
-
+                    return RedirectToAction("Confirmation", "Home", new { id = 5 });
                 }
                 else
                 {
-                    string msg = "You have received a new DL Online Query under " + contactModel.Ref_Department + ". Please see details below.<br /><br />";
-                    msg = msg + ("Query Type: " + contactModel.Ref_Department + "</br>");
-                    msg = msg + ("First name * " + contactModel.Client_Forename + "</br></br>");
-                    msg = msg + ("Surname *" + contactModel.Client_Surname + "</br></br>");
-                    msg = msg + ("Post code * " + contactModel.Client_Postcode + "</br></br>");
-                    msg = msg + ("Telephone/Mobile number *" + contactModel.Client_Mob + "</br></br>");
-                    msg = msg + ("Email address * " + contactModel.Client_email + "</br></br>");
-                    msg = msg + ("Details below:</br>");
-                    msg = msg + (contactModel.Description + "</br></br>");
-                    msg = msg + ("DateTime: " + DateTime.Now.Date.ToString() + "</br></br>");
-
-                    emailfields em = new emailfields();
-
-                    em.from_whom = contactModel.Client_email;
-                    em.To_whom = "jasonb@duncanlewis.com";
-                    em.msg = msg;
-                    em.cclist = new List<string>();
-                    em.bcclist = new List<string>();
-                    if (contactModel.Ref_Department == "Client Care")
-                        em.cclist.Add("ClientCareTeam@Duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Feedback")
-                        em.cclist.Add("ClientCareTeam@Duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Complaint")
-                        em.cclist.Add("ClientCareTeam@Duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Facilities")
-                        em.cclist.Add("HollieA@Duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Finance")
-                        em.cclist.Add("KlaudiaD@Duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Human Resources")
-                        em.cclist.Add("hrindia@duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Marketing")
-                        em.cclist.Add("Marketing@Duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Other")
+                    EmailScrutiny emailScrutiny = new EmailScrutiny()
                     {
-                        em.cclist.Add("admin@duncanlewis.com");
-                        em.cclist.Add("hrindia@duncanlewis.com");
-                        em.cclist.Add("ClientCareTeam@Duncanlewis.com");
-                        em.cclist.Add("NarayanaraoP@Duncanlewis.com");
-                        em.cclist.Add("MumtazS@Duncanlewis.com");
-                    }
-                    else if (contactModel.Ref_Department == "Media Enquiry")
-                        em.cclist.Add("Marketing@Duncanlewis.com");
-                    else if (contactModel.Ref_Department == "Existing Clients")
-                    {
-                        em.cclist.Add("NewClientSwitchboardTeam@duncanlewis.com");
-                        em.cclist.Add("Newclient@duncanlewis.com");
-                        em.cclist.Add("clientcareteam@duncanlewis.com");
-                    }
-                    else if (contactModel.Ref_Department == "Data Protection")
-                        em.cclist.Add("DataProtection@duncanlewis.com");
-
-
-                    em.subject = "DL Online Enquiry - " + contactModel.Ref_Department;
-                    em.bcclist.Add("ajitl@duncanlewis.com");
-                    em.bcclist.Add("nadiabe@duncanlewis.com");
-                    ExtensionsMethods.sendemail(em);
+                        dateOfReferral = DateTime.Now.Date,
+                        email = contactModel.Client_email,
+                    };
+                    db.EmailScrutinies.Add(emailScrutiny);
+                    db.SaveChanges();
                 }
+                if (ModelState.IsValid)
+                {
+                    if (contactModel.QueryType != "Admin" && !listOfHackers.Contains(contactModel.Client_email.ToLower()))
+                    {
+                        contactModel.Description = contactModel.Description.ReplaceString("select", "^select^");
+                        contactModel.Description = contactModel.Description.ReplaceString("drop", "^drop^");
+                        contactModel.Description = contactModel.Description.ReplaceString("update", "^update^");
+                        contactModel.Description = contactModel.Description.ReplaceString("insert", "^insert^");
+                        contactModel.Description = contactModel.Description.ReplaceString("delete", "^delete^");
+                        contactModel.Description = contactModel.Description.ReplaceString("script", "^story^");
+
+                        contactModel.Clientname = contactModel.Client_Forename + " " + contactModel.Client_Surname;
+                        contactModel.CustomerServiceMember = "Ajit Lamba";
+                        contactModel.Step = 1;
+                        contactModel.FeeEarner = "Jason Bruce";
+                        contactModel.FeeEarnerDepartment = "Switchboard-Team";
+                        if (contactModel.Ref_Department == "Education")
+                        {
+                            contactModel.Description = contactModel.Ref_SubDepartment + Environment.NewLine + contactModel.Description;
+                            contactModel.Ref_SubDepartment = "Education";
+                            contactModel.Ref_Department = "Public Law";
+                        }
+                        contactModel.Ref_Department = contactModel.Ref_Department.Replace("Immigration - Asylum and Human Rights", "Immigration").Replace("Immigration - Private and Business", "Business Immigration");
 
 
-                
+                        contactModel.Preferred_Location = "To Be Evaluated";
+                        contactModel.Location = "To Be Evaluated";
+                        contactModel.DateRef1 = DateTime.Now;
+                        contactModel.Ref_Feeearner = "";
+                        contactModel.New_FeeEarner = "";
+                        contactModel.Referral_to = "";
+                        contactModel.RoomBooked = "No";
+                        contactModel.RoomBooked = "No";
+                        contactModel.Source = "Online Referral";
 
-                return RedirectToAction("Confirmation", "Home", new { id = 5 });
+                        if (!string.IsNullOrEmpty(PotentialClaim))
+                            contactModel.Description = contactModel.Description + Environment.NewLine + Environment.NewLine + "Potential value of claim/dispute: " + PotentialClaim.ToString();
+
+
+                        ClientReferral cr = new ClientReferral();
+                        cr = Mapper.Map<ClientReferral>(contactModel);
+                        cr.Cancel = "No";
+
+                        db.ClientReferrals.Add(cr);
+                        db.SaveChanges();
+
+                        long maxidstr = db.ClientReferrals.Max(x => x.ID);
+
+
+
+
+                        if (contactModel.Client_email.Contains("@"))
+                        {
+                            emailfields em = new emailfields();
+                            em.To_whom = contactModel.Client_email;
+                            em.from_whom = "contact@duncanlewis.com";
+                            em.subject = "Your Query with Duncan Lewis";
+
+                            em.msg = "Dear " + contactModel.Clientname + "</br><br />" +
+                        "<strong>Thank you for contacting Duncan Lewis Solicitors recently.</strong><br /><br />This automated-reply is to let you know that your query and contact details have been forwarded to the relevant legal team at Duncan Lewis. One of our legal team will contact you at their earliest opportunity (during office hours) to explore if we are able to assist you in this matter. If we are not able to assist you, you will be advised of this by phone or email and signposted accordingly. </br></br>" +
+                "<strong> Contact us</strong></br>" +
+                "</br>" +
+                "For any queries before our first contact with you, please do not hesitate to contact us on 033 3772 0409 and cite your Client Referral ID number, which is " + maxidstr.ToString() + ".<br /><br />" +
+            "<strong>Duncan Lewis - We Give People a Voice</strong></br>" +
+            "</br>" +
+            "We are headquartered in the City of London and have offices nationwide. We are recognised by The Legal 500 and Chambers & Partners UK independent legal directories as a top-tier law firm – \"a diligent and professional team that is prepared to go the extra mile for its clients\".<br /><br />To learn more about Duncan Lewis please visit our website – <a href=\"https://www.duncanlewis.co.uk\">www.duncanlewis.co.uk</a><br /><br />" +
+            "<br /><br />Yours Sincerely<br /><br />Duncan Lewis";
+
+                            ExtensionsMethods.sendemail(em);
+
+                        }
+
+                    }
+                    else if (!listOfHackers.Contains(contactModel.Client_email.ToLower()))
+                    {
+                        string msg = "You have received a new DL Online Query under " + contactModel.Ref_Department + ". Please see details below.<br /><br />";
+                        msg = msg + ("Query Type: " + contactModel.Ref_Department + "</br>");
+                        msg = msg + ("First name * " + contactModel.Client_Forename + "</br></br>");
+                        msg = msg + ("Surname *" + contactModel.Client_Surname + "</br></br>");
+                        msg = msg + ("Post code * " + contactModel.Client_Postcode + "</br></br>");
+                        msg = msg + ("Telephone/Mobile number *" + contactModel.Client_Mob + "</br></br>");
+                        msg = msg + ("Email address * " + contactModel.Client_email + "</br></br>");
+                        msg = msg + ("Details below:</br>");
+                        msg = msg + (contactModel.Description + "</br></br>");
+                        msg = msg + ("DateTime: " + DateTime.Now.Date.ToString() + "</br></br>");
+
+                        emailfields em = new emailfields();
+
+                        em.from_whom = contactModel.Client_email;
+                        em.To_whom = "jasonb@duncanlewis.com";
+                        em.msg = msg;
+                        em.cclist = new List<string>();
+                        em.bcclist = new List<string>();
+                        if (contactModel.Ref_Department == "Client Care")
+                            em.cclist.Add("ClientCareTeam@Duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Feedback")
+                            em.cclist.Add("ClientCareTeam@Duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Complaint")
+                            em.cclist.Add("ClientCareTeam@Duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Facilities")
+                            em.cclist.Add("HollieA@Duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Finance")
+                            em.cclist.Add("KlaudiaD@Duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Human Resources")
+                            em.cclist.Add("hrindia@duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Marketing")
+                            em.cclist.Add("Marketing@Duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Other")
+                        {
+                            em.cclist.Add("admin@duncanlewis.com");
+                            em.cclist.Add("hrindia@duncanlewis.com");
+                            em.cclist.Add("ClientCareTeam@Duncanlewis.com");
+                            em.cclist.Add("NarayanaraoP@Duncanlewis.com");
+                            em.cclist.Add("MumtazS@Duncanlewis.com");
+                        }
+                        else if (contactModel.Ref_Department == "Media Enquiry")
+                            em.cclist.Add("Marketing@Duncanlewis.com");
+                        else if (contactModel.Ref_Department == "Existing Clients")
+                        {
+                            em.cclist.Add("NewClientSwitchboardTeam@duncanlewis.com");
+                            em.cclist.Add("Newclient@duncanlewis.com");
+                            em.cclist.Add("clientcareteam@duncanlewis.com");
+                        }
+                        else if (contactModel.Ref_Department == "Data Protection")
+                            em.cclist.Add("DataProtection@duncanlewis.com");
+
+
+                        em.subject = "DL Online Enquiry - " + contactModel.Ref_Department;
+                        em.bcclist.Add("ajitl@duncanlewis.com");
+                        em.bcclist.Add("nadiabe@duncanlewis.com");
+                        ExtensionsMethods.sendemail(em);
+                    }
+
+
+
+
+                    return RedirectToAction("Confirmation", "Home", new { id = 5 });
+                }
+                else
+                    return View(contactModel);
             }
-            return View();
+            else
+            {
+                return View(contactModel);
+            }
         }
 
         // GET: Payment
@@ -408,101 +437,101 @@ namespace DLWebsiteWithAuth.Controllers
 
 
 
-                string fileext = "";
-                string fileext1 = "";
+            string fileext = "";
+            string fileext1 = "";
 
-                HttpPostedFileBase Filename = Request.Files["Filename"];
-                HttpPostedFileBase Filename_CoverLetter = Request.Files["Filename_CoverLetter"];
+            HttpPostedFileBase Filename = Request.Files["Filename"];
+            HttpPostedFileBase Filename_CoverLetter = Request.Files["Filename_CoverLetter"];
 
-                if (Filename.ContentLength > 10485760 || Filename.FileName.Contains(".") == false || Filename_CoverLetter.ContentLength > 10485760 || Filename_CoverLetter.FileName.Contains(".") == false)
+            if (Filename.ContentLength > 10485760 || Filename.FileName.Contains(".") == false || Filename_CoverLetter.ContentLength > 10485760 || Filename_CoverLetter.FileName.Contains(".") == false)
+            {
+                WEBDLEntities db = new WEBDLEntities();
+                ViewBag.Post_ID = db.Recruitment_DlWeb.Where(x => x.Live == true).Select(y => new SelectListItem { Text = y.Job_Title, Value = y.Job_Ref_Code.ToString() });
+                return View();
+            }
+
+
+
+            fileext = Filename.FileName.Substring(Filename.FileName.LastIndexOf("."));
+            fileext1 = Filename_CoverLetter.FileName.Substring(Filename_CoverLetter.FileName.LastIndexOf("."));
+
+
+            //Testing file contents
+            Stream fs = Filename.InputStream;
+            BinaryReader br = new BinaryReader(fs);
+            byte[] bytes = br.ReadBytes((Int32)fs.Length);
+
+            Stream fs1 = Filename_CoverLetter.InputStream;
+            BinaryReader br1 = new BinaryReader(fs1);
+            byte[] bytes1 = br1.ReadBytes((Int32)fs1.Length);
+
+
+
+            if (MimeType.ValidateMime(bytes, Filename.FileName) == true && MimeType.ValidateMime(bytes1, Filename_CoverLetter.FileName) == true && ModelState.IsValid)
+            {
+
+                WEBDLEntities db = new WEBDLEntities();
+
+                applyModel.Added_By = "Applicant";
+                applyModel.Notes = "Date:" + DateTime.Now.ToString() + Environment.NewLine + "Added By: Applicant " + Environment.NewLine + "Notes Type: General Notes CV added By Applicant**";
+                applyModel.Agency = "Online_Application";
+                applyModel.Date_CV = DateTime.Now;
+                applyModel.Name = applyModel.Forename + " " + applyModel.Surname;
+                applyModel.Status = "Application Recieved";
+                applyModel.Post_Title = db.Recruitment_DlWeb.Where(x => x.Job_Ref_Code == applyModel.Post_ID).Select(y => y.Job_Title).FirstOrDefault();
+                applyModel.Job_ID = applyModel.Post_ID;
+
+
+                Recruitment _Apply = new Recruitment();
+                _Apply = Mapper.Map<Recruitment>(applyModel);
+                _Apply.Filename = Filename.FileName;
+                _Apply.Filename_CoverLetter = Filename_CoverLetter.FileName;
+                db.Recruitments.Add(_Apply);
+                db.SaveChanges();
+
+                int lastid = db.Recruitments.Max(x => x.ID);
+
+                if (fileext != "")
                 {
-                    WEBDLEntities db = new WEBDLEntities();
-                    ViewBag.Post_ID = db.Recruitment_DlWeb.Where(x => x.Live == true).Select(y => new SelectListItem { Text = y.Job_Title, Value = y.Job_Ref_Code.ToString() });
-                    return View();
-                }
-
-
-
-                fileext = Filename.FileName.Substring(Filename.FileName.LastIndexOf("."));
-                fileext1 = Filename_CoverLetter.FileName.Substring(Filename_CoverLetter.FileName.LastIndexOf("."));
-
-
-                //Testing file contents
-                Stream fs = Filename.InputStream;
-                BinaryReader br = new BinaryReader(fs);
-                byte[] bytes = br.ReadBytes((Int32)fs.Length);
-
-                Stream fs1 = Filename_CoverLetter.InputStream;
-                BinaryReader br1 = new BinaryReader(fs1);
-                byte[] bytes1 = br1.ReadBytes((Int32)fs1.Length);
-
-
-
-                if (MimeType.ValidateMime(bytes, Filename.FileName) == true && MimeType.ValidateMime(bytes1, Filename_CoverLetter.FileName) == true && ModelState.IsValid)
-                {
-
-                    WEBDLEntities db = new WEBDLEntities();
-
-                    applyModel.Added_By = "Applicant";
-                    applyModel.Notes = "Date:" + DateTime.Now.ToString() + Environment.NewLine + "Added By: Applicant " + Environment.NewLine + "Notes Type: General Notes CV added By Applicant**";
-                    applyModel.Agency = "Online_Application";
-                    applyModel.Date_CV = DateTime.Now;
-                    applyModel.Name = applyModel.Forename + " " + applyModel.Surname;
-                    applyModel.Status = "Application Recieved";
-                    applyModel.Post_Title = db.Recruitment_DlWeb.Where(x => x.Job_Ref_Code == applyModel.Post_ID).Select(y => y.Job_Title).FirstOrDefault();
-                    applyModel.Job_ID = applyModel.Post_ID;
-
-
-                    Recruitment _Apply = new Recruitment();
-                    _Apply = Mapper.Map<Recruitment>(applyModel);
-                    _Apply.Filename = Filename.FileName;
-                    _Apply.Filename_CoverLetter = Filename_CoverLetter.FileName;
-                    db.Recruitments.Add(_Apply);
+                    //applyModel.Filename.SaveAs(Server.MapPath("~") + "/Recruitment_CV/" + lastid + fileext);
+                    Recruitment_CV_Binary RCB = new Recruitment_CV_Binary();
+                    //using (BinaryReader reader = new BinaryReader(Filename.InputStream))
+                    //{
+                    RCB.Content = bytes;
+                    RCB.FileName = Filename.FileName;
+                    RCB.MainId = lastid;
+                    RCB.TypeOfDocument = "CV";
+                    db.Recruitment_CV_Binary.Add(RCB);
                     db.SaveChanges();
-
-                    int lastid = db.Recruitments.Max(x => x.ID);
-
-                    if (fileext != "")
-                    {
-                        //applyModel.Filename.SaveAs(Server.MapPath("~") + "/Recruitment_CV/" + lastid + fileext);
-                        Recruitment_CV_Binary RCB = new Recruitment_CV_Binary();
-                        //using (BinaryReader reader = new BinaryReader(Filename.InputStream))
-                        //{
-                        RCB.Content = bytes;
-                        RCB.FileName = Filename.FileName;
-                        RCB.MainId = lastid;
-                        RCB.TypeOfDocument = "CV";
-                        db.Recruitment_CV_Binary.Add(RCB);
-                        db.SaveChanges();
-                        //}
-                    }
-
-                    if (fileext1 != "")
-                    {
-                        //applyModel.Filename_CoverLetter.SaveAs(Server.MapPath("~") + "/Recruitment_CV/" + lastid + "_CoverLetter" + fileext1);
-                        Recruitment_CV_Binary RCB1 = new Recruitment_CV_Binary();
-                        using (var reader = new BinaryReader(Filename_CoverLetter.InputStream))
-                        {
-                            RCB1.Content = bytes1;
-                            RCB1.FileName = Filename_CoverLetter.FileName;
-                            RCB1.MainId = lastid;
-                            RCB1.TypeOfDocument = "Cover Letter";
-                            db.Recruitment_CV_Binary.Add(RCB1);
-                            db.SaveChanges();
-                        }
-                    }
-                    return RedirectToAction("Confirmation", "Home", new { id = 1 });
+                    //}
                 }
-                else
+
+                if (fileext1 != "")
                 {
-
-                    //ViewBag.Post_ID = db.Recruitment_DlWeb.Where(x => x.Live == true).Select(y => new SelectListItem { Text = y.Job_Title, Value = y.Job_Ref_Code.ToString() });
-                    ViewBag.ErorMsg = "Some Error Occured. Please check the files you are uploading.";
-                    ViewBag.Post_ID = dbweb.Recruitment_DlWeb.Where(x => x.Live == true && x.Job_Ref_Code == applyModel.Post_ID).Select(y => new SelectListItem { Text = y.Job_Title, Value = y.Job_Ref_Code.ToString(), Selected = (y.Job_Ref_Code == applyModel.Post_ID ? true : false) });
-                    ViewBag.JobTitle = dbweb.Recruitment_DlWeb.Where(x => x.Live == true && x.Job_Ref_Code == applyModel.Post_ID).Select(y => "Job Ref Code: " + y.Job_Ref_Code).FirstOrDefault();
-
-                    return View();
+                    //applyModel.Filename_CoverLetter.SaveAs(Server.MapPath("~") + "/Recruitment_CV/" + lastid + "_CoverLetter" + fileext1);
+                    Recruitment_CV_Binary RCB1 = new Recruitment_CV_Binary();
+                    using (var reader = new BinaryReader(Filename_CoverLetter.InputStream))
+                    {
+                        RCB1.Content = bytes1;
+                        RCB1.FileName = Filename_CoverLetter.FileName;
+                        RCB1.MainId = lastid;
+                        RCB1.TypeOfDocument = "Cover Letter";
+                        db.Recruitment_CV_Binary.Add(RCB1);
+                        db.SaveChanges();
+                    }
                 }
+                return RedirectToAction("Confirmation", "Home", new { id = 1 });
+            }
+            else
+            {
+
+                //ViewBag.Post_ID = db.Recruitment_DlWeb.Where(x => x.Live == true).Select(y => new SelectListItem { Text = y.Job_Title, Value = y.Job_Ref_Code.ToString() });
+                ViewBag.ErorMsg = "Some Error Occured. Please check the files you are uploading.";
+                ViewBag.Post_ID = dbweb.Recruitment_DlWeb.Where(x => x.Live == true && x.Job_Ref_Code == applyModel.Post_ID).Select(y => new SelectListItem { Text = y.Job_Title, Value = y.Job_Ref_Code.ToString(), Selected = (y.Job_Ref_Code == applyModel.Post_ID ? true : false) });
+                ViewBag.JobTitle = dbweb.Recruitment_DlWeb.Where(x => x.Live == true && x.Job_Ref_Code == applyModel.Post_ID).Select(y => "Job Ref Code: " + y.Job_Ref_Code).FirstOrDefault();
+
+                return View();
+            }
 
             //}
             //else
@@ -631,7 +660,7 @@ namespace DLWebsiteWithAuth.Controllers
                 _parsepagemodel.h1tag = staffname;
 
                 Staff_Details sd = new Staff_Details();
-                sd = db.Staff_Details.Where(x => htmlpage.Contains(x.forename.Replace(" ","-") + "-" + x.surname.Replace(" ", "-")) || htmlpage.Contains(x.forename + "_" + x.surname)).FirstOrDefault();
+                sd = db.Staff_Details.Where(x => htmlpage.Contains(x.forename.Replace(" ", "-") + "-" + x.surname.Replace(" ", "-")) || htmlpage.Contains(x.forename + "_" + x.surname)).FirstOrDefault();
                 string deptname = (dept != null && dept.Contains("_ourteam")) ? dept : htmlpage;
 
                 if (sd == null)
@@ -656,7 +685,7 @@ namespace DLWebsiteWithAuth.Controllers
                         _parsepagemodel.text = "Please click <a href=\"/" + url + "\" style=\"font-size:24px !Important; font-weight:bold !Important\">here</a> to see the Profile of " + staffname;
                         return Redirect(url);
                     }
-                    
+
                 }
 
             }
@@ -714,15 +743,15 @@ namespace DLWebsiteWithAuth.Controllers
             {
                 _numberOfMonths = (housingDisrepairCalculator.DateDisrepairRectified - housingDisrepairCalculator.DateDisrepairReported).Value.Days / 30;
             }
-                var _cost = (_numberOfMonths * housingDisrepairCalculator.Rent) * (((decimal)housingDisrepairCalculator.SeverityOfDisrepair * 20) / 100);
-                if (housingDisrepairCalculator.RentArrearsValue != null && housingDisrepairCalculator.RentArrearsValue > 0)
-                    _cost = _cost - housingDisrepairCalculator.RentArrearsValue;
+            var _cost = (_numberOfMonths * housingDisrepairCalculator.Rent) * (((decimal)housingDisrepairCalculator.SeverityOfDisrepair * 20) / 100);
+            if (housingDisrepairCalculator.RentArrearsValue != null && housingDisrepairCalculator.RentArrearsValue > 0)
+                _cost = _cost - housingDisrepairCalculator.RentArrearsValue;
 
-                if (housingDisrepairCalculator.PersonalBelongingsValue != null && housingDisrepairCalculator.PersonalBelongingsValue > 0)
-                    _cost = _cost + housingDisrepairCalculator.PersonalBelongingsValue;
+            if (housingDisrepairCalculator.PersonalBelongingsValue != null && housingDisrepairCalculator.PersonalBelongingsValue > 0)
+                _cost = _cost + housingDisrepairCalculator.PersonalBelongingsValue;
 
-                housingDisrepairCalculator.Cost = _cost;
-            
+            housingDisrepairCalculator.Cost = _cost;
+
 
             db.HousingDisrepairCalculators.Add(housingDisrepairCalculator);
             db.SaveChanges();
@@ -740,7 +769,7 @@ namespace DLWebsiteWithAuth.Controllers
         public JsonResult getDepartmentsvalues()
         {
             WEBDLEntities db = new WEBDLEntities();
-            List<dropdownlistvalues> sds = db.SubDepartments.Where(x => x.Active == true).GroupBy(y =>  y.Department).OrderBy(z => z.Key).Select(x => new dropdownlistvalues { text = x.Key.Trim(), Value=x.Key.Trim() }).ToList();
+            List<dropdownlistvalues> sds = db.SubDepartments.Where(x => x.Active == true).GroupBy(y => y.Department).OrderBy(z => z.Key).Select(x => new dropdownlistvalues { text = x.Key.Trim(), Value = x.Key.Trim() }).ToList();
             return Json(sds, JsonRequestBehavior.AllowGet);
         }
 
@@ -750,11 +779,11 @@ namespace DLWebsiteWithAuth.Controllers
             WEBDLEntities db = new WEBDLEntities();
             List<string> sds = db.SubDepartments.Where(x => x.Department == id).GroupBy(m => m.SubDepartment1).OrderBy(y => y.Key).Select(x => x.Key.Trim()).ToList();
             if (sds.Contains("Others") == false && id != "Education Law")
-            sds.Add("Others");
+                sds.Add("Others");
             return Json(sds, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Thanks(string id, decimal? housingDesrepairCost = null,int hdlId = 0)
+        public ActionResult Thanks(string id, decimal? housingDesrepairCost = null, int hdlId = 0)
         {
             if (id != null)
             {
@@ -999,7 +1028,8 @@ namespace DLWebsiteWithAuth.Controllers
     }
 
 
-    public class dropdownlistvalues{
+    public class dropdownlistvalues
+    {
         public string text { get; set; }
         public string Value { get; set; }
     }

@@ -43,5 +43,7 @@ namespace DLWebsiteWithAuth
         public virtual DbSet<Staff_Details> Staff_Details { get; set; }
         public virtual DbSet<HousingDisrepairCalculator> HousingDisrepairCalculators { get; set; }
         public virtual DbSet<ClientReferral> ClientReferrals { get; set; }
+        public virtual DbSet<EmailScrutiny> EmailScrutinies { get; set; }
+        public virtual DbSet<HackersList> HackersLists { get; set; }
     }
 }

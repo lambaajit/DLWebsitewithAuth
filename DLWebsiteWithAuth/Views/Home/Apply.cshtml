@@ -1,5 +1,6 @@
 ﻿@model DLWebsiteWithAuth.Models.ApplyModel
-@*@using CaptchaMvc.HtmlHelpers*@
+@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
 
 
 @{
@@ -20,240 +21,240 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-        <table class="table table-bordered">
-            <thead style="padding:10px">
-                <b>Please complete the sections below to apply for the role. Please upload your CV and covering letter.</b>
-                <br />
-                <br />
-                <span style="color:red !important">@ViewBag.ErorMsg</span>
-            </thead>
-            <tr>
-                <td style="width:60%;">First Name<font class="required1">*</font></td>
-                <td>
-                    @Html.TextBoxFor(x => x.Forename, new { @class = "form-control", autocomplete = "off" })
-                    @Html.ValidationMessageFor(x => x.Forename, null, new { @class = "validation-error" })
-                </td>
-            </tr>
-            <tr>
-                <td>Family Name<font class="required1">*</font></td>
-                <td>
-                    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", autocomplete = "off" })
-                    @Html.ValidationMessageFor(x => x.Surname, null, new { @class = "validation-error" })
-                </td>
-            </tr>
-            <tr>
-                <td>Post Applied For<font class="required1">*</font></td>
-                <td>
-                    @Html.DropDownListFor(x => x.Post_ID, null, "Please Select", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Post_ID, null, new { @class = "validation-error" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Email<font class="required1">*</font>
-                </td>
-                <td>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off" })
-                    @Html.ValidationMessageFor(x => x.Email, null, new { @class = "validation-error" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Confirm Email<font class="required1">*</font>
-                </td>
-                <td>
-                    @Html.TextBoxFor(x => x.ConfirmEmail, new { @class = "form-control", autocomplete = "off" })
-                    @Html.ValidationMessageFor(x => x.ConfirmEmail, null, new { @class = "validation-error" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                    Where have you seen/heard this advert?<font class="required1">*</font>
-
-                </td>
-                <td>
-                    @Html.DropDownListFor(x => x.Source, new List<SelectListItem>(){
-                            new SelectListItem {Text = "Duncan Lewis Website", Value = "Duncan Lewis Website"},
-                        new SelectListItem {Text = "Indeed", Value = "Indeed"},
-                        new SelectListItem {Text = "EIN", Value = "EIN"},
-                        new SelectListItem {Text = "Gumtree", Value = "Gumtree"},
-                        new SelectListItem {Text = "Totally Legal", Value = "Totally Lega"},
-                        new SelectListItem {Text = "College of Law", Value = "College of Law"},
-                        new SelectListItem {Text = "Referred by DL employee", Value = "Referred by DL employee"},
-                        new SelectListItem {Text = "Reed", Value = "Reed"},
-                        new SelectListItem {Text = "Law Careers", Value = "Law Careers"},
-                        new SelectListItem {Text = "MHLA", Value = "MHLA"},
-                        new SelectListItem {Text = "Monster", Value = "Monster"},
-                        new SelectListItem {Text = "Glassdoor", Value = "Glassdoor"},
-                        new SelectListItem {Text = "Other", Value = "Other"}
-                    },"Please select",new { @class="form-control" })
-
-
-                    @Html.ValidationMessageFor(x => x.Source, null, new { @class = "validation-error" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    If you have selected &quot;Other&quot; then enter details:
-                </td>
-                <td>
-                    @Html.TextAreaFor(x => x.Source_Others, new { @class = "form-control", style = "width:100%; height:150px" })
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    Note: Our System only accepts (.doc, .docx, .pdf, .rtf) formats while uploading
-                    your CV and Cover Letter
-                </td>
-            </tr>
-            <tr>
-                <td style=" vertical-align:top;">
-
-                    Attach CV<font class="required1">*</font><br /><p style="font-size:12px !important; font-weight:normal !important">Only Word and PDF files can be uploaded</p>
-
-                </td>
-                <td>
-                    <input type="file" name="Filename" id="Filename" required="required" />
-                    @*@Html.ValidationMessageFor(x => x.Filename, null, new { @class = "validation-error" })*@
-                </td>
-            </tr>
-            <tr>
-                <td style="height: 40px">Attach Cover Letter<font class="required1">*</font><br /><p style="font-size:12px !important; font-weight:normal !important">Only Word and PDF files can be uploaded</p></td>
-                <td style="height: 40px">
-                    <input type="file" name="Filename_CoverLetter" id="Filename_CoverLetter" required="required" />
-                    @*@Html.ValidationMessageFor(x => x.Filename_CoverLetter, null, new { @class = "validation-error" })*@
+            <table class="table table-bordered">
+                <thead style="padding:10px">
+                    <b>Please complete the sections below to apply for the role. Please upload your CV and covering letter.</b>
                     <br />
-                    &nbsp;
-                </td>
-            </tr>
+                    <br />
+                    <span style="color:red !important">@ViewBag.ErorMsg</span>
+                </thead>
+                <tr>
+                    <td style="width:60%;">First Name<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Forename, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Forename, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Family Name<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Surname, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Post Applied For<font class="required1">*</font></td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Post_ID, null, "Please Select", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Post_ID, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Confirm Email<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ConfirmEmail, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.ConfirmEmail, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        Where have you seen/heard this advert?<font class="required1">*</font>
+
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Source, new List<SelectListItem>(){
+                                new SelectListItem {Text = "Duncan Lewis Website", Value = "Duncan Lewis Website"},
+                            new SelectListItem {Text = "Indeed", Value = "Indeed"},
+                            new SelectListItem {Text = "EIN", Value = "EIN"},
+                            new SelectListItem {Text = "Gumtree", Value = "Gumtree"},
+                            new SelectListItem {Text = "Totally Legal", Value = "Totally Lega"},
+                            new SelectListItem {Text = "College of Law", Value = "College of Law"},
+                            new SelectListItem {Text = "Referred by DL employee", Value = "Referred by DL employee"},
+                            new SelectListItem {Text = "Reed", Value = "Reed"},
+                            new SelectListItem {Text = "Law Careers", Value = "Law Careers"},
+                            new SelectListItem {Text = "MHLA", Value = "MHLA"},
+                            new SelectListItem {Text = "Monster", Value = "Monster"},
+                            new SelectListItem {Text = "Glassdoor", Value = "Glassdoor"},
+                            new SelectListItem {Text = "Other", Value = "Other"}
+                        }, "Please select", new { @class = "form-control" })
 
 
-            <tr>
-                <td style="height: 40px">Are you eligible to work in the UK?<font class="required1">*</font></td>
-                <td style="height: 40px">
-                    <input type="radio" id="eligible_to_work_yes" name="eligible_to_work" value="true" required>
-                    <label for="html">Yes</label><br>
-                    <input type="radio" id="eligible_to_work_no" name="eligible_to_work" value="false" required>
-                    <label for="css">No</label><br>
-                </td>
-            </tr>
-            <tr>
-                <td style="height: 40px">Do you require a visa?<font class="required1">*</font></td>
-                <td style="height: 40px">
-                    <input type="radio" id="require_a_visa_yes" name="require_a_visa" value="true" required>
-                    <label for="html">Yes</label><br>
-                    <input type="radio" id="require_a_visa_no" name="require_a_visa" value="false" required>
-                    <label for="css">No</label><br>
-                </td>
-            </tr>
-            
+                        @Html.ValidationMessageFor(x => x.Source, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        If you have selected &quot;Other&quot; then enter details:
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Source_Others, new { @class = "form-control", style = "width:100%; height:150px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Note: Our System only accepts (.doc, .docx, .pdf, .rtf) formats while uploading
+                        your CV and Cover Letter
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" vertical-align:top;">
 
-            <tr>
-                <td style="height: 40px">If you have a visa, please give details of your current visa status:</td>
-                <td style="height: 40px">
-                    @Html.TextAreaFor(x => x.details_visa, new { @class = "form-control", style = "width:100%; height:150px" })
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <h3>Rehabilitation of Offenders Act 1974:</h3>
-                </td>
-            </tr>
+                        Attach CV<font class="required1">*</font><br /><p style="font-size:12px !important; font-weight:normal !important">Only Word and PDF files can be uploaded</p>
 
-            <tr>
-                <td style="height: 40px">
-
-
-                    Have you ever been convicted by the courts or cautioned, reprimanded or given a final warning by the police?
-                    <font class="required1">*</font>
-                </td>
-                <td style="height: 40px">
-                    <input type="radio" id="convicted_by_court_yes" name="convicted_by_court" value="true" required>
-                    <label for="html">Yes</label><br>
-                    <input type="radio" id="convicted_by_court_no" name="convicted_by_court" value="false" required>
-                    <label for="css">No</label><br>
-                </td>
-            </tr>
-
-            <tr>
-                <td style="height: 40px">
-                    If ‘yes’, please give details of all ‘un-spent’ offences, penalties and dates (including any ‘spent’ ones if the post is exempt under the Rehabilitation of Offenders Act and requires and Enhanced Disclosure check). Unspent convictions are those that are less than five years old:
-                    <br /><br />
-                    <i>The role profile for the post will inform you whether an Enhanced Disclosure is required. If it is, you are required to disclose all convictions, cautions, reprimands and final warnings on your criminal record (spent and unspent), and  an Enhanced Disclosure check will be carried out prior to the confirmation of any offer of employment.</i>
-                </td>
-                <td style="height: 40px">
-                    @Html.TextAreaFor(x => x.details_convicted_by_court, new { @class = "form-control", style = "width:100%; height:150px" })
-                </td>
-            </tr>
-
-            <tr>
-                <td style="height: 40px">
-                    Are you aware of any police enquires currently being undertaken following allegations made against you, or outstanding criminal charges, which may have a bearing on your suitability for this post?
-                    <font class="required1">*</font>
-                </td>
-                <td style="height: 40px">
-                    <input type="radio" id="police_enquires_yes" name="police_enquires" value="true" required>
-                    <label for="html">Yes</label><br>
-                    <input type="radio" id="police_enquires_no" name="police_enquires" value="false" required>
-                    <label for="css">No</label><br>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <input type="file" name="Filename" id="Filename" required="required" />
+                        @*@Html.ValidationMessageFor(x => x.Filename, null, new { @class = "validation-error" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 40px">Attach Cover Letter<font class="required1">*</font><br /><p style="font-size:12px !important; font-weight:normal !important">Only Word and PDF files can be uploaded</p></td>
+                    <td style="height: 40px">
+                        <input type="file" name="Filename_CoverLetter" id="Filename_CoverLetter" required="required" />
+                        @*@Html.ValidationMessageFor(x => x.Filename_CoverLetter, null, new { @class = "validation-error" })*@
+                        <br />
+                        &nbsp;
+                    </td>
+                </tr>
 
 
-            <tr>
-                <td style="height: 40px">
-                    If yes, please give details
-                </td>
-                <td style="height: 40px">
-                    @Html.TextAreaFor(x => x.details_police_enquires, new { @class = "form-control", style = "width:100%; height:150px" })
-                </td>
-            </tr>
+                <tr>
+                    <td style="height: 40px">Are you eligible to work in the UK?<font class="required1">*</font></td>
+                    <td style="height: 40px">
+                        <input type="radio" id="eligible_to_work_yes" name="eligible_to_work" value="true" required>
+                        <label for="html">Yes</label><br>
+                        <input type="radio" id="eligible_to_work_no" name="eligible_to_work" value="false" required>
+                        <label for="css">No</label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 40px">Do you require a visa?<font class="required1">*</font></td>
+                    <td style="height: 40px">
+                        <input type="radio" id="require_a_visa_yes" name="require_a_visa" value="true" required>
+                        <label for="html">Yes</label><br>
+                        <input type="radio" id="require_a_visa_no" name="require_a_visa" value="false" required>
+                        <label for="css">No</label><br>
+                    </td>
+                </tr>
 
-            <tr>
-                <td style="height: 40px">
-                    Are you closely connected to an employee or board member of Duncan Lewis Solicitors  (this includes close relatives or other people with whom you have a close personal connection)?
-                    <font class="required1">*</font>
-                </td>
-                <td style="height: 40px">
-                    <input type="radio" id="connected_to_DLStaff_yes" name="connected_to_DLStaff" value="true" required>
-                    <label for="html">Yes</label><br>
-                    <input type="radio" id="connected_to_DLStaff_no" name="connected_to_DLStaff" value="false" required>
-                    <label for="css">No</label><br>
-                </td>
-            </tr>
 
-            <tr>
-                <td style="height: 40px">
-                    Have you previously worked for Duncan Lewis Solicitors
-                    <font class="required1">*</font>
-                </td>
-                <td style="height: 40px">
-                    <input type="radio" id="previously_worked_DL_yes" name="previously_worked_DL" value="true" required>
-                    <label for="html">Yes</label><br>
-                    <input type="radio" id="previously_worked_DL_no" name="previously_worked_DL" value="false" required>
-                    <label for="css">No</label><br>
-                </td>
-            </tr>
+                <tr>
+                    <td style="height: 40px">If you have a visa, please give details of your current visa status:</td>
+                    <td style="height: 40px">
+                        @Html.TextAreaFor(x => x.details_visa, new { @class = "form-control", style = "width:100%; height:150px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h3>Rehabilitation of Offenders Act 1974:</h3>
+                    </td>
+                </tr>
 
-            <tr>
-                <td colspan="2">
-                    @Html.CheckBoxFor(m => m.consent, new { id = "Terms" }) I agree to the handling of my personal information in the manner described <a href="/Use-of-Personal-Information-provided-in-Online-Application-Form.html" target="_blank">here</a>.
-                    @Html.ValidationMessageFor(x => x.consent, null, new { @class = "validation-error" })
-                </td>
-            </tr>
-            @*<tr>
-            <td colspan="2">
-                @Html.Captcha("Refresh", "Enter the text you see above:", 5)
-            </td>
-        </tr>*@
-            <tr>
-                <td colspan="2" style="text-align:center;">
-                    <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
-                </td>
-            </tr>
+                <tr>
+                    <td style="height: 40px">
 
-        </table>
+
+                        Have you ever been convicted by the courts or cautioned, reprimanded or given a final warning by the police?
+                        <font class="required1">*</font>
+                    </td>
+                    <td style="height: 40px">
+                        <input type="radio" id="convicted_by_court_yes" name="convicted_by_court" value="true" required>
+                        <label for="html">Yes</label><br>
+                        <input type="radio" id="convicted_by_court_no" name="convicted_by_court" value="false" required>
+                        <label for="css">No</label><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="height: 40px">
+                        If ‘yes’, please give details of all ‘un-spent’ offences, penalties and dates (including any ‘spent’ ones if the post is exempt under the Rehabilitation of Offenders Act and requires and Enhanced Disclosure check). Unspent convictions are those that are less than five years old:
+                        <br /><br />
+                        <i>The role profile for the post will inform you whether an Enhanced Disclosure is required. If it is, you are required to disclose all convictions, cautions, reprimands and final warnings on your criminal record (spent and unspent), and  an Enhanced Disclosure check will be carried out prior to the confirmation of any offer of employment.</i>
+                    </td>
+                    <td style="height: 40px">
+                        @Html.TextAreaFor(x => x.details_convicted_by_court, new { @class = "form-control", style = "width:100%; height:150px" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="height: 40px">
+                        Are you aware of any police enquires currently being undertaken following allegations made against you, or outstanding criminal charges, which may have a bearing on your suitability for this post?
+                        <font class="required1">*</font>
+                    </td>
+                    <td style="height: 40px">
+                        <input type="radio" id="police_enquires_yes" name="police_enquires" value="true" required>
+                        <label for="html">Yes</label><br>
+                        <input type="radio" id="police_enquires_no" name="police_enquires" value="false" required>
+                        <label for="css">No</label><br>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td style="height: 40px">
+                        If yes, please give details
+                    </td>
+                    <td style="height: 40px">
+                        @Html.TextAreaFor(x => x.details_police_enquires, new { @class = "form-control", style = "width:100%; height:150px" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="height: 40px">
+                        Are you closely connected to an employee or board member of Duncan Lewis Solicitors  (this includes close relatives or other people with whom you have a close personal connection)?
+                        <font class="required1">*</font>
+                    </td>
+                    <td style="height: 40px">
+                        <input type="radio" id="connected_to_DLStaff_yes" name="connected_to_DLStaff" value="true" required>
+                        <label for="html">Yes</label><br>
+                        <input type="radio" id="connected_to_DLStaff_no" name="connected_to_DLStaff" value="false" required>
+                        <label for="css">No</label><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="height: 40px">
+                        Have you previously worked for Duncan Lewis Solicitors
+                        <font class="required1">*</font>
+                    </td>
+                    <td style="height: 40px">
+                        <input type="radio" id="previously_worked_DL_yes" name="previously_worked_DL" value="true" required>
+                        <label for="html">Yes</label><br>
+                        <input type="radio" id="previously_worked_DL_no" name="previously_worked_DL" value="false" required>
+                        <label for="css">No</label><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        @Html.CheckBoxFor(m => m.consent, new { id = "Terms" }) I agree to the handling of my personal information in the manner described <a href="/Use-of-Personal-Information-provided-in-Online-Application-Form.html" target="_blank">here</a>.
+                        @Html.ValidationMessageFor(x => x.consent, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                @*<tr>
+                        <td colspan="2">
+                            @Html.Captcha("Refresh", "Enter the text you see above:", 5)
+                        </td>
+                    </tr>*@
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+                    </td>
+                </tr>
+
+            </table>
         }
     </div>
 </div>
