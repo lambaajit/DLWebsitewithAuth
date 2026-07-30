@@ -95,6 +95,7 @@
                         <option></option>
                         <option ng-repeat="x in Queryrelatesto" value="{{x.Value}}">{{x.text}}</option>
                     </select>
+                    <span id="PrisonLawText" style="color:red"></span>
                     @*@Html.TextBoxFor(x => x.Ref_SubDepartment, new { style = "display:none;" })*@
                 </td>
             </tr>
@@ -135,6 +136,57 @@
             </tr>
 
 
+            
+            <tr id="DataClaim_breachCommittedByTr" style="display:none">
+                <td>Who has the breach been committed by?<br />(Max 100 characters)</td>
+                <td>
+                    @Html.TextAreaFor(model => model.DataClaim_breachCommittedBy, new { @class = "form-control", id = "DataClaim_breachCommittedBy", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.DataClaim_breachCommittedBy, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr id="DataClaim_WhenBreachOccurTr" style="display:none">
+                <td>When did the breach occur and/or when did you become aware of the breach being committed?<br />(Max 100 characters)</td>
+                <td>
+                    @Html.TextAreaFor(model => model.DataClaim_WhenBreachOccur, new { @class = "form-control", id = "DataClaim_WhenBreachOccur", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.DataClaim_WhenBreachOccur, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr id="DataClaim_BreachAcceptedTr" style="display:none">
+                <td>Has the breach been accepted and/or admitted? Yes or No. If no, do you want us to discuss assistance on a private fixed fee basis?<br />(Max 100 characters)</td>
+                <td>
+                    @Html.TextAreaFor(model => model.DataClaim_BreachAccepted, new { @class = "form-control", id = "DataClaim_BreachAccepted", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.DataClaim_BreachAccepted, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr id="DataClaim_EvidenceOfBreachTr" style="display:none">
+                <td>Do you have evidence of what was breached?<br />(Max 100 characters)</td>
+                <td>
+                    @Html.TextAreaFor(model => model.DataClaim_EvidenceOfBreach, new { @class = "form-control", id = "DataClaim_EvidenceOfBreach", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.DataClaim_EvidenceOfBreach, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr id="DataClaim_ImpactFromBreachTr" style="display:none">
+                <td>What has been your impact from the breach (i.e. – psychological and/or financial)?<br />(Max 100 characters)</td>
+                <td>
+                    @Html.TextAreaFor(model => model.DataClaim_ImpactFromBreach, new { @class = "form-control", id = "DataClaim_ImpactFromBreach", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.DataClaim_ImpactFromBreach, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+
+            <tr id="DataClaim_FurtherInformationTr" style="display:none">
+                <td>Do you have any further information that can help us assess how we would be able to help you?<br />(Max 100 characters) </td>
+                <td>
+                    @Html.TextAreaFor(model => model.DataClaim_FurtherInformation, new { @class = "form-control", id = "DataClaim_FurtherInformation", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.DataClaim_FurtherInformation, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+
             <tr>
                 <td>Once contact is made please select how you wish to be attended to: <font class="required1">*</font></td>
                 <td>
@@ -150,7 +202,7 @@
                 <td colspan="2">
                     Message<font class="required1">*</font>
                     <br />
-                    @Html.TextAreaFor(m => m.Description, new { @style = "width:100% !Important; min-width:100%", rows = "5", autocomplete = "off", placeholder = "Please enter your message here", @class = "form-control" })
+                    @Html.TextAreaFor(m => m.Description, new { @style = "width:100% !Important; min-width:100%", rows = "5", autocomplete = "off", placeholder = "Please enter your message here. Prospective clients should provide details of the legal services they require.", @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Description, null, new { @class = "validation-error" })
                 </td>
             </tr>
@@ -204,11 +256,50 @@
                 $("#DateAsylumTr").show();
                 $("#DateAsylumInterviewTr").show();
             }
+            else if ($("#Ref_SubDepartment").val().indexOf("Seeking compensation for Data Breach") >= 0) {
+
+                $("#DataClaim_breachCommittedByTr").show();
+                $("#DataClaim_breachCommittedBy").prop('required', true);
+
+                $("#DataClaim_WhenBreachOccurTr").show();
+                $("#DataClaim_WhenBreachOccur").prop('required', true);
+
+                $("#DataClaim_BreachAcceptedTr").show();
+                $("#DataClaim_BreachAccepted").prop('required', true);
+
+                $("#DataClaim_EvidenceOfBreachTr").show();
+                $("#DataClaim_EvidenceOfBreach").prop('required', true);
+
+                $("#DataClaim_ImpactFromBreachTr").show();
+                $("#DataClaim_ImpactFromBreach").prop('required', true);
+
+                $("#DataClaim_FurtherInformationTr").show();
+                $("#DataClaim_FurtherInformation").prop('required', true);
+            }
             else {
                 $("#ClientNationalityTr").hide();
                 $("#Client_Nationality").prop('required', false);
                 $("#DateAsylumTr").hide();
                 $("#DateAsylumInterviewTr").hide();
+
+
+                $("#DataClaim_breachCommittedByTr").hide();
+                $("#DataClaim_breachCommittedBy").prop('required', false);
+
+                $("#DataClaim_WhenBreachOccurTr").hide();
+                $("#DataClaim_WhenBreachOccur").prop('required', false);
+
+                $("#DataClaim_BreachAcceptedTr").hide();
+                $("#DataClaim_BreachAccepted").prop('required', false);
+
+                $("#DataClaim_EvidenceOfBreachTr").hide();
+                $("#DataClaim_EvidenceOfBreach").prop('required', false);
+
+                $("#DataClaim_ImpactFromBreachTr").hide();
+                $("#DataClaim_ImpactFromBreach").prop('required', false);
+
+                $("#DataClaim_FurtherInformationTr").hide();
+                $("#DataClaim_FurtherInformation").prop('required', false);
             }
         }
     </script>

@@ -32,6 +32,12 @@ app.controller('myCtrl', ['$scope', '$http', function ($scope, $http) {
             url: '/Home/getSubDepartments/' + $scope.dept
         }).then(function mySuccess(response) {
             $scope.subdept = response.data;
+            if ($scope.dept == "Prison Law") {
+                $("#PrisonLawText").text('From 1 October 2025, we will no longer take on new Legal Aid Prison Law cases. Privately funded enquiries are welcome.');
+            }
+            else {
+                $("#PrisonLawText").text('');
+            }
         }, function myError(response) {
             alert(response.statusText);
         });

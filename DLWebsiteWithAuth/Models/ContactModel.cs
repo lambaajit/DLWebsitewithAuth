@@ -42,5 +42,12 @@ namespace DLWebsiteWithAuth.Models
         public string Date_Claimed_Asylum { get; set; }
         public string Date_Asylum_Interview { get; set; }
 
+        public string DataClaim_breachCommittedBy { get; set; }
+        public string DataClaim_WhenBreachOccur { get; set; }
+        public string DataClaim_BreachAccepted { get; set; }
+        public string DataClaim_EvidenceOfBreach { get; set; }
+        public string DataClaim_ImpactFromBreach { get; set; }
+        public string DataClaim_FurtherInformation { get; set; }
+
     }
 }

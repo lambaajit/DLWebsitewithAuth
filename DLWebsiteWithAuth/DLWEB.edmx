@@ -130,6 +130,20 @@
           <Property Name="IndigoMatterOpen" Type="bit" />
           <Property Name="IndigoMatterNotOpenReason" Type="bit" />
           <Property Name="Cancel_Category" Type="varchar(max)" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Gender" Type="varchar(max)" />
+          <Property Name="IsLegalHelpReceived" Type="varchar(max)" />
+          <Property Name="LegalHelpRecievedDate" Type="datetime" />
+          <Property Name="IsReceivingNASS" Type="varchar(max)" />
+          <Property Name="IsNassRecievedSection" Type="varchar(max)" />
+          <Property Name="IsAsylumClaimRefused" Type="varchar(max)" />
+          <Property Name="ISAsylumClaimRefusedDate" Type="datetime" />
+          <Property Name="DataClaim_breachCommittedBy" Type="varchar(max)" />
+          <Property Name="DataClaim_WhenBreachOccur" Type="varchar(max)" />
+          <Property Name="DataClaim_BreachAccepted" Type="varchar(max)" />
+          <Property Name="DataClaim_EvidenceOfBreach" Type="varchar(max)" />
+          <Property Name="DataClaim_ImpactFromBreach" Type="varchar(max)" />
+          <Property Name="DataClaim_FurtherInformation" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="EmailScrutiny">
           <Key>
@@ -1344,6 +1358,20 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <Property Name="IndigoMatterOpen" Type="Boolean" />
           <Property Name="IndigoMatterNotOpenReason" Type="Boolean" />
           <Property Name="Cancel_Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsLegalHelpReceived" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LegalHelpRecievedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsReceivingNASS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsNassRecievedSection" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsAsylumClaimRefused" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ISAsylumClaimRefusedDate" Type="DateTime" Precision="3" />
+          <Property Name="DataClaim_breachCommittedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataClaim_WhenBreachOccur" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataClaim_BreachAccepted" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataClaim_EvidenceOfBreach" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataClaim_ImpactFromBreach" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataClaim_FurtherInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="EmailScrutiny">
           <Key>
@@ -1932,6 +1960,20 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySetMapping Name="ClientReferrals">
             <EntityTypeMapping TypeName="WEBDLModel.ClientReferral">
               <MappingFragment StoreEntitySet="ClientReferrals">
+                <ScalarProperty Name="DataClaim_FurtherInformation" ColumnName="DataClaim_FurtherInformation" />
+                <ScalarProperty Name="DataClaim_ImpactFromBreach" ColumnName="DataClaim_ImpactFromBreach" />
+                <ScalarProperty Name="DataClaim_EvidenceOfBreach" ColumnName="DataClaim_EvidenceOfBreach" />
+                <ScalarProperty Name="DataClaim_BreachAccepted" ColumnName="DataClaim_BreachAccepted" />
+                <ScalarProperty Name="DataClaim_WhenBreachOccur" ColumnName="DataClaim_WhenBreachOccur" />
+                <ScalarProperty Name="DataClaim_breachCommittedBy" ColumnName="DataClaim_breachCommittedBy" />
+                <ScalarProperty Name="ISAsylumClaimRefusedDate" ColumnName="ISAsylumClaimRefusedDate" />
+                <ScalarProperty Name="IsAsylumClaimRefused" ColumnName="IsAsylumClaimRefused" />
+                <ScalarProperty Name="IsNassRecievedSection" ColumnName="IsNassRecievedSection" />
+                <ScalarProperty Name="IsReceivingNASS" ColumnName="IsReceivingNASS" />
+                <ScalarProperty Name="LegalHelpRecievedDate" ColumnName="LegalHelpRecievedDate" />
+                <ScalarProperty Name="IsLegalHelpReceived" ColumnName="IsLegalHelpReceived" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Cancel_Category" ColumnName="Cancel_Category" />
                 <ScalarProperty Name="IndigoMatterNotOpenReason" ColumnName="IndigoMatterNotOpenReason" />
                 <ScalarProperty Name="IndigoMatterOpen" ColumnName="IndigoMatterOpen" />

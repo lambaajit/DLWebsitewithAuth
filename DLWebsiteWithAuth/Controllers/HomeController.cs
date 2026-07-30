@@ -175,18 +175,20 @@ namespace DLWebsiteWithAuth.Controllers
                         else if (contactModel.Ref_Department == "Facilities")
                             em.cclist.Add("HollieA@Duncanlewis.com");
                         else if (contactModel.Ref_Department == "Finance")
+                        {
+                            em.cclist.Add("SwathiA@Duncanlewis.com");
                             em.cclist.Add("KlaudiaD@Duncanlewis.com");
+                        }
                         else if (contactModel.Ref_Department == "Human Resources")
                             em.cclist.Add("hrindia@duncanlewis.com");
                         else if (contactModel.Ref_Department == "Marketing")
                             em.cclist.Add("Marketing@Duncanlewis.com");
                         else if (contactModel.Ref_Department == "Other")
                         {
-                            em.cclist.Add("admin@duncanlewis.com");
                             em.cclist.Add("hrindia@duncanlewis.com");
                             em.cclist.Add("ClientCareTeam@Duncanlewis.com");
-                            em.cclist.Add("NarayanaraoP@Duncanlewis.com");
-                            em.cclist.Add("MumtazS@Duncanlewis.com");
+                            em.cclist.Add("BalaC@Duncanlewis.com");
+                            em.cclist.Add("SrividyaV@Duncanlewis.com");
                         }
                         else if (contactModel.Ref_Department == "Media Enquiry")
                             em.cclist.Add("Marketing@Duncanlewis.com");
@@ -519,6 +521,23 @@ namespace DLWebsiteWithAuth.Controllers
                         db.Recruitment_CV_Binary.Add(RCB1);
                         db.SaveChanges();
                     }
+                }
+
+                if (applyModel.Email.Contains("@"))
+                {
+                    emailfields em = new emailfields();
+                    em.To_whom = applyModel.Email;
+                    em.from_whom = "recruitment@duncanlewis.com";
+                    em.subject = "Application Acknowledgement – Duncan Lewis Solicitors";
+
+                    em.msg = "Dear " + applyModel.Name + "</br><br />" +
+                "<strong>Thank you for submitting your application through our Careers Portal.</strong><br /><br />We confirm that your application has been successfully received. Our team will carefully review your details against the requirements of the role. If your skills and experience align with our criteria, we will be in touch to discuss the next steps.</br></br>" +
+        "Please note that due to the high volume of applications, this process may take some time. We appreciate your interest in joining Duncan Lewis Solicitors and thank you for the opportunity to consider your application. <br /><br />" +
+    "If shortlisted, you will be contacted directly." +
+    "<br /><br />Yours Sincerely<br /><br />Duncan Lewis";
+
+                    ExtensionsMethods.sendemail(em);
+
                 }
                 return RedirectToAction("Confirmation", "Home", new { id = 1 });
             }

@@ -95,5 +95,19 @@ namespace DLWebsiteWithAuth
         public Nullable<bool> IndigoMatterOpen { get; set; }
         public Nullable<bool> IndigoMatterNotOpenReason { get; set; }
         public string Cancel_Category { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public string Gender { get; set; }
+        public string IsLegalHelpReceived { get; set; }
+        public Nullable<System.DateTime> LegalHelpRecievedDate { get; set; }
+        public string IsReceivingNASS { get; set; }
+        public string IsNassRecievedSection { get; set; }
+        public string IsAsylumClaimRefused { get; set; }
+        public Nullable<System.DateTime> ISAsylumClaimRefusedDate { get; set; }
+        public string DataClaim_breachCommittedBy { get; set; }
+        public string DataClaim_WhenBreachOccur { get; set; }
+        public string DataClaim_BreachAccepted { get; set; }
+        public string DataClaim_EvidenceOfBreach { get; set; }
+        public string DataClaim_ImpactFromBreach { get; set; }
+        public string DataClaim_FurtherInformation { get; set; }
     }
 }
