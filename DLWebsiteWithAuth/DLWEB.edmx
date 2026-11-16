@@ -145,6 +145,61 @@
           <Property Name="DataClaim_ImpactFromBreach" Type="varchar(max)" />
           <Property Name="DataClaim_FurtherInformation" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="DataClaimBreach">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IndigoClientId" Type="int" />
+          <Property Name="FullName" Type="varchar(max)" />
+          <Property Name="email" Type="varchar(max)" />
+          <Property Name="Answer1" Type="varchar(max)" />
+          <Property Name="Answer1Evidence" Type="varchar(max)" />
+          <Property Name="Answer1Filename" Type="varchar(max)" />
+          <Property Name="Answer2" Type="varchar(max)" />
+          <Property Name="Answer3" Type="varchar(max)" />
+          <Property Name="Answer3Evidence" Type="varchar(max)" />
+          <Property Name="Answer3Filename" Type="varchar(max)" />
+          <Property Name="Answer4" Type="varchar(max)" />
+          <Property Name="Answer4TotalFee" Type="varchar(max)" />
+          <Property Name="Answer4Evidence" Type="varchar(max)" />
+          <Property Name="Answer4Filename" Type="varchar(max)" />
+          <Property Name="Answer5" Type="varchar(max)" />
+          <Property Name="Answer6" Type="varchar(max)" />
+          <Property Name="Answer7" Type="varchar(max)" />
+          <Property Name="Answer8" Type="varchar(max)" />
+          <Property Name="Answer9" Type="varchar(max)" />
+          <Property Name="Answer10" Type="varchar(max)" />
+          <Property Name="Answer10Evidence" Type="varchar(max)" />
+          <Property Name="Answer10Filename" Type="varchar(max)" />
+          <Property Name="Answer11" Type="varchar(max)" />
+          <Property Name="Answer11Witness1Name" Type="varchar(max)" />
+          <Property Name="Answer11Witness1Relationship" Type="varchar(max)" />
+          <Property Name="Answer11Witness1ContactNo" Type="varchar(max)" />
+          <Property Name="Answer11EvidenceWitness1" Type="varchar(max)" />
+          <Property Name="Answer11FilenameWitness1" Type="varchar(max)" />
+          <Property Name="Answer11Witness2Name" Type="varchar(max)" />
+          <Property Name="Answer11Witness2Relationship" Type="varchar(max)" />
+          <Property Name="Answer11Witness2ContactNo" Type="varchar(max)" />
+          <Property Name="Answer11EvidenceWitness2" Type="varchar(max)" />
+          <Property Name="Answer11FilenameWitness2" Type="varchar(max)" />
+          <Property Name="DateEntered" Type="datetime" />
+          <Property Name="ClientCode" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DataClaimBreachInitialForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientCode" Type="varchar(max)" />
+          <Property Name="Question1" Type="varchar(max)" />
+          <Property Name="Question2" Type="varchar(max)" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="ContactNumber" Type="varchar(max)" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="GuidNo" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="EmailScrutiny">
           <Key>
             <PropertyRef Name="Id" />
@@ -673,6 +728,8 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySet Name="AssentManagement_ProductDetails" EntityType="Self.AssentManagement_ProductDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Blue_Print" EntityType="Self.Blue_Print" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientReferrals" EntityType="Self.ClientReferrals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataClaimBreach" EntityType="Self.DataClaimBreach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataClaimBreachInitialForm" EntityType="Self.DataClaimBreachInitialForm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmailScrutiny" EntityType="Self.EmailScrutiny" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HackersList" EntityType="Self.HackersList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HousingDisrepairCalculator" EntityType="Self.HousingDisrepairCalculator" Schema="dbo" store:Type="Tables" />
@@ -1249,6 +1306,8 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           <EntitySet Name="ClientReferrals" EntityType="WEBDLModel.ClientReferral" />
           <EntitySet Name="EmailScrutinies" EntityType="WEBDLModel.EmailScrutiny" />
           <EntitySet Name="HackersLists" EntityType="WEBDLModel.HackersList" />
+          <EntitySet Name="DataClaimBreaches" EntityType="WEBDLModel.DataClaimBreach" />
+          <EntitySet Name="DataClaimBreachInitialForms" EntityType="WEBDLModel.DataClaimBreachInitialForm" />
         </EntityContainer>
         <EntityType Name="HousingDisrepairCalculator">
           <Key>
@@ -1387,6 +1446,61 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="emailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DataClaimBreach">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IndigoClientId" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer1Evidence" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer1Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer3Evidence" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer3Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer4TotalFee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer4Evidence" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer4Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer6" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer7" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer8" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer9" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer10" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer10Evidence" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer10Filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11Witness1Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11Witness1Relationship" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11Witness1ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11EvidenceWitness1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11FilenameWitness1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11Witness2Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11Witness2Relationship" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11Witness2ContactNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11EvidenceWitness2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answer11FilenameWitness2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateEntered" Type="DateTime" Precision="3" />
+          <Property Name="ClientCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DataClaimBreachInitialForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Question2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="GuidNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2071,6 +2185,63 @@ warning 6002: The table/view 'WEBDL.dbo.Staff_Details' does not have a primary k
             <EntityTypeMapping TypeName="WEBDLModel.HackersList">
               <MappingFragment StoreEntitySet="HackersList">
                 <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataClaimBreaches">
+            <EntityTypeMapping TypeName="WEBDLModel.DataClaimBreach">
+              <MappingFragment StoreEntitySet="DataClaimBreach">
+                <ScalarProperty Name="ClientCode" ColumnName="ClientCode" />
+                <ScalarProperty Name="DateEntered" ColumnName="DateEntered" />
+                <ScalarProperty Name="Answer11FilenameWitness2" ColumnName="Answer11FilenameWitness2" />
+                <ScalarProperty Name="Answer11EvidenceWitness2" ColumnName="Answer11EvidenceWitness2" />
+                <ScalarProperty Name="Answer11Witness2ContactNo" ColumnName="Answer11Witness2ContactNo" />
+                <ScalarProperty Name="Answer11Witness2Relationship" ColumnName="Answer11Witness2Relationship" />
+                <ScalarProperty Name="Answer11Witness2Name" ColumnName="Answer11Witness2Name" />
+                <ScalarProperty Name="Answer11FilenameWitness1" ColumnName="Answer11FilenameWitness1" />
+                <ScalarProperty Name="Answer11EvidenceWitness1" ColumnName="Answer11EvidenceWitness1" />
+                <ScalarProperty Name="Answer11Witness1ContactNo" ColumnName="Answer11Witness1ContactNo" />
+                <ScalarProperty Name="Answer11Witness1Relationship" ColumnName="Answer11Witness1Relationship" />
+                <ScalarProperty Name="Answer11Witness1Name" ColumnName="Answer11Witness1Name" />
+                <ScalarProperty Name="Answer11" ColumnName="Answer11" />
+                <ScalarProperty Name="Answer10Filename" ColumnName="Answer10Filename" />
+                <ScalarProperty Name="Answer10Evidence" ColumnName="Answer10Evidence" />
+                <ScalarProperty Name="Answer10" ColumnName="Answer10" />
+                <ScalarProperty Name="Answer9" ColumnName="Answer9" />
+                <ScalarProperty Name="Answer8" ColumnName="Answer8" />
+                <ScalarProperty Name="Answer7" ColumnName="Answer7" />
+                <ScalarProperty Name="Answer6" ColumnName="Answer6" />
+                <ScalarProperty Name="Answer5" ColumnName="Answer5" />
+                <ScalarProperty Name="Answer4Filename" ColumnName="Answer4Filename" />
+                <ScalarProperty Name="Answer4Evidence" ColumnName="Answer4Evidence" />
+                <ScalarProperty Name="Answer4TotalFee" ColumnName="Answer4TotalFee" />
+                <ScalarProperty Name="Answer4" ColumnName="Answer4" />
+                <ScalarProperty Name="Answer3Filename" ColumnName="Answer3Filename" />
+                <ScalarProperty Name="Answer3Evidence" ColumnName="Answer3Evidence" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="Answer1Filename" ColumnName="Answer1Filename" />
+                <ScalarProperty Name="Answer1Evidence" ColumnName="Answer1Evidence" />
+                <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IndigoClientId" ColumnName="IndigoClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataClaimBreachInitialForms">
+            <EntityTypeMapping TypeName="WEBDLModel.DataClaimBreachInitialForm">
+              <MappingFragment StoreEntitySet="DataClaimBreachInitialForm">
+                <ScalarProperty Name="GuidNo" ColumnName="GuidNo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Question2" ColumnName="Question2" />
+                <ScalarProperty Name="Question1" ColumnName="Question1" />
+                <ScalarProperty Name="ClientCode" ColumnName="ClientCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,0 +1,699 @@
+﻿@model DLWebsiteWithAuth.DataClaimBreach
+
+@{
+    ViewBag.Title = "DataClaimBreach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-xs-12">
+    <div id="maincontent">
+        <div class="hidden-xs" style="padding-top:10px;">
+            <p style="float:right;color:#ff0000;font-size:10px !important">* this information is required</p>
+            <h1 style="font-size:16px">LEGAL AID AGENCY (“LAA”) BREACH - CLIENT QUESTIONNAIRE</h1>
+        </div>
+        @using (Html.BeginForm("DataClaimBreachPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id="SubmitFormDataBreach" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <table class="table table-bordered">
+                <thead style="padding:10px">
+                    <b>GUIDANCE:</b>
+                    <ul>
+                        <li>
+                            <b>Answer every question</b> - If something doesn’t apply,write “N/A” and do not leave blank
+                        </li>
+                        <li>
+                            <b>Be specific</b> - “I felt anxious” is less helpful than“I couldn’t sleep for 3 weeks, had panic attacks, stopped going out”
+                        </li>
+                        <li>
+                            <b>Include dates</b> - When did impact start? How long didit last? Still ongoing?
+                        </li>
+                        <li>
+                            <b>Estimate carefully</b> - “About 10 hours” is betterthan wild guess
+                        </li>
+                        <li>
+                            <b>Attach evidence</b> - Bank statements, receipts, GP letters, diary entries if you are able.
+                        </li>
+                        <li><b>Be honest</b> - Exaggeration will be exposed anddamages credibility</li>
+                    </ul>
+                    <br />
+                    <br />
+                    <span style="color:red !important">@ViewBag.ErorMsg</span>
+                </thead>
+                <tr>
+                    <td style="width:60%;">Your Full Name<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", autocomplete = "off", required = "required" })
+                        @Html.ValidationMessageFor(x => x.FullName, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email Address<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.email, new { @class = "form-control", autocomplete = "off", pattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", required = "required" })
+                        @Html.ValidationMessageFor(x => x.email, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        1. Have you received a notification that your personal data may have
+                        been affected by the LAA data breach? For example, an email or letter
+                        by the LAA itself, or from Duncan Lewis Solicitors. If so, please
+                        confirm from who, when and how.<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer1, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+
+                        @Html.ValidationMessageFor(x => x.Answer1, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Evidence<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Answer1Evidence, new List<SelectListItem>() { new SelectListItem() { Text = "Yes", Value = "Yes" }, new SelectListItem() { Text = "No", Value = "No" } }, "Please Select", new { id = "Answer1Evidence", @class = "form-control", required = "required", onchange = "CheckValueAndMakeFieldMandatory('Yes', 'Answer1Evidence', 'Answer1Filename', true)" })
+                        @Html.ValidationMessageFor(x => x.Answer1Evidence, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr id="trAnswer1Filename" style="display:none">
+                    <td colspan="2">
+                        Upload Evidence<font class="required1">*</font>
+                        <br />
+                        <div class="upload-container" id="dropArea1">
+
+                            <i class="fa fa-cloud-upload upload-icon"></i>
+
+                            <h3>Drag & Drop Files Here</h3>
+                            <p>or click below to browse files</p>
+
+                            <input type="file"
+                                   name="Answer1Filename"
+                                   id="Answer1Filename"
+                                   onchange="ValidatingFileUpload('Answer1Filename')"
+                                   class="form-control file-input" />
+
+
+                        </div>
+
+                        @Html.ValidationMessageFor(x => x.Answer1Filename, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        2. What personal data do you understand has been potentially affected
+                        by the LAA data breach?<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer2, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+
+                        @Html.ValidationMessageFor(x => x.Answer2, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>
+                        3. Since finding out about the LAA data breach,have you experienced
+                        suspicious/scam contact and/or fraud attempts? If so, please confirm
+                        what.<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer3, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+
+                        @Html.ValidationMessageFor(x => x.Answer3, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Evidence<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Answer3Evidence, new List<SelectListItem>() { new SelectListItem() { Text = "Yes", Value = "Yes" }, new SelectListItem() { Text = "No", Value = "No" } }, "Please Select", new { id = "Answer3Evidence", @class = "form-control", required = "required", onchange = "CheckValueAndMakeFieldMandatory('Yes', 'Answer3Evidence', 'Answer3Filename', true)" })
+                        @Html.ValidationMessageFor(x => x.Answer3Evidence, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr id="trAnswer3Filename" style="display:none">
+
+                    <td colspan="2">
+                        Upload Evidence<font class="required1">*</font>
+                        <br />
+                        <div class="upload-container" id="dropArea3">
+
+                            <i class="fa fa-cloud-upload upload-icon"></i>
+
+                            <h3>Drag & Drop Files Here</h3>
+                            <p>or click below to browse files</p>
+
+                            <input type="file"
+                                   name="Answer3Filename"
+                                   id="Answer3Filename"
+                                   onchange="ValidatingFileUpload('Answer3Filename')"
+                                   class="form-control file-input" />
+
+
+                        </div>
+
+                        @Html.ValidationMessageFor(x => x.Answer3Filename, null, new { @class = "validation-error" })
+                    </td>
+
+
+                </tr>
+
+
+
+
+
+
+
+                <tr>
+                    <td>
+                        4. Have you incurred any fees as a direct result of the LAA data
+                        breach? For example, have you subscribed to credit monitoring
+                        services, or paid solicitor’s fees as a result of the data breach? If yes,
+                        please confirm what and why.<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer4, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+                        @Html.ValidationMessageFor(x => x.Answer4, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Total Fees (£)<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Answer4TotalFee, new { @class = "form-control", autocomplete = "off", required = "required", type = "number" })
+                        @Html.ValidationMessageFor(x => x.Answer4TotalFee, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Evidence<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Answer4Evidence, new List<SelectListItem>() { new SelectListItem() { Text = "Yes", Value = "Yes" }, new SelectListItem() { Text = "No", Value = "No" } }, "Please Select", new { id = "Answer4Evidence", @class = "form-control", required = "required", onchange = "CheckValueAndMakeFieldMandatory('Yes', 'Answer4Evidence', 'Answer4Filename', true)" })
+                        @Html.ValidationMessageFor(x => x.Answer4Evidence, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr id="trAnswer4Filename" style="display:none">
+                    <td colspan="2">
+                        Upload Evidence<font class="required1">*</font>
+                        <br />
+                        <div class="upload-container" id="dropArea4">
+
+                            <i class="fa fa-cloud-upload upload-icon"></i>
+
+                            <h3>Drag & Drop Files Here</h3>
+                            <p>or click below to browse files</p>
+
+                            <input type="file"
+                                   name="Answer4Filename"
+                                   onchange="ValidatingFileUpload('Answer4Filename')"
+                                   id="Answer4Filename"
+                                   class="form-control file-input" />
+
+
+                        </div>
+
+                        @Html.ValidationMessageFor(x => x.Answer4Filename, null, new { @class = "validation-error" })
+                    </td>
+
+                </tr>
+
+
+
+
+
+
+                <tr>
+                    <td>
+                        5. Have you spent any time dealing with the consequences of the LAA
+                        data breach? For example, changing passwords,monitoring bank
+                        accounts and credit reports, or contacting your bank to report fraud or
+                        cancel cards. If yes, please confirm what, how much time was spent
+                        and why<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer5, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+
+                        @Html.ValidationMessageFor(x => x.Answer5, null, new { @class = "validation-error" })
+                        <br />
+                        <div style="width:100%; background-color:lightgray">
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="width:100%; background-color:lightgray">
+                        <p>
+                            In order to secure compensation, you must be able to provide evidence of distress and not just say you were
+                            upset by the breach<br /><br />
+                            <b>Best evidence:</b> GP notes, prescriptions, counselling records and sick notes.
+                            <b>Good evidence:</b>Diary entries made at the time, emails/ messages to friends and witness statements.
+                            <b>Weak evidence:</b> No supporting proof.
+                            <br /><br />
+                            <b>Be specific:</b> What symptoms(e.g.sleep problems, appetite changes, anxiety/ panic attacks, low mood,
+                            difficulty concentrating, hypervigilance, physical symptoms such as headaches / stomach tension, increased
+                            alcohol / substances)? When did the symptoms start? How severe were they? How long did they last? What
+                            did they make you stop doing? Who noticed these? Are they still ongoing?
+                        </p>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>
+                        6. Please describe in detail how the data breach has specifically
+                        affected you psychologically and/or emotionally.<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer6, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+                        @Html.ValidationMessageFor(x => x.Answer6, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td>
+                        7. Have you experienced any psychological and/or emotional
+                        symptoms generally before the LAA data breach? If so, please confirm
+                        what.<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer7, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+                        @Html.ValidationMessageFor(x => x.Answer7, null, new { @class = "validation-error" })
+
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        8. Have you experienced any psychological and/or emotional
+                        symptoms as a direct result of the LAA data breach? For
+                        example:changes in appetite; changes in sleep patterns; increase in
+                        anxiety, distress and worry; withdrawal from social activities; or
+                        avoiding answering calls or emails. If so, please confirm what<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer8, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+                        @Html.ValidationMessageFor(x => x.Answer8, null, new { @class = "validation-error" })
+
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        9. Did you seek medical and/or counselling help specifically as a result
+                        of the LAA data breach? If yes, who did you consult with and what was
+                        the outcome?<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer9, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+                        @Html.ValidationMessageFor(x => x.Answer9, null, new { @class = "validation-error" })
+
+                    </td>
+                </tr>
+
+
+
+
+
+
+                <tr>
+                    <td>
+                        10. Do you have any evidence recording how you felt during the time
+                        you became aware of the LAA data breach? For
+                        example,text/WhatsApp/iMessage messages to friends or family,
+                        journal entries, notes from therapy or counselling sessions. If yes,
+                        please confirm what.<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(x => x.Answer10, new { @class = "form-control", autocomplete = "off", rows = "5", required = "required" })
+                        @Html.ValidationMessageFor(x => x.Answer10, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Evidence<font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Answer10Evidence, new List<SelectListItem>() { new SelectListItem() { Text = "Yes", Value = "Yes" }, new SelectListItem() { Text = "No", Value = "No" } }, "Please Select", new { id = "Answer10Evidence", @class = "form-control", required = "required", onchange = "CheckValueAndMakeFieldMandatory('Yes', 'Answer10Evidence', 'Answer10Filename', true)" })
+                        @Html.ValidationMessageFor(x => x.Answer10Evidence, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+                <tr id="trAnswer10Filename" style="display:none">
+
+                    <td colspan="2">
+                        Upload Evidence<font class="required1">*</font>
+                        <br />
+                        <div class="upload-container" id="dropArea10">
+
+                            <i class="fa fa-cloud-upload upload-icon"></i>
+
+                            <h3>Drag & Drop Files Here</h3>
+                            <p>or click below to browse files</p>
+
+                            <input type="file"
+                                   name="Answer10Filename"
+                                   onchange="ValidatingFileUpload('Answer10Filename')"
+                                   id="Answer10Filename"
+                                   class="form-control file-input" />
+
+
+                        </div>
+
+                        @Html.ValidationMessageFor(x => x.Answer10Filename, null, new { @class = "validation-error" })
+                    </td>
+
+
+                </tr>
+
+
+
+                <tr>
+                    <td>
+                        11. Is there anyone who has witnessed the impact of the LAA data
+                        breach on you and who could provide a statement in support? If yes,
+                        please confirm who they are, their relationship to you and their contact
+                        details.<font class="required1">*</font>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Witness 1 willing to give a witness statement?: *
+                        <font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Answer11EvidenceWitness1, new List<SelectListItem>() { new SelectListItem() { Text = "Yes", Value = "Yes" }, new SelectListItem() { Text = "No", Value = "No" } }, "Please Select", new { id = "Answer11EvidenceWitness1", @class = "form-control", required = "required", onchange = "CheckValueAndMakeFieldMandatory('Yes', 'Answer11EvidenceWitness1', 'Answer11Witness1Name', true); CheckValueAndMakeFieldMandatory('Yes', 'Answer11EvidenceWitness1', 'Answer11Witness1Relationship', true); CheckValueAndMakeFieldMandatory('Yes', 'Answer11EvidenceWitness1', 'Answer11Witness1ContactNo', true); CheckValueAndMakeFieldMandatory('Yes', 'Answer11EvidenceWitness1', 'Answer11EvidenceWitness2', true)" })
+                        @Html.ValidationMessageFor(x => x.Answer11EvidenceWitness1, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+                <tr id="trAnswer11Witness1Name" style="display:none">
+                    <td style="width:60%;">Witness 1 - Name<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Answer11Witness1Name, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Answer11Witness1Name, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+                <tr id="trAnswer11Witness1Relationship" style="display:none">
+                    <td style="width:60%;">Witness 1 - Relationship<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Answer11Witness1Relationship, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Answer11Witness1Relationship, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+
+                <tr id="trAnswer11Witness1ContactNo" style="display:none">
+                    <td style="width:60%;">Witness 1 - Contact Number<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Answer11Witness1ContactNo, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Answer11Witness1ContactNo, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+                <tr id="trAnswer11EvidenceWitness2" style="display:none">
+                    <td>
+                        Witness 2 willing to give a witness statement?: *
+                        <font class="required1">*</font>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.Answer11EvidenceWitness2, new List<SelectListItem>() { new SelectListItem() { Text = "Yes", Value = "Yes" }, new SelectListItem() { Text = "No", Value = "No" } }, "Please Select", new { id = "Answer11EvidenceWitness2", @class = "form-control", onchange = "CheckValueAndMakeFieldMandatory('Yes', 'Answer11EvidenceWitness2', 'Answer11Witness2Name', true); CheckValueAndMakeFieldMandatory('Yes', 'Answer11EvidenceWitness2', 'Answer11Witness2Relationship', true); CheckValueAndMakeFieldMandatory('Yes', 'Answer11EvidenceWitness2', 'Answer11Witness2ContactNo', true);" })
+                        @Html.ValidationMessageFor(x => x.Answer11EvidenceWitness2, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+
+                <tr id="trAnswer11Witness2Name" style="display:none">
+                    <td style="width:60%;">Witness 2 - Name<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Answer11Witness2Name, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Answer11Witness2Name, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+                <tr id="trAnswer11Witness2Relationship" style="display:none">
+                    <td style="width:60%;">Witness 2 - Relationship<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Answer11Witness2Relationship, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Answer11Witness2Relationship, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+
+                <tr id="trAnswer11Witness2ContactNo" style="display:none">
+                    <td style="width:60%;">Witness 2 - Contact Number<font class="required1">*</font></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Answer11Witness2ContactNo, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.Answer11Witness2ContactNo, null, new { @class = "validation-error" })
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" class="btn btn-primary" id="SubmitButton" value="Submit" />
+                    </td>
+                </tr>
+
+            </table>
+        }
+    </div>
+</div>
+
+
+@section Styles{
+    <style>
+    .upload-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px 20px;
+    border: 2px dashed #aaa;
+    border-radius: 12px;
+    text-align: center;
+    background: #f8f9fa;
+    }
+
+    .upload-icon {
+    font-size: 55px;
+    color: #007bff;
+    margin-bottom: 15px;
+    }
+
+    .file-input {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    }
+
+    .btn-upload {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 6px;
+    cursor: pointer;
+    }
+        </style>
+    }
+
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+
+            });
+
+
+            function ValidatingFileUpload(controlId) {
+
+                var _control = $('#' + controlId);
+                const maxSize = 15 * 1024 * 1024; // 15 MB
+
+                for (let i = 0; i < _control[0].files.length; i++) {
+                    if (_control[0].files[i].size > maxSize) {
+                        alert("You are trying to upload a file which is more than 15 MB. Please try to compress/optimise it and then upload again");
+                        // Clear all selected files
+                        $(_control).val("");
+
+                        return false;
+                    }
+                }
+            };
+
+
+            function CheckValueAndMakeFieldMandatory(value, feildtoCheck, feildToControl, showhideTr = false, doNotAddRequiredAttribute = false) {
+                if ($("#" + feildtoCheck).val() == value) {
+                    if (doNotAddRequiredAttribute == false) {
+                        $("#" + feildToControl).attr('required', 'required');
+                    }
+                    else {
+                        $("#" + feildToControl).removeAttr('required');
+                    }
+                    if (showhideTr == true) {
+                        $("#tr" + feildToControl).show();
+                    }
+                }
+                else {
+                    $("#" + feildToControl).removeAttr('required');
+                    if (doNotAddRequiredAttribute == false) {
+                        $("#" + feildToControl).removeAttr('required');
+                    }
+                    if (showhideTr == true) {
+                        $("#tr" + feildToControl).hide();
+                    }
+                }
+            };
+
+
+
+            const dropArea1 = document.getElementById("dropArea1");
+            const fileInput1 = document.getElementById("Answer1Filename");
+
+            dropArea1.addEventListener("click", function () {
+                fileInput1.click();
+            });
+
+ 
+
+            dropArea1.addEventListener("dragover", function (e) {
+                e.preventDefault();
+                dropArea1.classList.add("dragover");
+            });
+
+            dropArea1.addEventListener("dragleave", function () {
+                dropArea1.classList.remove("dragover");
+            });
+
+            dropArea1.addEventListener("drop", function (e) {
+                e.preventDefault();
+                dropArea1.classList.remove("dragover");
+
+                if (e.dataTransfer.files.length > 0) {
+                    fileInput1.files = e.dataTransfer.files;
+                }
+            });
+
+
+
+            const dropArea3 = document.getElementById("dropArea3");
+            const fileInput3 = document.getElementById("Answer3Filename");
+
+            dropArea3.addEventListener("click", function () {
+                fileInput3.click();
+            });
+
+
+
+            dropArea3.addEventListener("dragover", function (e) {
+                e.preventDefault();
+                dropArea3.classList.add("dragover");
+            });
+
+            dropArea3.addEventListener("dragleave", function () {
+                dropArea3.classList.remove("dragover");
+            });
+
+            dropArea3.addEventListener("drop", function (e) {
+                e.preventDefault();
+                dropArea3.classList.remove("dragover");
+
+                if (e.dataTransfer.files.length > 0) {
+                    fileInput3.files = e.dataTransfer.files;
+                }
+            });
+
+
+            const dropArea4 = document.getElementById("dropArea4");
+            const fileInput4 = document.getElementById("Answer4Filename");
+
+            dropArea4.addEventListener("click", function () {
+                fileInput4.click();
+            });
+
+
+
+            dropArea4.addEventListener("dragover", function (e) {
+                e.preventDefault();
+                dropArea4.classList.add("dragover");
+            });
+
+            dropArea4.addEventListener("dragleave", function () {
+                dropArea4.classList.remove("dragover");
+            });
+
+            dropArea4.addEventListener("drop", function (e) {
+                e.preventDefault();
+                dropArea4.classList.remove("dragover");
+
+                if (e.dataTransfer.files.length > 0) {
+                    fileInput4.files = e.dataTransfer.files;
+                }
+            });
+
+
+
+
+            const dropArea10 = document.getElementById("dropArea10");
+            const fileInput10 = document.getElementById("Answer10Filename");
+
+            dropArea10.addEventListener("click", function () {
+                fileInput10.click();
+            });
+
+
+
+            dropArea10.addEventListener("dragover", function (e) {
+                e.preventDefault();
+                dropArea10.classList.add("dragover");
+            });
+
+            dropArea10.addEventListener("dragleave", function () {
+                dropArea10.classList.remove("dragover");
+            });
+
+            dropArea10.addEventListener("drop", function (e) {
+                e.preventDefault();
+                dropArea10.classList.remove("dragover");
+
+                if (e.dataTransfer.files.length > 0) {
+                    fileInput10.files = e.dataTransfer.files;
+                }
+            });
+
+
+
+            let isSubmitting = false;
+
+            document.getElementById("SubmitFormDataBreach")
+                .addEventListener("submit", function (e) {
+
+                    if (isSubmitting) {
+                        e.preventDefault();
+                        return false;
+                    }
+
+                    isSubmitting = true;
+
+                    // Disable submit button
+                    document.getElementById("SubmitButton").disabled = true;
+
+                });
+
+        </script>
+
+    }

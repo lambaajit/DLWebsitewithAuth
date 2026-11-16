@@ -45,5 +45,7 @@ namespace DLWebsiteWithAuth
         public virtual DbSet<ClientReferral> ClientReferrals { get; set; }
         public virtual DbSet<EmailScrutiny> EmailScrutinies { get; set; }
         public virtual DbSet<HackersList> HackersLists { get; set; }
+        public virtual DbSet<DataClaimBreach> DataClaimBreaches { get; set; }
+        public virtual DbSet<DataClaimBreachInitialForm> DataClaimBreachInitialForms { get; set; }
     }
 }

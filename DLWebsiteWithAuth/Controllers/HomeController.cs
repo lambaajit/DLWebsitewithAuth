@@ -15,6 +15,7 @@ using AutoMapper;
 using static System.Net.Mime.MediaTypeNames;
 using System.Configuration;
 using CaptchaMvc.HtmlHelpers;
+using Microsoft.Ajax.Utilities;
 
 namespace DLWebsiteWithAuth.Controllers
 {
@@ -384,6 +385,80 @@ namespace DLWebsiteWithAuth.Controllers
         }
 
 
+        public ActionResult DataClaimBreachInitialForm(string ClientCode = null)
+        {
+            DataClaimBreachInitialForm dataClaimBreachInitialForm = new DataClaimBreachInitialForm();
+            if (ClientCode != null)
+                dataClaimBreachInitialForm.ClientCode = ClientCode;
+
+                return View(dataClaimBreachInitialForm);
+        }
+
+
+        public ActionResult DataClaimBreachInitialFormPost(DataClaimBreachInitialForm dataClaimBreachInitialForm)
+        {
+            WEBDLEntities db = new WEBDLEntities();
+            dataClaimBreachInitialForm.GuidNo = Guid.NewGuid().ToString();
+            db.DataClaimBreachInitialForms.Add(dataClaimBreachInitialForm);
+            db.SaveChanges();
+
+            return RedirectToAction("Confirmation", "Home", new { id = 11 });
+        }
+
+
+        public ActionResult DataClaimBreach(int? Id = 0, string _g = null)
+        {
+            WEBDLEntities db = new WEBDLEntities();
+            var dataClaimBreachInitialForm = db.DataClaimBreachInitialForms.Where(x => x.GuidNo == _g && x.Id == Id).FirstOrDefault();
+            if (dataClaimBreachInitialForm == null)
+                return RedirectToAction("Confirmation", "Home", new { id = 9 });
+            else
+            {
+                DataClaimBreach dataClaimBreach = new DataClaimBreach() {
+                     FullName = dataClaimBreachInitialForm.Name,
+                      email = dataClaimBreachInitialForm.Email,
+                      IndigoClientId = dataClaimBreachInitialForm.Id,
+                      
+                };
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DataClaimBreachPost(DLWebsiteWithAuth.DataClaimBreach dataClaimBreach, HttpPostedFileBase Answer1Filename, HttpPostedFileBase Answer3Filename, HttpPostedFileBase Answer4Filename, HttpPostedFileBase Answer10Filename)
+        {
+            WEBDLEntities db = new WEBDLEntities();
+            db.DataClaimBreaches.Add(dataClaimBreach);
+            db.SaveChanges();
+
+            var _lastId = db.DataClaimBreaches.Max(x => x.Id);
+
+            if (Answer1Filename != null && Answer1Filename.ContentLength > 100)
+            {
+                var fileext = Answer1Filename.FileName.Substring(Answer1Filename.FileName.LastIndexOf("."));
+                Answer1Filename.SaveAs(Server.MapPath("~") + "/DataBreachClaim/" + _lastId + "_Answer1Filename" + fileext);
+            }
+
+            if (Answer3Filename != null && Answer3Filename.ContentLength > 100)
+            {
+                var fileext = Answer3Filename.FileName.Substring(Answer3Filename.FileName.LastIndexOf("."));
+                Answer3Filename.SaveAs(Server.MapPath("~") + "/DataBreachClaim/" + _lastId + "_Answer3Filename" + fileext);
+            }
+
+            if (Answer4Filename != null && Answer4Filename.ContentLength > 100)
+            {
+                var fileext = Answer4Filename.FileName.Substring(Answer4Filename.FileName.LastIndexOf("."));
+                Answer4Filename.SaveAs(Server.MapPath("~") + "/DataBreachClaim/" + _lastId + "_Answer4Filename" + fileext);
+            }
+
+            if (Answer10Filename != null && Answer10Filename.ContentLength > 100)
+            {
+                var fileext = Answer10Filename.FileName.Substring(Answer10Filename.FileName.LastIndexOf("."));
+                Answer10Filename.SaveAs(Server.MapPath("~") + "/DataBreachClaim/" + _lastId + "_Answer10Filename" + fileext);
+            }
+
+            return RedirectToAction("Confirmation", "Home", new { id = 8 });
+        }
 
 
         [HttpGet]
@@ -588,7 +663,15 @@ namespace DLWebsiteWithAuth.Controllers
                 else if (id == 6)
                     message = "The role for which you are trying to apply is now closed, please go to our career section to see live vacancies";
                 else if (id == 7)
-                    message = "We have successfully recieved you Internship application. We will contact you when we have suitable requirement";
+                    message = "We have successfully recieved your Internship application. We will contact you when we have suitable requirement";
+                else if (id == 8)
+                    message = "We have successfully recieved your LEGAL AID AGENCY (“LAA”) BREACH - CLIENT QUESTIONNAIRE. We will contact you if we have any further queries";
+                else if (id == 9)
+                    message = "We are not able to find the client associated with the Data Breach Claim you are trying to submit.";
+                else if (id == 10)
+                    message = "Unfortunately, this claim is limited to people who applied for legal aid or were named within an application between 2007–2025.";
+                else if (id == 11)
+                    message = "We have successfully recieved your Legal Aid Data Breach Claim. We will contact you if we have any further queries";
             }
             //else
             //{

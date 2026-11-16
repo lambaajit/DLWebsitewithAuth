@@ -280,6 +280,12 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OfficesController.cs" />
     <Compile Include="Controllers\SMSController.cs" />
+    <Compile Include="DataClaimBreach.cs">
+      <DependentUpon>DLWEB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClaimBreachInitialForm.cs">
+      <DependentUpon>DLWEB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DLWEB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -495,6 +501,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Home\DataClaimBreach.cshtml" />
+    <Content Include="Views\Home\DataClaimBreachInitialForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
