@@ -10,7 +10,7 @@
     <div id="maincontent">
         <div class="hidden-xs" style="padding-top:10px;">
             <p style="float:right;color:#ff0000;font-size:10px !important">* this information is required</p>
-            <h1 style="font-size:16px">Start your Legal Aid Data Breach Claim</h1>
+            <h3 style="font-size:16px">Start your Legal Aid Data Breach Claim</h3>
         </div>
         @using (Html.BeginForm("DataClaimBreachInitialFormPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "SubmitFormDataBreachInitial" }))
         {
@@ -18,12 +18,12 @@
             @Html.ValidationSummary(true)
             <table class="table table-bordered">
                 <thead style="padding:10px">
+                    <br />
                     <b>Quick eligibility check:</b>
                     <p>
                         This helps us confirm whether you're likely to fall within the scope of the Legal Aid Agency data breach.
                     </p>
-                    <br />
-                    <br />
+                    
                     <span style="color:red !important">@ViewBag.ErorMsg</span>
                 </thead>
                 <tr>
@@ -53,7 +53,7 @@
                 <tr>
                     <td style="width:60%;">Name<font class="required1">*</font></td>
                     <td>
-                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", autocomplete = "off" })
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", autocomplete = "off", required = "required" })
                         @Html.ValidationMessageFor(x => x.Name, null, new { @class = "validation-error" })
                     </td>
                 </tr>
@@ -61,25 +61,25 @@
                 <tr>
                     <td style="width:60%;">Email<font class="required1">*</font></td>
                     <td>
-                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off", pattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$" })
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off", pattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", required = "required" })
                         @Html.ValidationMessageFor(x => x.Email, null, new { @class = "validation-error" })
                     </td>
                 </tr>
 
 
-                <tr id="trAnswer11Witness1ContactNo" style="display:none">
+                <tr>
                     <td style="width:60%;">Contact Number<font class="required1">*</font></td>
                     <td>
-                        @Html.TextBoxFor(x => x.ContactNumber, new { @class = "form-control", autocomplete = "off" })
+                        @Html.TextBoxFor(x => x.ContactNumber, new { @class = "form-control", autocomplete = "off", required = "required" })
                         @Html.ValidationMessageFor(x => x.ContactNumber, null, new { @class = "validation-error" })
                     </td>
                 </tr>
 
 
-                <tr id="trAnswer11Witness2Name" style="display:none">
+                <tr>
                     <td style="width:60%;">Witness 2 - Name<font class="required1">*</font></td>
                     <td>
-                        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", autocomplete = "off", type = "date" })
+                        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", autocomplete = "off", type = "date",required="required" })
                         @Html.ValidationMessageFor(x => x.DateOfBirth, null, new { @class = "validation-error" })
                     </td>
                 </tr>

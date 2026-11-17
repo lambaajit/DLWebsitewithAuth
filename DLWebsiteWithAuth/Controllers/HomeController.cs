@@ -418,9 +418,10 @@ namespace DLWebsiteWithAuth.Controllers
                      FullName = dataClaimBreachInitialForm.Name,
                       email = dataClaimBreachInitialForm.Email,
                       IndigoClientId = dataClaimBreachInitialForm.Id,
-                      
+                      ClientCode = dataClaimBreachInitialForm.ClientCode
+
                 };
-                return View();
+                return View(dataClaimBreach);
             }
         }
 
